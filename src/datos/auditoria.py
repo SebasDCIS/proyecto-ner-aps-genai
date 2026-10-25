@@ -54,7 +54,7 @@ def duplicados_entre_splits(splits: dict[str, list[Oracion]], min_tokens: int = 
             "%_de_" + b: round(100 * len(ors_b) / len(splits[b]), 2),
             "entidades_afectadas": ent_b,
             "%_entidades_de_" + b: round(100 * ent_b / max(total_ent_b, 1), 2),
-            "ejemplos": sorted(comunes, key=len, reverse=True)[:8],
+            "ejemplos": sorted(comunes, key=lambda t: (-len(t), t))[:8],  # orden fijo: el JSON no cambia entre corridas
         }
     return res
 
@@ -104,7 +104,7 @@ def conflictos_de_etiqueta(splits: dict[str, list[Oracion]]) -> dict:
     conflictos = [t for t, f in por_texto.items() if len(f) > 1]
     return {"textos_con_anotacion_inconsistente": len(conflictos),
             "que_cruzan_splits": sum(1 for t in conflictos if len(ubic[t]) > 1),
-            "ejemplos": sorted(conflictos, key=len, reverse=True)[:6]}
+            "ejemplos": sorted(conflictos, key=lambda t: (-len(t), t))[:6]}
 
 
 def menciones_vistas(train: list[Oracion], test: list[Oracion], tipo: str) -> dict:
