@@ -1,0 +1,14 @@
+# Corpus públicos del proyecto. Versiones a confirmar en la semana 1 (ver docs/bitacora.md).
+corpus:
+  cwlc:
+    descripcion: Chilean Waiting List Corpus — derivaciones de APS anotadas (CC BY-NC-SA 4.0)
+    fuente: zenodo
+    id: 5591011        # v4: 5.000 derivaciones, IOB2 + standoff + 10 folds (por confirmar)
+  cwlc_disease_hf:
+    descripcion: CWLC, entidad Disease, formato Hugging Face (PLN@CMM)
+    fuente: huggingface
+    id: plncmm/wl-disease
+  ges:
+    descripcion: GES classification dataset (CC BY 4.0) — tarea opcional
+    fuente: zenodo
+    id: 4737751

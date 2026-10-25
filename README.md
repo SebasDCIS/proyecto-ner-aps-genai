@@ -1,0 +1,68 @@
+# ¿Lo que funciona afuera funciona en la APS chilena?
+
+**Estudio de transferibilidad de estrategias de NER clínico, encoders y LLM generativos, sobre texto real de Atención Primaria chilena.**
+
+Proyecto de investigación del curso *Inteligencia Artificial Generativa y Modelos Fundacionales* (prof. Rodrigo Salas, Doctorado en Ciencias e Ingeniería para la Salud, Universidad de Valparaíso), 2.º semestre 2026.
+
+Equipo: Sebastián Inostroza, Maite Bahamondes, Ruth Vergara.
+
+## Pregunta
+
+La literatura internacional dice qué estrategias funcionan mejor para reconocer entidades clínicas (NER) en fichas. ¿Se mantiene ese resultado con las derivaciones reales escritas por médicos de APS en Chile, que vienen llenas de abreviaturas y siglas locales?
+
+## Experimentos
+
+| ID | Estrategia | Qué se compara |
+|---|---|---|
+| E1 | Encoder clínico ajustado (BERT/RoBERTa) | Línea base: lo que la literatura dice que gana |
+| E2 | LLM local con prompt estructurado: zero-shot, few-shot fijo y few-shot dinámico (RAG) | Cuánto mejora un LLM al adaptarlo con ejemplos chilenos |
+| E4 | LLM como anotador → entrena un encoder (+10/50/100 documentos gold) | Cuánta anotación humana se necesita realmente |
+| E3 (opc.) | QLoRA de un LLM de 7–8B con MLX | Ajuste fino del propio LLM |
+| E5 (opc.) | Normalización de abreviaturas con LLM antes de extraer | Preprocesamiento |
+
+Un LLM comercial se usa solo como **techo de referencia**: el corpus es público y anonimizado.
+
+**Examen:** test del Chilean Waiting List Corpus (CWLC), anotado por médicos. **No se requiere anotación humana nueva.**
+
+**Métricas:** F1 estricto y laxo (micro y por entidad) con IC 95% por bootstrap; F1 en entidades abreviadas vs no abreviadas; tasa de alucinación; salidas mal formadas; reproducibilidad (3–5 corridas); costo, tiempo y memoria. El reporte sigue TRIPOD-LLM.
+
+## Estructura
+
+```
+configs/      datos.yaml, experimentos.yaml
+data/         raw/ y processed/ (NO se versionan; ver data/README.md)
+docs/         bitácora, propuesta, mapa guía, revisión de literatura
+notebooks/    exploración y figuras
+results/      tablas y figuras finales (sin datos de pacientes)
+scripts/      instalación del entorno
+src/datos/    descarga y preprocesamiento
+src/modelos/  E1–E5
+src/evaluacion/ métricas (estricto/laxo, bootstrap, alucinaciones)
+tests/        pruebas de las métricas
+```
+
+## Instalación (Mac con Apple Silicon)
+
+```bash
+git clone https://github.com/SebasDCIS/proyecto-ner-aps-genai.git
+cd proyecto-ner-aps-genai
+bash scripts/setup_mac.sh          # crea .venv, instala dependencias y descarga los LLM locales
+source .venv/bin/activate
+python src/datos/descargar.py      # descarga los corpus a data/raw/
+python -m pytest -q tests          # verifica las métricas
+```
+
+Repositorio local recomendado: `~/Proyectos/proyecto-ner-aps-genai`, fuera de carpetas sincronizadas con la nube. Los datos y los pesos de modelos no se suben a git.
+
+## Datos y licencias
+
+- **CWLC**: CC BY-NC-SA 4.0. Uso académico. Los derivados que se redistribuyan mantienen la licencia.
+- **DisTEMIST**: ver `configs/datos.yaml`.
+- Ningún dato de pacientes identificables. El proyecto no usa datos institucionales.
+
+## Documentos
+
+- [Bitácora](docs/bitacora.md)
+- [Mapa guía del equipo](docs/mapa_guia.md)
+- [Propuesta para el profesor](docs/propuesta.md)
+- [Revisión de literatura](docs/revision_literatura.md)

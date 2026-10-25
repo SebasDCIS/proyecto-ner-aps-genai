@@ -1,0 +1,23 @@
+# Datos y modelos: nunca se versionan
+data/raw/
+data/processed/
+models/
+outputs/
+*.safetensors
+*.bin
+*.gguf
+*.pt
+*.ckpt
+
+# Entorno
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.env
+*.key
+
+# Resultados intermedios pesados
+results/predicciones/
+results/cache/

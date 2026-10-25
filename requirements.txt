@@ -1,0 +1,28 @@
+# Núcleo
+numpy
+pandas
+pyyaml
+scikit-learn
+scipy
+matplotlib
+tqdm
+
+# Encoders (E1, E4)
+torch
+transformers
+datasets
+accelerate
+seqeval
+
+# LLM locales (E2, E3, E5)
+ollama
+mlx-lm ; platform_system == "Darwin" and platform_machine == "arm64"
+
+# Recuperación de ejemplos para few-shot dinámico (E2)
+rank-bm25
+
+# LLM comercial (techo de referencia)
+openai
+
+# Pruebas
+pytest
