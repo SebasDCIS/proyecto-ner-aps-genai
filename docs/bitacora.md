@@ -4,6 +4,18 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-25 (noche) · E1 implementado y probado
+
+- Módulo `src/modelos/e1_encoder.py`: un etiquetador por tipo de entidad (MLC), ciclo de entrenamiento PyTorch explícito, early stopping por F1 en dev.
+- **Prueba de humo** (CPU, solo 800 oraciones de train y 3 épocas, `bsc-bio-ehr-es`, Disease, 300 oraciones de test): F1 estricto **0,747** (IC95 0,696–0,784), F1 laxo **0,881**. Recall en enfermedades abreviadas 0,72 vs no abreviadas 0,76 (n = 47 vs 285). El pipeline aprende; el modo completo se corre en el Mac con MPS.
+- La gran diferencia entre F1 laxo y estricto (≈ 0,13) indica que muchos errores son de límites de la entidad, no de no reconocerla.
+- `plncmm/roberta-clinical-wl-es` usa el mismo tokenizador que el modelo del BSC ("pcte" → "pc" + "te").
+
+**Pendientes**
+- [ ] Correr el notebook 02 en modo completo en el Mac y completar sus conclusiones
+
+---
+
 ## 2026-10-25 (tarde) · Datos descargados y primeros notebooks
 
 **Decisiones**
