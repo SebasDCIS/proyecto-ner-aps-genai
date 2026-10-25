@@ -1,0 +1,134 @@
+{
+  "config": {
+    "modelo": "plncmm/roberta-clinical-wl-es",
+    "tipo": "Disease",
+    "epocas": 5,
+    "lr": 3e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 43,
+    "max_train": null
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 0.2459866967267857,
+      "f1_dev": 0.7658102766798419,
+      "segundos": 176.4
+    },
+    {
+      "epoca": 2,
+      "perdida": 0.09461366170329485,
+      "f1_dev": 0.7919597989949748,
+      "segundos": 175.7
+    },
+    {
+      "epoca": 3,
+      "perdida": 0.06341671416286877,
+      "f1_dev": 0.7964860907759883,
+      "segundos": 174.5
+    },
+    {
+      "epoca": 4,
+      "perdida": 0.04438037550989576,
+      "f1_dev": 0.805776892430279,
+      "segundos": 175.2
+    },
+    {
+      "epoca": 5,
+      "perdida": 0.031399333434079045,
+      "f1_dev": 0.8034017008504252,
+      "segundos": 174.8
+    },
+    {
+      "semilla": {
+        "semilla": 43,
+        "determinista_solicitado": true,
+        "torch_determinista": true
+      },
+      "mejor_f1_dev": 0.805776892430279,
+      "revision_modelo": null
+    }
+  ],
+  "resultados": {
+    "huella_predicciones": "f21c1f4a7da055b9070162485662cb41802e16ff0ca259809c8fc383666f1df7",
+    "estricto": {
+      "precision": 0.781882145998241,
+      "recall": 0.8300653594771242,
+      "f1": 0.8052536231884058,
+      "ic95": [
+        0.7829815926365167,
+        0.8265316047975119
+      ],
+      "vp": 889,
+      "fp": 248,
+      "fn": 182
+    },
+    "laxo": {
+      "precision": 0.8830255057167986,
+      "recall": 0.9374416433239963,
+      "f1": 0.9094202898550725,
+      "ic95": [
+        0.8960739030023095,
+        0.9230786516853933
+      ],
+      "vp": 1004,
+      "fp": 133,
+      "fn": 67
+    },
+    "abreviadas": {
+      "n_gold": 119,
+      "recall_estricto": 0.8235294117647058
+    },
+    "no_abreviadas": {
+      "n_gold": 952,
+      "recall_estricto": 0.8308823529411765
+    },
+    "test_sin_duplicados": {
+      "oraciones_excluidas": 96,
+      "f1_estricto": 0.8003838771593089,
+      "precision": 0.776536312849162,
+      "recall": 0.8257425742574257
+    },
+    "menciones_vistas": {
+      "n_gold": 656,
+      "recall_estricto": 0.899390243902439
+    },
+    "menciones_nuevas": {
+      "n_gold": 415,
+      "recall_estricto": 0.7204819277108434
+    },
+    "clave": "chileno_clinico",
+    "minutos_total": 14.7
+  },
+  "huella": {
+    "config": "8da6d2777ca7e2cfa48ada407ccd651a0d28d3001ab0bb705d0fdda4542df0f8",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "20f97307c26015ea19995b8e67c265bcdb8568ec",
+      "cambios_sin_commit": true
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "datos_contenido": {
+      "train": "8f2ece1bab064380239c51a4c0408e324b4436d17a611980d0e4e8883f2dfc93",
+      "dev": "d5c763a7ccf5ec0abc3847c033e3bd4052fa16f75ac36dc510ead9b7b1878f59",
+      "test": "4ff6eb70e93b2ca9d95246f04aefdcf32f0afde51ff7ac7e7215e505e7856e54"
+    },
+    "modelo": {
+      "modelo": "plncmm/roberta-clinical-wl-es",
+      "revision": "39bc1b241a2d8a0aa7149429de0b13192f6007c0"
+    }
+  }
+}
