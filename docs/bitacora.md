@@ -20,7 +20,10 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 **Pendientes**
 - [ ] Validar el tema con el prof. Salas (propuesta en `docs/propuesta.md`)
 - [ ] Presentar el mapa guía a Maite y Ruth (`docs/mapa_guia.md`) y acordar roles
-- [ ] Fijar la versión del CWLC y los splits (ver `docs/verificacion_arranque.md`)
+- [x] Versión del CWLC: **v4 (Zenodo 5591011)**, IOB2 con train/dev/test; comparable con Báez 2022 y Rojas 2022 (ver `docs/verificacion_arranque.md`)
+- [ ] Confirmar los 7 tipos de entidad que usó Rojas 2022 (F1 83,16) para comparar en igualdad
+- [x] DisTEMIST v5.1 (Zenodo 7614764, CC BY 4.0) como contraste
+- [x] Verificado: no hay trabajos publicados de NER con LLM generativos sobre el CWLC, salvo Naguib 2024 (few-shot, 100 oraciones; Llama-3-8B 0,437 vs BSC-BioEHR 0,578)
 - [ ] Confirmar la fecha de entrega del manuscrito
 
 ---

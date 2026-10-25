@@ -1,14 +1,22 @@
-# Corpus públicos del proyecto. Versiones a confirmar en la semana 1 (ver docs/bitacora.md).
+# Corpus públicos del proyecto (verificado 2026-10-25, ver docs/verificacion_arranque.md).
 corpus:
   cwlc:
-    descripcion: Chilean Waiting List Corpus — derivaciones de APS anotadas (CC BY-NC-SA 4.0)
+    descripcion: >-
+      Chilean Waiting List Corpus v4 — 5.000 derivaciones de APS, 10 tipos de entidad,
+      IOB2 con train/dev/test + standoff + 10 folds. Licencia: tratar como no comercial
+      (Zenodo indica CC BY-NC-SA 4.0). Es la versión comparable con Báez 2022 y Rojas 2022.
     fuente: zenodo
-    id: 5591011        # v4: 5.000 derivaciones, IOB2 + standoff + 10 folds (por confirmar)
-  cwlc_disease_hf:
-    descripcion: CWLC, entidad Disease, formato Hugging Face (PLN@CMM)
-    fuente: huggingface
-    id: plncmm/wl-disease
+    id: 5591011
+  distemist:
+    descripcion: >-
+      DisTEMIST v5.1 — 1.000 casos clínicos (España), ENFERMEDAD; train 750 / test 250.
+      CC BY 4.0. Contraste de texto "limpio" (F1 ganador del shared task: 0,777).
+    fuente: zenodo
+    id: 7614764
   ges:
-    descripcion: GES classification dataset (CC BY 4.0) — tarea opcional
+    descripcion: GES classification dataset (CC BY 4.0) — ~941 derivaciones, columnas id, diagnostic, age, ges. Opcional.
     fuente: zenodo
     id: 4737751
+# Notas:
+# - Zenodo 7555181 (v5, 9.000 derivaciones) no trae splits; no usar para comparar con la literatura.
+# - plncmm/wl en Hugging Face es NER plano (pierde anidamiento); útil solo para pruebas rápidas.
