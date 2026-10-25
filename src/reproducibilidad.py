@@ -92,13 +92,14 @@ def huella_predicciones(pred) -> str:
 
 
 def huella_codigo() -> dict:
-    """Commit de git actual y si hay cambios sin guardar (código 'sucio')."""
+    """Commit de git actual y si hay cambios sin guardar en el código (se ignoran los notebooks,
+    que siempre aparecen modificados mientras tienen salidas)."""
     def git(*args):
         try:
             return subprocess.run(["git", *args], cwd=RAIZ, capture_output=True, text=True, timeout=10).stdout.strip()
         except Exception:
             return ""
-    return {"commit": git("rev-parse", "HEAD"), "cambios_sin_commit": bool(git("status", "--porcelain", "--untracked-files=no"))}
+    return {"commit": git("rev-parse", "HEAD"), "cambios_sin_commit": bool(git("status", "--porcelain", "--untracked-files=no", "--", ".", ":!*.ipynb"))}
 
 
 def huella_modelo(nombre: str) -> dict:
