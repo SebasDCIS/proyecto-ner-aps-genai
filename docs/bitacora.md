@@ -4,6 +4,24 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-25 (tarde) · Datos descargados y primeros notebooks
+
+**Decisiones**
+- Fuente del CWLC: los archivos CoNLL que publicó PLN@CMM con Báez et al. 2022 (GitHub `plncmm/acm_health_msen`, `src/wl_files`). Son 7 tipos de entidad (Abbreviation, Body_Part, Disease, Family_Member, Finding, Medication, Procedure), un archivo por tipo, con splits fijos de **8.014 / 890 / 990 oraciones**. Zenodo queda como respaldo.
+- Se trabaja en **VS Code con notebooks** (`notebooks/`), cada uno explicado para un lector externo.
+
+**Hallazgos de la exploración (notebook 01)**
+- Entrenamiento: 35.480 entidades; test: 4.289 (1.071 enfermedades).
+- 1.113 abreviaturas distintas; las más frecuentes son aps, tto, hta, pza, obs, pcte, rx y dm2.
+- El 11,1% de las enfermedades del test (119) se superpone con una abreviatura anotada. Alcanza para H3, con IC más anchos.
+- Oraciones cortas: mediana de 15 palabras.
+
+**Pendientes**
+- [ ] Comparar con Báez 2022, que usa estos mismos splits, no con Rojas 2022 (otra partición)
+- [ ] Notebook 02: línea base E1
+
+---
+
 ## 2026-10-25 · Arranque del proyecto
 
 **Decisiones**

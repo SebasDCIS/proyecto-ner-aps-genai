@@ -52,6 +52,20 @@ python src/datos/descargar.py      # descarga los corpus a data/raw/
 python -m pytest -q tests          # verifica las métricas
 ```
 
+### Trabajar en VS Code
+
+1. Abrir la carpeta del proyecto en VS Code (*File → Open Folder*). VS Code sugerirá instalar las extensiones recomendadas (Python y Jupyter): aceptar.
+2. Abrir un notebook de `notebooks/` y elegir el kernel **.venv** (arriba a la derecha).
+3. Los notebooks van en orden y cada paso está explicado para alguien externo al proyecto:
+
+| Notebook | Qué hace |
+|---|---|
+| `00_preparacion_entorno_y_datos.ipynb` | Verifica el entorno, la GPU del Mac (MPS), Ollama; descarga y valida el corpus |
+| `01_exploracion_cwlc.ipynb` | Conoce el corpus: tamaños, tipos de entidad, abreviaturas, enfermedades abreviadas |
+| `02_e1_encoder_ajustado.ipynb` | (próximo) Línea base E1 |
+
+Antes de hacer *commit*, limpiar las salidas de los notebooks (*Clear All Outputs*) para no subir fragmentos del corpus.
+
 Repositorio local recomendado: `~/Proyectos/proyecto-ner-aps-genai`, fuera de carpetas sincronizadas con la nube. Los datos y los pesos de modelos no se suben a git.
 
 ## Datos y licencias

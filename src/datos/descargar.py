@@ -59,6 +59,25 @@ def descargar_hf(repo_id: str, carpeta: Path) -> None:
     print(f"  guardado en {carpeta}")
 
 
+def descargar_github(c: dict, carpeta: Path) -> None:
+    """Descarga archivos sueltos de un repositorio público de GitHub (raw).
+
+    c["repo"] = "usuario/repo", c["rama"], c["base"] = carpeta dentro del repo,
+    c["archivos"] = lista de rutas relativas a `base`.
+    """
+    for rel in c["archivos"]:
+        salida = carpeta / rel
+        if salida.exists():
+            continue
+        salida.parent.mkdir(parents=True, exist_ok=True)
+        url = f"https://raw.githubusercontent.com/{c['repo']}/{c['rama']}/{c['base']}/{rel}"
+        urllib.request.urlretrieve(url, salida)
+    (carpeta / "FUENTE.txt").write_text(
+        f"https://github.com/{c['repo']} ({c['rama']}) / {c['base']}\n{c['descripcion']}\n", encoding="utf-8"
+    )
+    print(f"  {len(c['archivos'])} archivos en {carpeta}")
+
+
 def main(nombres: list[str]) -> None:
     config = yaml.safe_load((RAIZ / "configs" / "datos.yaml").read_text(encoding="utf-8"))
     corpus = config["corpus"]
@@ -68,6 +87,8 @@ def main(nombres: list[str]) -> None:
         carpeta = DESTINO / nombre
         if c["fuente"] == "zenodo":
             descargar_zenodo(str(c["id"]), carpeta)
+        elif c["fuente"] == "github":
+            descargar_github(c, carpeta)
         elif c["fuente"] == "huggingface":
             descargar_hf(c["id"], carpeta)
         else:

@@ -24,5 +24,9 @@ rank-bm25
 # LLM comercial (techo de referencia)
 openai
 
+# Notebooks (VS Code)
+ipykernel
+nbformat
+
 # Pruebas
 pytest
