@@ -1,6 +1,8 @@
 # Configuración de experimentos. Los nombres de modelos se confirman en la semana 1.
 
-semilla: 42
+semilla: 42                 # semilla por defecto
+semillas: [42, 43, 44]      # cada experimento con modelo entrenable se repite con 3 semillas (media ± DE)
+determinista: true
 corridas_reproducibilidad: 3
 bootstrap_iteraciones: 1000
 
@@ -16,7 +18,7 @@ entrenamiento_encoder:
   epocas: 5
   lr: 3.0e-5
   batch: 16
-  max_len: 256
+  max_len: 512                # 0 oraciones truncadas a 512; 9 se truncaban a 256 (auditoría)
   dispositivo: mps
 
 # E2 — LLM locales vía Ollama (cuantizados, ~8B)

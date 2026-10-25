@@ -25,6 +25,7 @@ from transformers import AutoModelForTokenClassification, AutoTokenizer, get_lin
 
 from datos.cwlc import Oracion, bio_a_spans
 from evaluacion import metricas
+from reproducibilidad import fijar_semilla_total, huella_predicciones
 
 
 def dispositivo() -> str:
@@ -35,10 +36,9 @@ def dispositivo() -> str:
     return "cpu"
 
 
-def fijar_semilla(semilla: int) -> None:
-    random.seed(semilla)
-    np.random.seed(semilla)
-    torch.manual_seed(semilla)
+def fijar_semilla(semilla: int) -> dict:
+    """Compatibilidad: delega en reproducibilidad.fijar_semilla_total."""
+    return fijar_semilla_total(semilla)
 
 
 # ----------------------------------------------------------------------------- etiquetas
@@ -138,7 +138,7 @@ def predecir(modelo, cod: Codificador, oraciones: list[Oracion], tipo: str, batc
 
 def entrenar(cfg: Config, train: list[Oracion], dev: list[Oracion], registro=print):
     """Ajusta un encoder para un tipo de entidad. Devuelve (modelo, codificador, historial)."""
-    fijar_semilla(cfg.semilla)
+    estado_semilla = fijar_semilla_total(cfg.semilla)
     disp = dispositivo()
     cod = Codificador(cfg.modelo, cfg.tipo, cfg.max_len)
     modelo = AutoModelForTokenClassification.from_pretrained(
@@ -184,12 +184,20 @@ def entrenar(cfg: Config, train: list[Oracion], dev: list[Oracion], registro=pri
                 registro("  sin mejora en dev: se detiene (early stopping)")
                 break
     modelo.load_state_dict(mejor_estado)
+    historial.append({"semilla": estado_semilla, "mejor_f1_dev": mejor_f1,
+                      "revision_modelo": getattr(modelo.config, "_commit_hash", None)})
     return modelo, cod, historial
 
 
-def evaluar(gold, pred, oraciones: list[Oracion] | None = None, tipo: str | None = None, n_boot: int = 1000) -> dict:
-    """Métricas estándar del proyecto para un tipo de entidad."""
-    res = {}
+def evaluar(gold, pred, oraciones: list[Oracion] | None = None, tipo: str | None = None, n_boot: int = 1000,
+            train: list[Oracion] | None = None) -> dict:
+    """Métricas estándar del proyecto para un tipo de entidad.
+
+    Si se entrega `train`, agrega dos análisis de sensibilidad por posible fuga:
+    - F1 en el test SIN las oraciones repetidas en train (duplicados normalizados).
+    - Recall en entidades cuya mención ya se vio en train vs menciones nuevas.
+    """
+    res = {"huella_predicciones": huella_predicciones(pred)}
     for modo in ["estricto", "laxo"]:
         c = metricas.contar(gold, pred, modo)
         f1, lo, hi = metricas.bootstrap_f1(metricas.por_documento(gold, pred, modo), n=n_boot)
@@ -207,10 +215,25 @@ def evaluar(gold, pred, oraciones: list[Oracion] | None = None, tipo: str | None
         for nombre, g in [("abreviadas", gold_ab), ("no_abreviadas", gold_no)]:
             c = metricas.contar(g, subgrupo(g), "estricto")
             res[nombre] = {"n_gold": len(g), "recall_estricto": c.recall}
+        if train is not None:
+            from datos.auditoria import normalizar
+            textos_train = {normalizar(o.texto) for o in train}
+            ids_dup = {o.id for o in oraciones if normalizar(o.texto) in textos_train}
+            g2 = [e for e in gold if e[0] not in ids_dup]
+            p2 = [e for e in pred if e[0] not in ids_dup]
+            c2 = metricas.contar(g2, p2, "estricto")
+            res["test_sin_duplicados"] = {"oraciones_excluidas": len(ids_dup), "f1_estricto": c2.f1,
+                                          "precision": c2.precision, "recall": c2.recall}
+            vistas = {normalizar(o.mencion(e)) for o in train for e in o.entidades if e[3] == tipo}
+            g_v = [e for e in gold if normalizar(por_id[e[0]].mencion(e)) in vistas]
+            g_n = [e for e in gold if normalizar(por_id[e[0]].mencion(e)) not in vistas]
+            for nombre, g in [("menciones_vistas", g_v), ("menciones_nuevas", g_n)]:
+                c = metricas.contar(g, subgrupo(g), "estricto")
+                res[nombre] = {"n_gold": len(g), "recall_estricto": c.recall}
     return res
 
 
-def guardar_resultados(ruta: Path, cfg: Config, historial: list, resultados: dict) -> None:
+def guardar_resultados(ruta: Path, cfg: Config, historial: list, resultados: dict, huella: dict | None = None) -> None:
     ruta.parent.mkdir(parents=True, exist_ok=True)
-    ruta.write_text(json.dumps({"config": asdict(cfg), "historial": historial, "resultados": resultados},
-                               indent=2, ensure_ascii=False), encoding="utf-8")
+    ruta.write_text(json.dumps({"config": asdict(cfg), "historial": historial, "resultados": resultados,
+                                "huella": huella}, indent=2, ensure_ascii=False, default=str), encoding="utf-8")

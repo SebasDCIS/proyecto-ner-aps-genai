@@ -1,0 +1,274 @@
+{
+  "huellas_contenido": {
+    "train": "8f2ece1bab064380239c51a4c0408e324b4436d17a611980d0e4e8883f2dfc93",
+    "dev": "d5c763a7ccf5ec0abc3847c033e3bd4052fa16f75ac36dc510ead9b7b1878f59",
+    "test": "4ff6eb70e93b2ca9d95246f04aefdcf32f0afde51ff7ac7e7215e505e7856e54"
+  },
+  "duplicados_exactos_normalizados": {
+    "train∩dev": {
+      "oraciones_repetidas_en_dev": 93,
+      "%_de_dev": 10.45,
+      "entidades_afectadas": 131,
+      "%_entidades_de_dev": 3.3,
+      "ejemplos": [
+        "cuello : - sin alteraciones - pulsos carotideos normales - yugulares sin alteraciones - tiroides sin alteraciones torax : - caja toraxica sin alteraciones sin dolor palpacion costal - respiracion eupneica - pulmonar : murmullo vesicular conservado , no ae auscultan estertores .",
+        "- absceso periapical con fistula / - fundamento clinico aps : radiografia periapical se observa lesion apical fistula dolor leve a la persusion absceso periapical con fistula",
+        "trastornos mentales y del comportamiento debidos al uso de multiples drogas y al uso de otras sustancias psicoactivas",
+        "abdomen : - plano , ombligo umbilicado , depresible e indoloro - higado bajo el reborde costal - bazo no se palpa .",
+        "neurologico periferico : - movilidad , fuerzas y reflejos osteotendinosos conservados .",
+        "perdida de dientes debida a accidente , extraccion o enfermedad periodontal local",
+        "solicito interconsulta con especialista para evaluacion y eventual tratamiento .",
+        "- desdentado parcial / - fundamento clinico aps : paciente desdentado parcial ."
+      ]
+    },
+    "train∩test": {
+      "oraciones_repetidas_en_test": 96,
+      "%_de_test": 9.7,
+      "entidades_afectadas": 115,
+      "%_entidades_de_test": 2.68,
+      "ejemplos": [
+        "- dientes incluidos e impactados / - fundamento clinico aps : paciente masculino , 21 anos , sin antecedentes morbidos .",
+        "infartos cerebrales multiples , secuela de sd de wallenberg + infarto cerebeloso .",
+        "perdida de dientes debida a accidente , extraccion o enfermedad periodontal local",
+        "otras afecciones especificadas de los dientes y de sus estructuras de sosten",
+        "hipertrofia de las amigdalas con hipertrofia de las adenoides",
+        "anomalias dentofaciales ( incluso la maloclusion )",
+        "distonia cervical con desviacion de menton a izq",
+        "otros quistes ovaricos y los no especificados"
+      ]
+    },
+    "dev∩test": {
+      "oraciones_repetidas_en_test": 44,
+      "%_de_test": 4.44,
+      "entidades_afectadas": 52,
+      "%_entidades_de_test": 1.21,
+      "ejemplos": [
+        "perdida de dientes debida a accidente , extraccion o enfermedad periodontal local",
+        "otras afecciones especificadas de los dientes y de sus estructuras de sosten",
+        "hipertrofia de las amigdalas con hipertrofia de las adenoides",
+        "anomalias dentofaciales ( incluso la maloclusion )",
+        "trastornos de la articulacion temporomaxilar",
+        "prepucio redundante , fimosis y parafimosis",
+        "derivo a especialista para evaluacion .",
+        "anomalias de la posicion del diente"
+      ]
+    }
+  },
+  "duplicados_min5tokens": {
+    "train∩dev": {
+      "oraciones_repetidas_en_dev": 52,
+      "%_de_dev": 5.84,
+      "entidades_afectadas": 95,
+      "%_entidades_de_dev": 2.39,
+      "ejemplos": [
+        "cuello : - sin alteraciones - pulsos carotideos normales - yugulares sin alteraciones - tiroides sin alteraciones torax : - caja toraxica sin alteraciones sin dolor palpacion costal - respiracion eupneica - pulmonar : murmullo vesicular conservado , no ae auscultan estertores .",
+        "- absceso periapical con fistula / - fundamento clinico aps : radiografia periapical se observa lesion apical fistula dolor leve a la persusion absceso periapical con fistula",
+        "trastornos mentales y del comportamiento debidos al uso de multiples drogas y al uso de otras sustancias psicoactivas",
+        "abdomen : - plano , ombligo umbilicado , depresible e indoloro - higado bajo el reborde costal - bazo no se palpa .",
+        "neurologico periferico : - movilidad , fuerzas y reflejos osteotendinosos conservados .",
+        "perdida de dientes debida a accidente , extraccion o enfermedad periodontal local",
+        "solicito interconsulta con especialista para evaluacion y eventual tratamiento .",
+        "- desdentado parcial / - fundamento clinico aps : paciente desdentado parcial ."
+      ]
+    },
+    "train∩test": {
+      "oraciones_repetidas_en_test": 35,
+      "%_de_test": 3.54,
+      "entidades_afectadas": 48,
+      "%_entidades_de_test": 1.12,
+      "ejemplos": [
+        "- dientes incluidos e impactados / - fundamento clinico aps : paciente masculino , 21 anos , sin antecedentes morbidos .",
+        "infartos cerebrales multiples , secuela de sd de wallenberg + infarto cerebeloso .",
+        "perdida de dientes debida a accidente , extraccion o enfermedad periodontal local",
+        "otras afecciones especificadas de los dientes y de sus estructuras de sosten",
+        "hipertrofia de las amigdalas con hipertrofia de las adenoides",
+        "anomalias dentofaciales ( incluso la maloclusion )",
+        "distonia cervical con desviacion de menton a izq",
+        "otros quistes ovaricos y los no especificados"
+      ]
+    },
+    "dev∩test": {
+      "oraciones_repetidas_en_test": 14,
+      "%_de_test": 1.41,
+      "entidades_afectadas": 22,
+      "%_entidades_de_test": 0.51,
+      "ejemplos": [
+        "perdida de dientes debida a accidente , extraccion o enfermedad periodontal local",
+        "otras afecciones especificadas de los dientes y de sus estructuras de sosten",
+        "hipertrofia de las amigdalas con hipertrofia de las adenoides",
+        "anomalias dentofaciales ( incluso la maloclusion )",
+        "trastornos de la articulacion temporomaxilar",
+        "prepucio redundante , fimosis y parafimosis",
+        "derivo a especialista para evaluacion .",
+        "maloclusion de tipo no especificado"
+      ]
+    }
+  },
+  "casi_duplicados_test": {
+    "umbral_jaccard": 0.8,
+    "oraciones_elegibles": 796,
+    "casi_duplicadas": 23,
+    "%": 2.89,
+    "ejemplos": [
+      [
+        1.0,
+        "se deriva para evaluacion y manejo ."
+      ],
+      [
+        1.0,
+        "derivo a especialista para evaluacion ."
+      ],
+      [
+        1.0,
+        "Se deriva a protesis removible ."
+      ],
+      [
+        1.0,
+        "SE SOLICITA EVALUACION Y TTO ."
+      ],
+      [
+        1.0,
+        "SE DESEA EVALUACION POR ESPECIALISTA ."
+      ],
+      [
+        1.0,
+        "Prepucio redundante , fimosis y parafimosis"
+      ],
+      [
+        1.0,
+        "Polipo del Estomago y del Duodeno"
+      ],
+      [
+        1.0,
+        "Perdida de dientes debida a accidente , extraccion o enfermedad periodontal local"
+      ]
+    ]
+  },
+  "casi_duplicados_dev": {
+    "umbral_jaccard": 0.8,
+    "oraciones_elegibles": 740,
+    "casi_duplicadas": 44,
+    "%": 5.95,
+    "ejemplos": [
+      [
+        1.0,
+        "derivo a especialista para evaluacion ."
+      ],
+      [
+        1.0,
+        "derivo a especialista para evaluacion ."
+      ],
+      [
+        1.0,
+        "Vascular : - Pulsos periféricos conservados , simétricos ."
+      ],
+      [
+        1.0,
+        "Usa lentes que ya no corrigen defecto ."
+      ],
+      [
+        1.0,
+        "Trastornos mentales y del comportamiento debidos al uso de multiples drogas y al uso de otras sustancias psicoactivas"
+      ],
+      [
+        1.0,
+        "Trastornos del desarrollo y de la erupcion de los dientes"
+      ],
+      [
+        1.0,
+        "Trastorno de la refraccion , no especificado"
+      ],
+      [
+        1.0,
+        "Trastorno de la refraccion , no especificado"
+      ]
+    ]
+  },
+  "conflictos": {
+    "textos_con_anotacion_inconsistente": 42,
+    "que_cruzan_splits": 22,
+    "ejemplos": [
+      "- DEFORMACIÓNES CONGÉNITAS DE LA CADERA / - Fundamento Clínico APS : Antecedentes : RNT 39 sem AEG , PTV Antec familiares de DDC ( - ) rx pelvis - Angulos acetabulares 30º derecha , 31º izq - cejas cotiloideas con escaso desarrollo , especialmente a izq - Fosetas de impactación impresionan centradas - Nucleos osificación cabezas femorales : esbozados , centrados - Arcos SHenton impresionan simetricos .",
+      "Cuello : - Sin alteraciones - Pulsos carotídeos normales - Yugulares sin alteraciones - Tiroides sin alteraciones Tórax : - Caja toráxica sin alteraciones sin dolor palpacion costal - Respiración eupneica - Pulmonar : murmullo vesicular conservado , no ae auscultan estertores .",
+      "- ANOMALÍAS DENTOFACIALES ( INCLUSO LA MALOCLUSIÓN ) / - Fundamento Clínico APS : Solicita evaluación y factibilidad de realizar tratamiento .",
+      "examen fisico : Examen físico segmentario : Cabeza : - Sin alteraciones Cara : - Ojos isocoria , mucosa conj . Rosada .",
+      "K072 . 6 - Mordida abierta o cruzada ( anterior ) ( posterior ) / Mordida abierta o cruzada ( anterior ) ( posterior )",
+      "K082 ATROFIA DEL REBORDE ALVEOLAR DESDENTADO PROTESIS INESTABLE MAXILAR , CON UN REBASADO IRREGULAR QUE GENERA DOLOR ."
+    ]
+  },
+  "menciones_vistas": [
+    {
+      "tipo": "Disease",
+      "entidades_test": 1071,
+      "ya_vistas_en_train": 656,
+      "%_vistas": 61.3
+    },
+    {
+      "tipo": "Medication",
+      "entidades_test": 92,
+      "ya_vistas_en_train": 57,
+      "%_vistas": 62.0
+    },
+    {
+      "tipo": "Abbreviation",
+      "entidades_test": 993,
+      "ya_vistas_en_train": 927,
+      "%_vistas": 93.4
+    }
+  ],
+  "bio_invalidas": {
+    "Abbreviation/train": 0,
+    "Abbreviation/dev": 0,
+    "Abbreviation/test": 0,
+    "Body_Part/train": 3,
+    "Body_Part/dev": 1,
+    "Body_Part/test": 2,
+    "Disease/train": 1,
+    "Disease/dev": 0,
+    "Disease/test": 0,
+    "Family_Member/train": 0,
+    "Family_Member/dev": 0,
+    "Family_Member/test": 0,
+    "Finding/train": 1,
+    "Finding/dev": 0,
+    "Finding/test": 0,
+    "Medication/train": 0,
+    "Medication/dev": 0,
+    "Medication/test": 0,
+    "Procedure/train": 0,
+    "Procedure/dev": 0,
+    "Procedure/test": 0
+  },
+  "caracteres": {
+    "tokens_con_caracteres_de_control": 0,
+    "tokens_con_caracter_reemplazo": 0,
+    "tokens_no_NFC": 0,
+    "ejemplos_control": []
+  },
+  "largos": {
+    "train": {
+      "oraciones": 8014,
+      "de_1_token": 77,
+      "max_palabras": 234,
+      "max_subpalabras": 407,
+      "truncadas_a_512": 0,
+      "truncadas_a_256": 9
+    },
+    "dev": {
+      "oraciones": 890,
+      "de_1_token": 10,
+      "max_palabras": 133,
+      "max_subpalabras": 191,
+      "truncadas_a_512": 0,
+      "truncadas_a_256": 0
+    },
+    "test": {
+      "oraciones": 990,
+      "de_1_token": 13,
+      "max_palabras": 123,
+      "max_subpalabras": 228,
+      "truncadas_a_512": 0,
+      "truncadas_a_256": 0
+    }
+  }
+}

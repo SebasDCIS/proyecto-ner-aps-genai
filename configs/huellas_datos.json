@@ -1,0 +1,29 @@
+{
+  "cwlc": {
+    "archivos": {
+      "Abbreviation/Abbreviation_dev.conll": "b5a87f23ccdc2b43ae9d3e78e6eae4ecd4c82b1ecfe0e3ae98fe9144fbfc5b13",
+      "Abbreviation/Abbreviation_test.conll": "e89759bc05043613efa61db8efbebb20ad6dd9507d6d612187152d983d643810",
+      "Abbreviation/Abbreviation_train.conll": "4fdb4ae59b4e6da9587b173cb91d2eb39f3595c4a031c2723872fdc9a0d0f2d2",
+      "Body_Part/Body_Part_dev.conll": "d3e4c04215411d9b3316819d4b0b03f8185125682f6c063fa1b8be8adeda27ed",
+      "Body_Part/Body_Part_test.conll": "c069a22bf906aa4de82c9f774a714770614f46cd88b1ccec7401da693f8d0751",
+      "Body_Part/Body_Part_train.conll": "f22763ac49756eea133db62e4fa7dbb3f8991f8d8f04e0cd648fd11257e306c3",
+      "Disease/Disease_dev.conll": "8e7420705b53fda5b9f3337ee4ce2397a5a3c84a25baf238378b87c3a07aa1dd",
+      "Disease/Disease_test.conll": "e7d4c05f8129e7325380b386fe4b51ed4eb5d9140973ba5220adb19b68c30185",
+      "Disease/Disease_train.conll": "81b378035abd7c06ea0bf653506366601c0c9691216f3b6c870c631045512775",
+      "Family_Member/Family_Member_dev.conll": "9228d5eb5f21c519ca8d45fe6c82f85738894eae28978a20fd52ccdd91baa153",
+      "Family_Member/Family_Member_test.conll": "9e2785711841b2e51e184965d50a43d9e39bfbdfd34aedc142c130c97d1f0ad8",
+      "Family_Member/Family_Member_train.conll": "a020006157cf955f0c4b5f84e993eff150e040eb6c7832cc6c1c4bd6daaf9653",
+      "Finding/Finding_dev.conll": "c7d8e74bb140598cf167683b62bf7e7b1871ed696ed6a81c430cbaa842e6cbcc",
+      "Finding/Finding_test.conll": "5a05cd7cff0b90181a55ebc3355f68a21e7c5dcadfebaa4a81123a77275131a8",
+      "Finding/Finding_train.conll": "31c282415214137298247b4315e40f850bc7428a91b6bef46d923e8e89dad56e",
+      "Medication/Medication_dev.conll": "d2ff78dcb02b61901d942ab01591e707b503908ecf6589fff6c89db3dc6dba0d",
+      "Medication/Medication_test.conll": "c386ea800fd2dc49721b7517da4e1a96e9ac6f909e52823f151bb14da5398d47",
+      "Medication/Medication_train.conll": "6524fba7c561b2dec43250bfde3d47024a4b09060f3b7e6f8990afd7f851472e",
+      "Procedure/Procedure_dev.conll": "ec15c28e09724cddae11e9620058275574f27f42af624a7310ae936f6ddd9a20",
+      "Procedure/Procedure_test.conll": "82493292b7040141a19afe7db53bf76a18d4b0680c4a3f3588d21c38ef528cda",
+      "Procedure/Procedure_train.conll": "fb2af1d7a3618496fd98a4d6934e6610af04c0388e586bfcde57fa5dd589bc56"
+    },
+    "combinada": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "n_archivos": 21
+  }
+}

@@ -38,7 +38,10 @@ scripts/      instalación del entorno
 src/datos/    descarga y preprocesamiento
 src/modelos/  E1–E5
 src/evaluacion/ métricas (estricto/laxo, bootstrap, alucinaciones)
-tests/        pruebas de las métricas
+src/reproducibilidad.py  semillas deterministas, huellas SHA-256, media ± DE entre semillas
+src/datos/auditoria.py   fuga de datos y calidad del corpus
+configs/huellas_datos.json  huellas esperadas de los archivos del corpus
+tests/        pruebas de métricas, lector, auditoría y reproducibilidad
 ```
 
 ## Instalación (Mac con Apple Silicon)
@@ -62,7 +65,10 @@ python -m pytest -q tests          # verifica las métricas
 |---|---|
 | `00_preparacion_entorno_y_datos.ipynb` | Verifica el entorno, la GPU del Mac (MPS), Ollama; descarga y valida el corpus |
 | `01_exploracion_cwlc.ipynb` | Conoce el corpus: tamaños, tipos de entidad, abreviaturas, enfermedades abreviadas |
-| `02_e1_encoder_ajustado.ipynb` | (próximo) Línea base E1 |
+| `01b_auditoria_fuga_y_calidad.ipynb` | Fuga de datos (duplicados, menciones vistas, contaminación), errores de datos y prueba de reproducibilidad |
+| `02_e1_encoder_ajustado.ipynb` | Línea base E1 con 3 semillas (media ± DE), F1 sin duplicados y recall en menciones vistas vs nuevas |
+
+**Reproducibilidad:** cada experimento entrenable se corre con las semillas 42, 43 y 44 y se reporta media ± DE. Cada JSON de `results/` guarda su huella (datos, config, commit, revisión del modelo en Hugging Face, entorno), y los notebooks verifican que el corpus coincida con `configs/huellas_datos.json` antes de entrenar.
 
 Antes de hacer *commit*, limpiar las salidas de los notebooks (*Clear All Outputs*) para no subir fragmentos del corpus.
 

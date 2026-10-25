@@ -4,6 +4,30 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-25 (cierre) · Auditoría de fuga y reproducibilidad
+
+**Hallazgos** (notebook `01b`, resultados en `results/auditoria_datos.json`)
+- **Oraciones repetidas** (texto normalizado): el 9,7% de las oraciones del test (96) está también en train, pero solo afectan al 2,7% de las entidades del test; con ≥ 5 palabras baja a 3,5%. Son sobre todo plantillas ("se deriva para evaluación y manejo") y descripciones CIE-10. train∩dev 10,5%; dev∩test 4,4%.
+- **Casi duplicados** (Jaccard de trigramas ≥ 0,8): 2,9% del test.
+- **Anotación inconsistente:** 42 textos idénticos anotados distinto (22 cruzan splits). Es ruido de etiquetas y pone techo al F1.
+- **Menciones del test ya vistas en train:** Disease 61%, Medication 62%, Abbreviation 93%.
+- **Partición original secuencial** (81/9/10 por oración): como máximo ~2 derivaciones quedan partidas entre splits. Riesgo mínimo.
+- **Contaminación posible:** `plncmm/roberta-clinical-wl-es` se preentrenó con derivaciones chilenas sin detalle de cuáles; pudo leer el texto del test. Los LLM pudieron ver el CWLC público.
+- **Calidad:** 8 etiquetas I- huérfanas, sin problemas de Unicode, 9 oraciones de train truncadas a 256 subpalabras y ninguna a 512.
+
+**Decisiones**
+- Se mantienen los splits oficiales (comparables con Báez 2022) y se agregan dos análisis de sensibilidad: F1 en el test sin oraciones repetidas en train y recall en menciones vistas vs nuevas.
+- `max_len` = 512.
+- **3 semillas (42, 43, 44)** por cada experimento entrenable, reportando media ± DE; las comparaciones entre modelos se hacen con bootstrap pareado por semilla y solo se afirman si se repiten en las 3. Motivo: la semilla cambia el resultado del ajuste fino (Dodge 2020; Mosbach 2021) y pocos trabajos reportan varias corridas.
+- **Huellas digitales:** `configs/huellas_datos.json` guarda el SHA-256 de los 21 archivos del CWLC, y cada notebook lo verifica antes de entrenar. Cada resultado guarda la huella de datos, config, commit, revisión del modelo en HF, entorno y predicciones.
+- Determinismo comprobado en CPU: misma semilla, misma pérdida y mismas predicciones bit a bit; otra semilla, otras. En MPS puede haber diferencias mínimas.
+
+**Pendientes**
+- [ ] Correr `01b` y luego `02` en modo completo en el Mac (2 modelos × 3 entidades × 3 semillas = 18 entrenamientos)
+- [ ] Declarar la contaminación posible y el ruido de etiquetas en las limitaciones del manuscrito
+
+---
+
 ## 2026-10-25 (noche) · E1 implementado y probado
 
 - Módulo `src/modelos/e1_encoder.py`: un etiquetador por tipo de entidad (MLC), ciclo de entrenamiento PyTorch explícito, early stopping por F1 en dev.
