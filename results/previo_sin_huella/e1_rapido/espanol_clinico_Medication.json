@@ -1,0 +1,62 @@
+{
+  "config": {
+    "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+    "tipo": "Medication",
+    "epocas": 2,
+    "lr": 5e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 42,
+    "max_train": 800
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 0.2225671842508018,
+      "f1_dev": 0.0,
+      "segundos": 20.8
+    },
+    {
+      "epoca": 2,
+      "perdida": 0.04029440011829138,
+      "f1_dev": 0.0,
+      "segundos": 20.4
+    }
+  ],
+  "resultados": {
+    "estricto": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "ic95": [
+        0.0,
+        0.0
+      ],
+      "vp": 0,
+      "fp": 0,
+      "fn": 92
+    },
+    "laxo": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "ic95": [
+        0.0,
+        0.0
+      ],
+      "vp": 0,
+      "fp": 0,
+      "fn": 92
+    },
+    "abreviadas": {
+      "n_gold": 23,
+      "recall_estricto": 0.0
+    },
+    "no_abreviadas": {
+      "n_gold": 69,
+      "recall_estricto": 0.0
+    },
+    "minutos_total": 0.8
+  }
+}

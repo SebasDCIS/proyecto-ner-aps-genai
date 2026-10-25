@@ -1,0 +1,62 @@
+{
+  "config": {
+    "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+    "tipo": "Abbreviation",
+    "epocas": 2,
+    "lr": 5e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 42,
+    "max_train": 800
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 0.30598100915551185,
+      "f1_dev": 0.8175976272862086,
+      "segundos": 20.8
+    },
+    {
+      "epoca": 2,
+      "perdida": 0.05081211833283305,
+      "f1_dev": 0.859442060085837,
+      "segundos": 21.4
+    }
+  ],
+  "resultados": {
+    "estricto": {
+      "precision": 0.8885511651469098,
+      "recall": 0.8831822759315207,
+      "f1": 0.8858585858585859,
+      "ic95": [
+        0.8652277807383723,
+        0.9044492814595068
+      ],
+      "vp": 877,
+      "fp": 110,
+      "fn": 116
+    },
+    "laxo": {
+      "precision": 0.9017223910840932,
+      "recall": 0.8962739174219537,
+      "f1": 0.8989898989898991,
+      "ic95": [
+        0.8798371996002755,
+        0.9156666218627044
+      ],
+      "vp": 890,
+      "fp": 97,
+      "fn": 103
+    },
+    "abreviadas": {
+      "n_gold": 0,
+      "recall_estricto": 0.0
+    },
+    "no_abreviadas": {
+      "n_gold": 993,
+      "recall_estricto": 0.8831822759315207
+    },
+    "minutos_total": 0.8
+  }
+}

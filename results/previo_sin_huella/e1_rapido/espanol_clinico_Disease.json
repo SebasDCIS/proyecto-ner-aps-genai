@@ -1,0 +1,62 @@
+{
+  "config": {
+    "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+    "tipo": "Disease",
+    "epocas": 2,
+    "lr": 5e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 42,
+    "max_train": 800
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 0.5105652710795403,
+      "f1_dev": 0.5367717287488062,
+      "segundos": 25.5
+    },
+    {
+      "epoca": 2,
+      "perdida": 0.16214566692709922,
+      "f1_dev": 0.6149253731343284,
+      "segundos": 20.6
+    }
+  ],
+  "resultados": {
+    "estricto": {
+      "precision": 0.6282051282051282,
+      "recall": 0.6862745098039216,
+      "f1": 0.6559571619812584,
+      "ic95": [
+        0.6275934440814179,
+        0.6855210718409902
+      ],
+      "vp": 735,
+      "fp": 435,
+      "fn": 336
+    },
+    "laxo": {
+      "precision": 0.7982905982905983,
+      "recall": 0.8720821661998133,
+      "f1": 0.8335564480142793,
+      "ic95": [
+        0.813155539674312,
+        0.852986912091621
+      ],
+      "vp": 934,
+      "fp": 236,
+      "fn": 137
+    },
+    "abreviadas": {
+      "n_gold": 119,
+      "recall_estricto": 0.5882352941176471
+    },
+    "no_abreviadas": {
+      "n_gold": 952,
+      "recall_estricto": 0.6985294117647058
+    },
+    "minutos_total": 1.0
+  }
+}
