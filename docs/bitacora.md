@@ -4,6 +4,19 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-25 (noche) · E2 preparado
+
+- `src/modelos/e2_llm.py` + notebook `03`: LLM local vía Ollama (`llama3.1:8b`, `qwen2.5:7b`) con guía de anotación redactada solo desde train, salida JSON restringida a un esquema, temperatura 0 y semilla fija. Estrategias: zero-shot, few-shot fijo (k = 5; 3 semillas = 3 sets de ejemplos) y few-shot dinámico (5 ejemplos de train más parecidos por BM25).
+- Las menciones devueltas se ubican en la oración prefiriendo palabras completas ("DM" no cae dentro de "DM2") y por tipo (permite anidamiento). Control: con respuestas perfectas el F1 tras la lectura es 0,999 / 1,000 / 0,995 (Disease / Medication / Abbreviation): la lectura casi no pierde nada.
+- **Fuga propia del few-shot dinámico:** en el 8,3% del test el ejemplo recuperado más parecido es la misma oración (duplicado en train). Se reporta el F1 sin duplicados como métrica clave de E2.
+- Se evalúa con las mismas funciones que E1 y se compara con E1 sobre las mismas oraciones. Huella: digest del modelo en Ollama, hash de la guía y de las oraciones evaluadas.
+- Modo rápido: 100 oraciones del test al azar (semilla 42); en ese subconjunto hay pocos fármacos, así que su F1 es solo orientativo.
+
+**Pendientes**
+- [ ] Correr el notebook 03 en modo rápido en el Mac y estimar el tiempo del modo completo
+
+---
+
 ## 2026-10-25 (tarde) · Resultados de E1: 18 entrenamientos
 
 Corrida completa en el Mac (MPS), de 11:07 a ~15:25, unos 15 min por entrenamiento. Código en `20f9730`, datos verificados por huella (`a507e8d9…`), `max_len` 512, revisiones exactas de los modelos guardadas en cada JSON.
