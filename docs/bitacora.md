@@ -4,6 +4,36 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-25 (tarde) · Resultados de E1: 18 entrenamientos
+
+Corrida completa en el Mac (MPS), de 11:07 a ~15:25, unos 15 min por entrenamiento. Código en `20f9730`, datos verificados por huella (`a507e8d9…`), `max_len` 512, revisiones exactas de los modelos guardadas en cada JSON.
+
+**F1 estricto en test, media ± DE de 3 semillas**
+
+| Entidad | Español (bsc-bio-ehr-es) | Chileno (roberta-clinical-wl-es) | Báez 2020 (piloto) |
+|---|---|---|---|
+| Abbreviation | 0,950 ± 0,004 | 0,952 ± 0,002 | 0,92 |
+| Disease | 0,798 ± 0,006 | 0,815 ± 0,010 | 0,77 |
+| Medication | 0,840 ± 0,012 | 0,794 ± 0,046 | 0,75 |
+
+**Hallazgos**
+- Sin las oraciones duplicadas, el F1 baja ≤ 0,007: la fuga detectada en la auditoría no infla los resultados.
+- Chileno vs español (bootstrap pareado por semilla): en Disease el chileno gana +2,6 y +2,4 puntos (significativo en 2 de 3 semillas; +0,2 en la tercera). En Abbreviation no hay diferencia. En Medication el español gana, pero solo es significativo en la semilla 42, donde el chileno tuvo una corrida inestable (F1 0,741). Con la regla fijada de antemano (afirmar solo si se repite en las 3 semillas), **ninguna diferencia es robusta**; Disease es una tendencia consistente a favor del chileno.
+- **Enfermedades abreviadas (H3):** el español rinde peor en ellas (recall 0,790 vs 0,816 en no abreviadas); el chileno no muestra brecha (0,843 vs 0,835) y supera al español en abreviadas por 5,3 puntos (n = 119). Es la señal más clara a favor de la adaptación local, con la cautela de la contaminación posible.
+- **Generalización:** el recall cae mucho en menciones que no aparecen en train. Disease: 0,88–0,90 vistas vs 0,70–0,73 nuevas; Abbreviation: 0,97–0,98 vs ~0,60 (n = 66). El alto F1 en abreviaturas es en buena parte memoria.
+- F1 laxo ≈ 0,90 en Disease vs 0,80 estricto: ~10 puntos son errores de límites.
+- Variación entre semillas: ~0,5–1 punto en Disease y Abbreviation, hasta 4,6 en Medication (solo 92 entidades en test; IC95 de ±7 puntos).
+- Con la misma semilla 42, Disease del modelo español dio F1 dev 0,744 en la primera época en esta corrida y 0,755 en el intento anterior (código viejo en memoria + MPS no determinista): diferencias de ~1 punto, del orden de la DE entre semillas.
+- En varias corridas el mejor F1 en dev fue en la época 5: podría ganar algo con más épocas (no se cambia para no tocar la configuración ya fijada).
+- La huella marcó "cambios sin commit" en todas las corridas porque los notebooks tenían salidas; se corrigió `huella_codigo` para ignorar `.ipynb`.
+
+**Pendientes**
+- [ ] Subir `results/e1_completo/*.json` desde el Mac
+- [ ] Completar las conclusiones del notebook 02
+- [ ] E2: LLM local con prompting
+
+---
+
 ## 2026-10-25 (cierre) · Auditoría de fuga y reproducibilidad
 
 **Hallazgos** (notebook `01b`, resultados en `results/auditoria_datos.json`)
