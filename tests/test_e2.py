@@ -16,6 +16,8 @@ def test_parsear_json_y_basura():
     assert parsear('```json\n{"entidades":[]}\n```') == ([], True)
     assert parsear("no sé") == ([], False)
     assert parsear('{"entidades":[{"tipo":"Otro","texto":"x"}]}') == ([], True)
+    cortado = '{"entidades": [{"tipo": "Disease", "texto": "HTA"}, {"tipo": "Abbreviation", "texto": "X"}, {"tipo": "Abbrev'
+    assert parsear(cortado) == ([("Disease", "HTA"), ("Abbreviation", "X")], False)
 
 
 def test_ubicar_palabra_completa_anidamiento_y_alucinacion():

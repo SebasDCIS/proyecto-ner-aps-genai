@@ -27,6 +27,12 @@ from reproducibilidad import sha256_bytes
 
 TIPOS_E2 = ["Disease", "Medication", "Abbreviation"]
 
+# Tope de tokens que el LLM puede generar por oración. La respuesta correcta más larga de train+test
+# tiene ~1.600 caracteres (~700 tokens); 2.048 deja margen aun si el modelo indenta el JSON.
+# Sin tope, un modelo que entra en bucle ("X", "X", "X"...) puede generar hasta llenar su memoria:
+# en la primera corrida rápida, 3 oraciones tardaron 35–70 minutos cada una por esto.
+NUM_PREDICT = 2048
+
 # Guía de anotación resumida. Se redactó mirando SOLO ejemplos de train (nunca dev ni test).
 GUIA = """Eres un anotador clínico experto. Recibirás una oración de una derivación escrita por un médico o dentista de Atención Primaria de Salud en Chile. Marca todas las menciones de estos tres tipos:
 
@@ -134,7 +140,9 @@ def parsear(respuesta: str) -> tuple[list[tuple[str, str]], bool]:
         except json.JSONDecodeError:
             datos = None
     if not isinstance(datos, dict) or not isinstance(datos.get("entidades"), list):
-        return [], False
+        # JSON cortado (p. ej. por el tope de tokens): se rescatan los objetos completos
+        objs = re.findall(r'\{\s*"tipo"\s*:\s*"([^"]+)"\s*,\s*"texto"\s*:\s*"((?:[^"\\]|\\.)*)"\s*\}', respuesta or "")
+        return [(t, x.strip()) for t, x in objs if t in TIPOS_E2 and x.strip()], False
     items = []
     for x in datos["entidades"]:
         if isinstance(x, dict) and x.get("tipo") in TIPOS_E2 and isinstance(x.get("texto"), str) and x["texto"].strip():
@@ -183,7 +191,7 @@ def llamar_ollama(modelo: str, msgs: list[dict], semilla: int = 42, num_ctx: int
     """Una llamada determinista (temperatura 0, semilla fija) con salida JSON restringida al esquema."""
     import ollama
 
-    opciones = {"temperature": 0, "seed": semilla, "num_ctx": num_ctx}
+    opciones = {"temperature": 0, "seed": semilla, "num_ctx": num_ctx, "num_predict": NUM_PREDICT}
     kwargs = dict(model=modelo, messages=msgs, format=ESQUEMA, options=opciones)
     if modelo.startswith("qwen3"):
         kwargs["think"] = False  # sin "razonamiento" visible: más rápido y comparable
