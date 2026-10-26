@@ -1,0 +1,201 @@
+{
+  "config": {
+    "modelo": "llama3.1:8b",
+    "estrategia": "few_shot_dinamico",
+    "semilla": null,
+    "k": 5,
+    "temperatura": 0,
+    "num_ctx": 8192,
+    "num_predict": 2048,
+    "guia": "03cbc96db2b125a71c58e11d74a0a3eeaa81764a23071510e946368dd6aab4da",
+    "modo": "completo",
+    "oraciones": "17859a5db6f43615d13b3f93463272051b98b4c39ae8fe4f2666578ac4a4258a",
+    "ejemplos_fijos": null
+  },
+  "resultados": {
+    "modelo": "llama3.1:8b",
+    "estrategia": "few_shot_dinamico",
+    "semilla": null,
+    "tasa_alucinacion": 0.1942970822281167,
+    "json_invalidos": 3,
+    "segundos_por_oracion": 2.077787878787879,
+    "por_tipo": {
+      "Disease": {
+        "huella_predicciones": "564887ad1a2cda36d74e80cbfe28dd7bf9ff7cad36bf24d0e2690f568a7c89e5",
+        "estricto": {
+          "precision": 0.5729537366548043,
+          "recall": 0.7516339869281046,
+          "f1": 0.6502423263327949,
+          "ic95": [
+            0.6220485313551006,
+            0.6797775487097714
+          ],
+          "vp": 805,
+          "fp": 600,
+          "fn": 266
+        },
+        "laxo": {
+          "precision": 0.6612099644128114,
+          "recall": 0.8674136321195145,
+          "f1": 0.7504038772213248,
+          "ic95": [
+            0.7277876754246282,
+            0.7723012931865528
+          ],
+          "vp": 929,
+          "fp": 476,
+          "fn": 142
+        },
+        "abreviadas": {
+          "n_gold": 119,
+          "recall_estricto": 0.6554621848739496
+        },
+        "no_abreviadas": {
+          "n_gold": 952,
+          "recall_estricto": 0.7636554621848739
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.635434412265758,
+          "precision": 0.5575485799701047,
+          "recall": 0.7386138613861386
+        },
+        "menciones_vistas": {
+          "n_gold": 656,
+          "recall_estricto": 0.8460365853658537
+        },
+        "menciones_nuevas": {
+          "n_gold": 415,
+          "recall_estricto": 0.6024096385542169
+        }
+      },
+      "Medication": {
+        "huella_predicciones": "bdbca9a0183d9a85d9d311316752cb3b134442ecc90d7aca19a8053633434608",
+        "estricto": {
+          "precision": 0.6509433962264151,
+          "recall": 0.75,
+          "f1": 0.6969696969696969,
+          "ic95": [
+            0.5901497204586373,
+            0.78003125
+          ],
+          "vp": 69,
+          "fp": 37,
+          "fn": 23
+        },
+        "laxo": {
+          "precision": 0.7075471698113207,
+          "recall": 0.8152173913043478,
+          "f1": 0.7575757575757576,
+          "ic95": [
+            0.6625747699386503,
+            0.8299286307053942
+          ],
+          "vp": 75,
+          "fp": 31,
+          "fn": 17
+        },
+        "abreviadas": {
+          "n_gold": 23,
+          "recall_estricto": 0.7391304347826086
+        },
+        "no_abreviadas": {
+          "n_gold": 69,
+          "recall_estricto": 0.7536231884057971
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.6938775510204083,
+          "precision": 0.6476190476190476,
+          "recall": 0.7472527472527473
+        },
+        "menciones_vistas": {
+          "n_gold": 57,
+          "recall_estricto": 0.8070175438596491
+        },
+        "menciones_nuevas": {
+          "n_gold": 35,
+          "recall_estricto": 0.6571428571428571
+        }
+      },
+      "Abbreviation": {
+        "huella_predicciones": "beed4868b6e2ad9c367c1c5dc131a6dfa11bc006a8517e8ed7c67a88d011fe5c",
+        "estricto": {
+          "precision": 0.7312295973884657,
+          "recall": 0.676737160120846,
+          "f1": 0.702928870292887,
+          "ic95": [
+            0.6763643866418513,
+            0.7289722066323417
+          ],
+          "vp": 672,
+          "fp": 247,
+          "fn": 321
+        },
+        "laxo": {
+          "precision": 0.7453754080522307,
+          "recall": 0.6898288016112789,
+          "f1": 0.7165271966527196,
+          "ic95": [
+            0.6928325442567146,
+            0.7423136771592808
+          ],
+          "vp": 685,
+          "fp": 234,
+          "fn": 308
+        },
+        "abreviadas": {
+          "n_gold": 0,
+          "recall_estricto": 0.0
+        },
+        "no_abreviadas": {
+          "n_gold": 993,
+          "recall_estricto": 0.676737160120846
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.6970021413276232,
+          "precision": 0.725752508361204,
+          "recall": 0.670442842430484
+        },
+        "menciones_vistas": {
+          "n_gold": 927,
+          "recall_estricto": 0.697950377562028
+        },
+        "menciones_nuevas": {
+          "n_gold": 66,
+          "recall_estricto": 0.3787878787878788
+        }
+      }
+    }
+  },
+  "huella": {
+    "config": "5cb10d6c2480c8302b45e2e7b39306ef05264fd957e751a13861183d4a836ae2",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "15b36caf7c24b7085928e26d6a6a8cba6e307652",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "datos_contenido": {
+      "train": "8f2ece1bab064380239c51a4c0408e324b4436d17a611980d0e4e8883f2dfc93",
+      "test": "4ff6eb70e93b2ca9d95246f04aefdcf32f0afde51ff7ac7e7215e505e7856e54"
+    },
+    "ollama": {
+      "modelo": "llama3.1:8b",
+      "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "tamano": 4920753328
+    }
+  }
+}
