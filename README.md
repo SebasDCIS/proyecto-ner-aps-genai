@@ -68,6 +68,7 @@ python -m pytest -q tests          # verifica las métricas
 | `01b_auditoria_fuga_y_calidad.ipynb` | Fuga de datos (duplicados, menciones vistas, contaminación), errores de datos y prueba de reproducibilidad |
 | `02_e1_encoder_ajustado.ipynb` | Línea base E1 con 3 semillas (media ± DE), F1 sin duplicados y recall en menciones vistas vs nuevas |
 | `03_e2_llm_prompting.ipynb` | E2: LLM local (Ollama) con guía de anotación; zero-shot, few-shot fijo (3 semillas) y dinámico (BM25); alucinaciones y comparación con E1 en las mismas oraciones |
+| `04_e4_llm_anotador.ipynb` | E4: el LLM anota 2.000 oraciones (silver) y se entrena un encoder con silver + 0/10/50/100 oraciones gold simuladas; curva frente a E1 y E2 |
 
 **Reproducibilidad:** cada experimento entrenable se corre con las semillas 42, 43 y 44 y se reporta media ± DE. Cada JSON de `results/` guarda su huella (datos, config, commit, revisión del modelo en Hugging Face, entorno), y los notebooks verifican que el corpus coincida con `configs/huellas_datos.json` antes de entrenar.
 

@@ -36,8 +36,12 @@ llm_comercial:
 
 # E4 — LLM como anotador + gold simulado
 destilacion:
-  anotador: qwen2.5:7b
-  gold_humano: [0, 10, 50, 100]
+  anotador: qwen2.5:7b          # el LLM más confiable en E2 (5% de alucinaciones, 0 JSON inválidos)
+  gold_humano: [0, 10, 50, 100] # oraciones con anotación real que se suponen disponibles
+  silver_n: 2000                # oraciones de train que anota el LLM (sin mirar su anotación)
+  encoder: espanol_clinico      # sin riesgo de contaminación con el test
+  epocas: 5
+  epocas_solo_gold: 20          # con 10–100 oraciones hacen falta más pasadas
 
 # E3 (opcional) — QLoRA con MLX
 qlora:

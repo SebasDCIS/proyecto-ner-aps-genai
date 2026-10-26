@@ -4,6 +4,18 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-26 · E4 preparado
+
+- `src/modelos/e4_destilacion.py` + notebook `04`. Gold simulado: 0/10/50/100 oraciones de train con su anotación real, anidadas (semilla 42). Silver: 2.000 oraciones de train, disjuntas del gold, anotadas por qwen2.5:7b; con N = 0 zero-shot, con N > 0 los 5 ejemplos más parecidos buscados **solo dentro del gold** (buscar en todo train sería fuga).
+- Encoder `bsc-bio-ehr-es` (sin riesgo de contaminación), 3 semillas. Sin dev para elegir la época (no existiría en el escenario simulado): se agregó `Config.seleccion = "ultima"` al entrenador de E1.
+- Dos condiciones: silver + gold, y solo gold. Calidad del "maestro" medida contra la anotación real de las oraciones silver. Referencias: E1 (8.014 gold) y E2 (qwen directo en el test).
+- Estimado del modo completo: ~3,4 h de anotación + ~3 h de entrenamientos.
+
+**Pendientes**
+- [ ] Correr el notebook 04 en modo rápido y luego completo
+
+---
+
 ## 2026-10-26 · Resultados de E2 (test completo, 990 oraciones)
 
 Corrida nocturna en el Mac: 9.900 llamadas en ~4,4 h (1,1–3,1 s por oración; la más lenta 47 s, el tope de tokens funcionó). Digests: llama3.1:8b `46e0c10c039e`, qwen2.5:7b `845dbda0ea48`.

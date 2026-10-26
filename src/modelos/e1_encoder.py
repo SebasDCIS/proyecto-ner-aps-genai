@@ -69,6 +69,8 @@ class Config:
     paciencia: int = 2
     semilla: int = 42
     max_train: int | None = None  # para pruebas rápidas o curvas de aprendizaje
+    seleccion: str = "dev"        # "dev": guarda la mejor época según F1 en dev | "ultima": usa la última época
+                                  # ("ultima" se usa en E4, donde no se supone que existan etiquetas de dev)
 
 
 class Codificador:
@@ -170,6 +172,12 @@ def entrenar(cfg: Config, train: list[Oracion], dev: list[Oracion], registro=pri
             torch.nn.utils.clip_grad_norm_(modelo.parameters(), 1.0)
             optim.step(); sched.step(); optim.zero_grad()
             perdida_total += perdida.item()
+        if cfg.seleccion == "ultima":
+            historial.append({"epoca": epoca, "perdida": perdida_total / len(cargador), "f1_dev": None,
+                              "segundos": round(time.time() - t0, 1)})
+            registro(f"  época {epoca}: pérdida={historial[-1]['perdida']:.4f}  ({historial[-1]['segundos']} s)")
+            mejor_estado = {k: v.detach().cpu().clone() for k, v in modelo.state_dict().items()}
+            continue
         pred_dev = predecir(modelo, cod, dev, cfg.tipo, disp=disp)
         f1 = metricas.contar(gold_dev, pred_dev, "estricto").f1
         historial.append({"epoca": epoca, "perdida": perdida_total / len(cargador), "f1_dev": f1,
