@@ -4,6 +4,24 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-26 (noche) · E4 modo rápido con 300 actualizaciones mínimas
+
+Solo Disease, 200 oraciones silver, 1 semilla; evaluado en el test completo (990 oraciones).
+
+| N gold | Maestro (silver vs anotación real) | Alumno silver + gold | Solo gold |
+|---|---|---|---|
+| 0 | 0,53 | 0,51 | — |
+| 10 | 0,49 | **0,59** | 0,31 |
+| 50 | 0,57 | 0,61 | 0,51 |
+| 100 | 0,57 | **0,63** | 0,61 |
+
+- Con la corrección, todos los modelos aprenden (pérdida final < 0,01).
+- **El alumno supera al maestro** desde N = 10 (0,59 vs 0,49) y con N = 100 (0,63 vs 0,57).
+- **El silver aporta más cuando hay poco gold:** +28 puntos con N = 10, +10 con N = 50, +3 con N = 100.
+- Referencias en Disease: E2 qwen directo 0,54 (zero-shot) y 0,66 (dinámico con todo train); E1 0,80. Con solo 200 oraciones silver, el modo completo (2.000) debería subir la curva.
+
+---
+
 ## 2026-10-26 (tarde) · E4 modo rápido: ajuste de entrenamiento
 
 - Maestro (qwen2.5:7b sobre 200 oraciones silver), F1 en Disease: N = 0 → 0,53 (igual que E2 zero-shot); N = 10 → 0,49; N = 50 → 0,57; N = 100 → 0,57. Con ejemplos gold las alucinaciones bajan de 27% a 4–9%. Con solo 10 oraciones, los ejemplos "más parecidos" no se parecen lo suficiente y no ayudan.
