@@ -1,0 +1,366 @@
+{
+  "config": {
+    "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+    "tipo": "Disease",
+    "epocas": 5,
+    "lr": 3e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 42,
+    "max_train": null,
+    "seleccion": "ultima",
+    "pasos_min": 300
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 1.2234877688544137,
+      "f1_dev": null,
+      "segundos": 3.0
+    },
+    {
+      "epoca": 2,
+      "perdida": 1.0403766206332616,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 3,
+      "perdida": 0.7332839625222343,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 4,
+      "perdida": 0.5833655084882464,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 5,
+      "perdida": 0.46439918875694275,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 6,
+      "perdida": 0.33826181292533875,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 7,
+      "perdida": 0.195119603403977,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 8,
+      "perdida": 0.12250761474881854,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 9,
+      "perdida": 0.07642130261021,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 10,
+      "perdida": 0.04913634753652981,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 11,
+      "perdida": 0.03801355850217598,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 12,
+      "perdida": 0.02654030659635152,
+      "f1_dev": null,
+      "segundos": 2.8
+    },
+    {
+      "epoca": 13,
+      "perdida": 0.016817223147622178,
+      "f1_dev": null,
+      "segundos": 2.3
+    },
+    {
+      "epoca": 14,
+      "perdida": 0.013722812490803855,
+      "f1_dev": null,
+      "segundos": 2.6
+    },
+    {
+      "epoca": 15,
+      "perdida": 0.009510690945067577,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 16,
+      "perdida": 0.011558444704860449,
+      "f1_dev": null,
+      "segundos": 2.7
+    },
+    {
+      "epoca": 17,
+      "perdida": 0.005439970309713057,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 18,
+      "perdida": 0.004402482915403587,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 19,
+      "perdida": 0.006603685872895377,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 20,
+      "perdida": 0.0036966895651338355,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 21,
+      "perdida": 0.0026523852055626257,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 22,
+      "perdida": 0.002432752384005913,
+      "f1_dev": null,
+      "segundos": 2.6
+    },
+    {
+      "epoca": 23,
+      "perdida": 0.0031643990327471067,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 24,
+      "perdida": 0.0021676835271396805,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 25,
+      "perdida": 0.0022548330515357,
+      "f1_dev": null,
+      "segundos": 3.4
+    },
+    {
+      "epoca": 26,
+      "perdida": 0.003129194407457752,
+      "f1_dev": null,
+      "segundos": 2.6
+    },
+    {
+      "epoca": 27,
+      "perdida": 0.0024163320693852647,
+      "f1_dev": null,
+      "segundos": 2.6
+    },
+    {
+      "epoca": 28,
+      "perdida": 0.0018151301358427321,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 29,
+      "perdida": 0.002415935176291636,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 30,
+      "perdida": 0.001734946688104953,
+      "f1_dev": null,
+      "segundos": 2.3
+    },
+    {
+      "epoca": 31,
+      "perdida": 0.0016471200256741472,
+      "f1_dev": null,
+      "segundos": 2.7
+    },
+    {
+      "epoca": 32,
+      "perdida": 0.002018132113984653,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 33,
+      "perdida": 0.0017019498627632856,
+      "f1_dev": null,
+      "segundos": 2.6
+    },
+    {
+      "epoca": 34,
+      "perdida": 0.0031241069581093533,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 35,
+      "perdida": 0.0018682221748999187,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 36,
+      "perdida": 0.0016272662074438163,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 37,
+      "perdida": 0.0016983099381572434,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 38,
+      "perdida": 0.0015757855726405978,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 39,
+      "perdida": 0.0013900425650977663,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 40,
+      "perdida": 0.002151167909947357,
+      "f1_dev": null,
+      "segundos": 2.5
+    },
+    {
+      "epoca": 41,
+      "perdida": 0.0013397036319864647,
+      "f1_dev": null,
+      "segundos": 2.6
+    },
+    {
+      "epoca": 42,
+      "perdida": 0.0013392730117110269,
+      "f1_dev": null,
+      "segundos": 2.6
+    },
+    {
+      "epoca": 43,
+      "perdida": 0.0015221558777349336,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "semilla": {
+        "semilla": 42,
+        "determinista_solicitado": true,
+        "torch_determinista": true
+      },
+      "mejor_f1_dev": -1.0,
+      "revision_modelo": null
+    }
+  ],
+  "resultados": {
+    "huella_predicciones": "a008b8e3c710c52937b57eb30fd4652cf667b732863fc7ccebd799ddc146cc5b",
+    "estricto": {
+      "precision": 0.5746455379482902,
+      "recall": 0.6433239962651728,
+      "f1": 0.6070484581497798,
+      "ic95": [
+        0.5744116132112213,
+        0.6374382091076863
+      ],
+      "vp": 689,
+      "fp": 510,
+      "fn": 382
+    },
+    "laxo": {
+      "precision": 0.7356130108423686,
+      "recall": 0.8235294117647058,
+      "f1": 0.7770925110132159,
+      "ic95": [
+        0.7547502837397744,
+        0.7982278660545861
+      ],
+      "vp": 882,
+      "fp": 317,
+      "fn": 189
+    },
+    "abreviadas": {
+      "n_gold": 119,
+      "recall_estricto": 0.5042016806722689
+    },
+    "no_abreviadas": {
+      "n_gold": 952,
+      "recall_estricto": 0.6607142857142857
+    },
+    "test_sin_duplicados": {
+      "oraciones_excluidas": 96,
+      "f1_estricto": 0.6030855539971949,
+      "precision": 0.5713020372010629,
+      "recall": 0.6386138613861386
+    },
+    "menciones_vistas": {
+      "n_gold": 656,
+      "recall_estricto": 0.7179878048780488
+    },
+    "menciones_nuevas": {
+      "n_gold": 415,
+      "recall_estricto": 0.5253012048192771
+    },
+    "condicion": "solo_gold",
+    "n_gold": 100,
+    "n_silver": 0,
+    "minutos_total": 2.1
+  },
+  "huella": {
+    "config": "87b20c6bb1ace5e82d8c88e2ff6fd64a1149cc033821d72b1ee2138bb26863e5",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "51bc49352d16aaa8487cfda25aa3c5188fa99772",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "modelo": {
+      "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+      "revision": "a3e805738e28ade482d74b57d8a1ad4ac18441da"
+    },
+    "ollama": {
+      "modelo": "qwen2.5:7b",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "tamano": 4683087332
+    }
+  }
+}

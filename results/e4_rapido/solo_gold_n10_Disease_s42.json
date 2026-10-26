@@ -1,0 +1,1908 @@
+{
+  "config": {
+    "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+    "tipo": "Disease",
+    "epocas": 5,
+    "lr": 3e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 42,
+    "max_train": null,
+    "seleccion": "ultima",
+    "pasos_min": 300
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 1.2212638854980469,
+      "f1_dev": null,
+      "segundos": 0.6
+    },
+    {
+      "epoca": 2,
+      "perdida": 1.2376092672348022,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 3,
+      "perdida": 1.2345366477966309,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 4,
+      "perdida": 1.2186886072158813,
+      "f1_dev": null,
+      "segundos": 0.2
+    },
+    {
+      "epoca": 5,
+      "perdida": 1.205873727798462,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 6,
+      "perdida": 1.1807506084442139,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 7,
+      "perdida": 1.145754098892212,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 8,
+      "perdida": 1.1001428365707397,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 9,
+      "perdida": 1.0648367404937744,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 10,
+      "perdida": 1.0266859531402588,
+      "f1_dev": null,
+      "segundos": 0.2
+    },
+    {
+      "epoca": 11,
+      "perdida": 0.9865872859954834,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 12,
+      "perdida": 0.9373460412025452,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 13,
+      "perdida": 0.8779461979866028,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 14,
+      "perdida": 0.8232007026672363,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 15,
+      "perdida": 0.7740300297737122,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 16,
+      "perdida": 0.7106373906135559,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 17,
+      "perdida": 0.6507036685943604,
+      "f1_dev": null,
+      "segundos": 0.2
+    },
+    {
+      "epoca": 18,
+      "perdida": 0.603951632976532,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 19,
+      "perdida": 0.5606945753097534,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 20,
+      "perdida": 0.5110160112380981,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 21,
+      "perdida": 0.4818137586116791,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 22,
+      "perdida": 0.4493352770805359,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 23,
+      "perdida": 0.43214431405067444,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 24,
+      "perdida": 0.40498995780944824,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 25,
+      "perdida": 0.36595940589904785,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 26,
+      "perdida": 0.3289055824279785,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 27,
+      "perdida": 0.310123085975647,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 28,
+      "perdida": 0.27257195115089417,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 29,
+      "perdida": 0.24143122136592865,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 30,
+      "perdida": 0.21373669803142548,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 31,
+      "perdida": 0.18598128855228424,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 32,
+      "perdida": 0.1673540323972702,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 33,
+      "perdida": 0.14886228740215302,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 34,
+      "perdida": 0.13140390813350677,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 35,
+      "perdida": 0.109962597489357,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 36,
+      "perdida": 0.09812194108963013,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 37,
+      "perdida": 0.08649265766143799,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 38,
+      "perdida": 0.07654397934675217,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 39,
+      "perdida": 0.06830144673585892,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 40,
+      "perdida": 0.06088503450155258,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 41,
+      "perdida": 0.053283777087926865,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 42,
+      "perdida": 0.04562997445464134,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 43,
+      "perdida": 0.03744620457291603,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 44,
+      "perdida": 0.03350446745753288,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 45,
+      "perdida": 0.03103640116751194,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 46,
+      "perdida": 0.026674214750528336,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 47,
+      "perdida": 0.022843588143587112,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 48,
+      "perdida": 0.018621433526277542,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 49,
+      "perdida": 0.017177516594529152,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 50,
+      "perdida": 0.01565176248550415,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 51,
+      "perdida": 0.013990144245326519,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 52,
+      "perdida": 0.01237936969846487,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 53,
+      "perdida": 0.011433752253651619,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 54,
+      "perdida": 0.010291887447237968,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 55,
+      "perdida": 0.009848936460912228,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 56,
+      "perdida": 0.008056547492742538,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 57,
+      "perdida": 0.0076176938600838184,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 58,
+      "perdida": 0.0069394344463944435,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 59,
+      "perdida": 0.006599029526114464,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 60,
+      "perdida": 0.0061043682508170605,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 61,
+      "perdida": 0.005679700057953596,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 62,
+      "perdida": 0.005494474899023771,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 63,
+      "perdida": 0.004934485536068678,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 64,
+      "perdida": 0.004850997589528561,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 65,
+      "perdida": 0.0045749712735414505,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 66,
+      "perdida": 0.004234904423356056,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 67,
+      "perdida": 0.004100361838936806,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 68,
+      "perdida": 0.0039240093901753426,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 69,
+      "perdida": 0.003943619318306446,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 70,
+      "perdida": 0.0035518931690603495,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 71,
+      "perdida": 0.003505054861307144,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 72,
+      "perdida": 0.0035101657267659903,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 73,
+      "perdida": 0.0032889756839722395,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 74,
+      "perdida": 0.003135277656838298,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 75,
+      "perdida": 0.0031634303741157055,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 76,
+      "perdida": 0.0028532936703413725,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 77,
+      "perdida": 0.002786667086184025,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 78,
+      "perdida": 0.002930995775386691,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 79,
+      "perdida": 0.002814849140122533,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 80,
+      "perdida": 0.0028907868545502424,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 81,
+      "perdida": 0.0026020193472504616,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 82,
+      "perdida": 0.0026235487312078476,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 83,
+      "perdida": 0.00259949523024261,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 84,
+      "perdida": 0.002565742703154683,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 85,
+      "perdida": 0.00265529309399426,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 86,
+      "perdida": 0.0024462745059281588,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 87,
+      "perdida": 0.0023802281357347965,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 88,
+      "perdida": 0.002370228059589863,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 89,
+      "perdida": 0.0023123545106500387,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 90,
+      "perdida": 0.002216037129983306,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 91,
+      "perdida": 0.0023537874221801758,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 92,
+      "perdida": 0.002235277323052287,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 93,
+      "perdida": 0.0021103224717080593,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 94,
+      "perdida": 0.002130421344190836,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 95,
+      "perdida": 0.0020382916554808617,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 96,
+      "perdida": 0.002012520795688033,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 97,
+      "perdida": 0.002181143732741475,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 98,
+      "perdida": 0.0020900776144117117,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 99,
+      "perdida": 0.001979783410206437,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 100,
+      "perdida": 0.001999444095417857,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 101,
+      "perdida": 0.002003166824579239,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 102,
+      "perdida": 0.0019729724153876305,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 103,
+      "perdida": 0.0019815859850496054,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 104,
+      "perdida": 0.0019412508700042963,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 105,
+      "perdida": 0.002124948427081108,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 106,
+      "perdida": 0.0018570419633761048,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 107,
+      "perdida": 0.0018070141086354852,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 108,
+      "perdida": 0.001921299728564918,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 109,
+      "perdida": 0.0018560263561084867,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 110,
+      "perdida": 0.0017993832007050514,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 111,
+      "perdida": 0.0018188285175710917,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 112,
+      "perdida": 0.0018525661434978247,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 113,
+      "perdida": 0.0016830232925713062,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 114,
+      "perdida": 0.0017467904835939407,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 115,
+      "perdida": 0.0016759596765041351,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 116,
+      "perdida": 0.0016528400592505932,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 117,
+      "perdida": 0.0016502741491422057,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 118,
+      "perdida": 0.0016977621708065271,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 119,
+      "perdida": 0.0016600192757323384,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 120,
+      "perdida": 0.0016421322943642735,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 121,
+      "perdida": 0.0016286183381453156,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 122,
+      "perdida": 0.0016299576964229345,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 123,
+      "perdida": 0.0015807540621608496,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 124,
+      "perdida": 0.0016236540395766497,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 125,
+      "perdida": 0.0015599998878315091,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 126,
+      "perdida": 0.0015350925968959928,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 127,
+      "perdida": 0.0015452145598828793,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 128,
+      "perdida": 0.0015541280154138803,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 129,
+      "perdida": 0.0015719003276899457,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 130,
+      "perdida": 0.0015215027378872037,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 131,
+      "perdida": 0.0015708470018580556,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 132,
+      "perdida": 0.0015016896650195122,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 133,
+      "perdida": 0.0015184807125478983,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 134,
+      "perdida": 0.001478126854635775,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 135,
+      "perdida": 0.001518135773949325,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 136,
+      "perdida": 0.0014635255793109536,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 137,
+      "perdida": 0.001447169459424913,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 138,
+      "perdida": 0.0014252096880227327,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 139,
+      "perdida": 0.0014599928399547935,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 140,
+      "perdida": 0.0014655713457614183,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 141,
+      "perdida": 0.0014088659081608057,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 142,
+      "perdida": 0.0014413008466362953,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 143,
+      "perdida": 0.001442572334781289,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 144,
+      "perdida": 0.0014537959359586239,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 145,
+      "perdida": 0.0013835339341312647,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 146,
+      "perdida": 0.0014474818017333746,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 147,
+      "perdida": 0.0014030379243195057,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 148,
+      "perdida": 0.001411198521964252,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 149,
+      "perdida": 0.001333101186901331,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 150,
+      "perdida": 0.0013703787699341774,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 151,
+      "perdida": 0.0013812965480610728,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 152,
+      "perdida": 0.0013624128187075257,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 153,
+      "perdida": 0.0013844340573996305,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 154,
+      "perdida": 0.001335206557996571,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 155,
+      "perdida": 0.001338943955488503,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 156,
+      "perdida": 0.0013342357706278563,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 157,
+      "perdida": 0.0013056570896878839,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 158,
+      "perdida": 0.0013194021303206682,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 159,
+      "perdida": 0.0013032088754698634,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 160,
+      "perdida": 0.0013135215267539024,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 161,
+      "perdida": 0.001280064694583416,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 162,
+      "perdida": 0.0012368852039799094,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 163,
+      "perdida": 0.0012658017221838236,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 164,
+      "perdida": 0.0012485123006626964,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 165,
+      "perdida": 0.001213985262438655,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 166,
+      "perdida": 0.0012987945228815079,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 167,
+      "perdida": 0.0012360764667391777,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 168,
+      "perdida": 0.0012331783073022962,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 169,
+      "perdida": 0.0012639864580705762,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 170,
+      "perdida": 0.001178315607830882,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 171,
+      "perdida": 0.0012365500442683697,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 172,
+      "perdida": 0.0012720318045467138,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 173,
+      "perdida": 0.0012872060760855675,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 174,
+      "perdida": 0.0012015602551400661,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 175,
+      "perdida": 0.0012432497460395098,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 176,
+      "perdida": 0.001229459187015891,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 177,
+      "perdida": 0.001192908501252532,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 178,
+      "perdida": 0.0012246535625308752,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 179,
+      "perdida": 0.0011358247138559818,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 180,
+      "perdida": 0.0011704142671078444,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 181,
+      "perdida": 0.0011665795464068651,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 182,
+      "perdida": 0.001188581925816834,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 183,
+      "perdida": 0.0012342907721176744,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 184,
+      "perdida": 0.001196324941702187,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 185,
+      "perdida": 0.0011876214994117618,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 186,
+      "perdida": 0.0011428160360082984,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 187,
+      "perdida": 0.0011739467736333609,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 188,
+      "perdida": 0.001146750058978796,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 189,
+      "perdida": 0.0011574450181797147,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 190,
+      "perdida": 0.001193127827718854,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 191,
+      "perdida": 0.001148485578596592,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 192,
+      "perdida": 0.0011050078319385648,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 193,
+      "perdida": 0.0011506077134981751,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 194,
+      "perdida": 0.0011538441758602858,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 195,
+      "perdida": 0.0011309330584481359,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 196,
+      "perdida": 0.001117365201935172,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 197,
+      "perdida": 0.0011103798169642687,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 198,
+      "perdida": 0.0010825477074831724,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 199,
+      "perdida": 0.0011489047901704907,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 200,
+      "perdida": 0.0011358056217432022,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 201,
+      "perdida": 0.0011822371743619442,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 202,
+      "perdida": 0.0011201993329450488,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 203,
+      "perdida": 0.0010471895802766085,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 204,
+      "perdida": 0.0010714028030633926,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 205,
+      "perdida": 0.0011023087427020073,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 206,
+      "perdida": 0.0010956039186567068,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 207,
+      "perdida": 0.0010875019943341613,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 208,
+      "perdida": 0.0010998488869518042,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 209,
+      "perdida": 0.001117035048082471,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 210,
+      "perdida": 0.0010911107528954744,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 211,
+      "perdida": 0.00109356758184731,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 212,
+      "perdida": 0.0010426428634673357,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 213,
+      "perdida": 0.0010892590507864952,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 214,
+      "perdida": 0.0010830131359398365,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 215,
+      "perdida": 0.0011102070566266775,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 216,
+      "perdida": 0.0010631987825036049,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 217,
+      "perdida": 0.0010923579102382064,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 218,
+      "perdida": 0.0010218590032309294,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 219,
+      "perdida": 0.0010495207970961928,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 220,
+      "perdida": 0.0010501903016120195,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 221,
+      "perdida": 0.0010573685867711902,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 222,
+      "perdida": 0.0010520133655518293,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 223,
+      "perdida": 0.0010745085310190916,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 224,
+      "perdida": 0.0010666686575859785,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 225,
+      "perdida": 0.0010599297238513827,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 226,
+      "perdida": 0.0010464001679793,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 227,
+      "perdida": 0.0010225350270047784,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 228,
+      "perdida": 0.0010413958225399256,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 229,
+      "perdida": 0.0010125677799805999,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 230,
+      "perdida": 0.0010355518897995353,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 231,
+      "perdida": 0.0010172423208132386,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 232,
+      "perdida": 0.0010177631629630923,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 233,
+      "perdida": 0.001036911504343152,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 234,
+      "perdida": 0.0013308320194482803,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 235,
+      "perdida": 0.0010427425149828196,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 236,
+      "perdida": 0.001013763016089797,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 237,
+      "perdida": 0.0010307764168828726,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 238,
+      "perdida": 0.001040573581121862,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 239,
+      "perdida": 0.0010131454328075051,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 240,
+      "perdida": 0.0010141880484297872,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 241,
+      "perdida": 0.0010307771153748035,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 242,
+      "perdida": 0.0010329070501029491,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 243,
+      "perdida": 0.0009948530932888389,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 244,
+      "perdida": 0.0010227463208138943,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 245,
+      "perdida": 0.001023510587401688,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 246,
+      "perdida": 0.0009988610399886966,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 247,
+      "perdida": 0.0010069041745737195,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 248,
+      "perdida": 0.0010083168745040894,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 249,
+      "perdida": 0.0010152198374271393,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 250,
+      "perdida": 0.0010378684382885695,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 251,
+      "perdida": 0.0010203475831076503,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 252,
+      "perdida": 0.0010348907671868801,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 253,
+      "perdida": 0.001016609719954431,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 254,
+      "perdida": 0.001015372108668089,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 255,
+      "perdida": 0.0009748509619385004,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 256,
+      "perdida": 0.0010252011707052588,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 257,
+      "perdida": 0.0009686177945695817,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 258,
+      "perdida": 0.0010373627301305532,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 259,
+      "perdida": 0.0009965618373826146,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 260,
+      "perdida": 0.0009616229799576104,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 261,
+      "perdida": 0.0010294163366779685,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 262,
+      "perdida": 0.0009862142615020275,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 263,
+      "perdida": 0.0009958349401131272,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 264,
+      "perdida": 0.0010211709886789322,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 265,
+      "perdida": 0.0009898236021399498,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 266,
+      "perdida": 0.0009721068781800568,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 267,
+      "perdida": 0.0009760417742654681,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 268,
+      "perdida": 0.0009932664688676596,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 269,
+      "perdida": 0.000972276960965246,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 270,
+      "perdida": 0.0009500158485025167,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 271,
+      "perdida": 0.000986432540230453,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 272,
+      "perdida": 0.0010036645689979196,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 273,
+      "perdida": 0.000966167077422142,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 274,
+      "perdida": 0.0009702445822767913,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 275,
+      "perdida": 0.0009887440828606486,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 276,
+      "perdida": 0.0009704794501885772,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 277,
+      "perdida": 0.0009867754997685552,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 278,
+      "perdida": 0.000987981096841395,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 279,
+      "perdida": 0.000995343318209052,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 280,
+      "perdida": 0.0010068656411021948,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 281,
+      "perdida": 0.0010029502445831895,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 282,
+      "perdida": 0.0010014005238190293,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 283,
+      "perdida": 0.0009764945134520531,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 284,
+      "perdida": 0.0009673699969425797,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 285,
+      "perdida": 0.0009945041965693235,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 286,
+      "perdida": 0.0009579462930560112,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 287,
+      "perdida": 0.0009440372814424336,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 288,
+      "perdida": 0.0009785013971850276,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 289,
+      "perdida": 0.0009818495018407702,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 290,
+      "perdida": 0.0009643170051276684,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 291,
+      "perdida": 0.0009484105976298451,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 292,
+      "perdida": 0.0009791800985112786,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 293,
+      "perdida": 0.0010000481270253658,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 294,
+      "perdida": 0.0009724993724375963,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 295,
+      "perdida": 0.00099449313711375,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 296,
+      "perdida": 0.0009803777793422341,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 297,
+      "perdida": 0.0009516302961856127,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 298,
+      "perdida": 0.0009696920169517398,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 299,
+      "perdida": 0.0009630587883293629,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "epoca": 300,
+      "perdida": 0.0009850799106061459,
+      "f1_dev": null,
+      "segundos": 0.3
+    },
+    {
+      "semilla": {
+        "semilla": 42,
+        "determinista_solicitado": true,
+        "torch_determinista": true
+      },
+      "mejor_f1_dev": -1.0,
+      "revision_modelo": null
+    }
+  ],
+  "resultados": {
+    "huella_predicciones": "490b3eea797644e109ef568828bf2becce34ac51aa1f663ed6622049d2ae842a",
+    "estricto": {
+      "precision": 0.28242517267843437,
+      "recall": 0.34360410830999066,
+      "f1": 0.3100252737994945,
+      "ic95": [
+        0.27858414627645395,
+        0.3409954457433487
+      ],
+      "vp": 368,
+      "fp": 935,
+      "fn": 703
+    },
+    "laxo": {
+      "precision": 0.5326170376055257,
+      "recall": 0.6479925303454716,
+      "f1": 0.5846672283066554,
+      "ic95": [
+        0.5561991883632917,
+        0.6130259194538692
+      ],
+      "vp": 694,
+      "fp": 609,
+      "fn": 377
+    },
+    "abreviadas": {
+      "n_gold": 119,
+      "recall_estricto": 0.18487394957983194
+    },
+    "no_abreviadas": {
+      "n_gold": 952,
+      "recall_estricto": 0.3634453781512605
+    },
+    "test_sin_duplicados": {
+      "oraciones_excluidas": 96,
+      "f1_estricto": 0.3004405286343612,
+      "precision": 0.2706349206349206,
+      "recall": 0.33762376237623765
+    },
+    "menciones_vistas": {
+      "n_gold": 656,
+      "recall_estricto": 0.3643292682926829
+    },
+    "menciones_nuevas": {
+      "n_gold": 415,
+      "recall_estricto": 0.3108433734939759
+    },
+    "condicion": "solo_gold",
+    "n_gold": 10,
+    "n_silver": 0,
+    "minutos_total": 2.0
+  },
+  "huella": {
+    "config": "1eb0f57171e7c54813103dee2b2164673fa143dc70d12875af1bc373da39951b",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "51bc49352d16aaa8487cfda25aa3c5188fa99772",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "modelo": {
+      "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+      "revision": "a3e805738e28ade482d74b57d8a1ad4ac18441da"
+    },
+    "ollama": {
+      "modelo": "qwen2.5:7b",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "tamano": 4683087332
+    }
+  }
+}
