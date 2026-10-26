@@ -4,6 +4,14 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-26 (tarde) · E4 modo rápido: ajuste de entrenamiento
+
+- Maestro (qwen2.5:7b sobre 200 oraciones silver), F1 en Disease: N = 0 → 0,53 (igual que E2 zero-shot); N = 10 → 0,49; N = 50 → 0,57; N = 100 → 0,57. Con ejemplos gold las alucinaciones bajan de 27% a 4–9%. Con solo 10 oraciones, los ejemplos "más parecidos" no se parecen lo suficiente y no ayudan.
+- Los encoders del modo rápido dieron F1 ≈ 0 (salvo solo gold con 100 oraciones, 0,47): con 200 oraciones y 2 épocas había apenas ~26 actualizaciones de pesos, y con 10 oraciones gold, 1 actualización por época. No era un error de código, sino falta de entrenamiento, y además hacía injusta la comparación entre condiciones.
+- Corrección: `Config.pasos_min` (300 en E4). Todos los modelos reciben al menos 300 actualizaciones; si tienen pocos datos, se repiten más épocas. Los resultados de entrenamiento del modo rápido se descartan; las anotaciones silver del LLM se conservan (no dependen del entrenamiento).
+
+---
+
 ## 2026-10-26 · Techo de referencia con LLM de nube preparado
 
 - Notebook `03b` + `crear_llamador_api` en `e2_llm.py`: el mismo prompt, guía, ejemplos y métricas de E2, con un LLM comercial vía API (OpenAI y Gemini, este último por su endpoint compatible con OpenAI). Estrategias: zero-shot y few-shot dinámico.

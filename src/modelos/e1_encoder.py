@@ -70,6 +70,8 @@ class Config:
     semilla: int = 42
     max_train: int | None = None  # para pruebas rápidas o curvas de aprendizaje
     seleccion: str = "dev"        # "dev": guarda la mejor época según F1 en dev | "ultima": usa la última época
+    pasos_min: int = 0            # mínimo de actualizaciones de pesos: con muy pocas oraciones se agregan épocas
+                                  # hasta llegar a este número (si no, 10 oraciones = 1 sola actualización por época)
                                   # ("ultima" se usa en E4, donde no se supone que existan etiquetas de dev)
 
 
@@ -156,13 +158,17 @@ def entrenar(cfg: Config, train: list[Oracion], dev: list[Oracion], registro=pri
     cargador = DataLoader(ejemplos, batch_size=cfg.batch, shuffle=True, collate_fn=cod.collate,
                           generator=torch.Generator().manual_seed(cfg.semilla))
 
+    lotes_por_epoca = math.ceil(len(ejemplos) / cfg.batch)
+    epocas = max(cfg.epocas, math.ceil(cfg.pasos_min / lotes_por_epoca)) if cfg.pasos_min else cfg.epocas
+    if epocas != cfg.epocas:
+        registro(f"  {len(ejemplos)} oraciones = {lotes_por_epoca} lotes por época: se usan {epocas} épocas para llegar a {cfg.pasos_min} actualizaciones")
     optim = torch.optim.AdamW(modelo.parameters(), lr=cfg.lr, weight_decay=0.01)
-    pasos = cfg.epocas * math.ceil(len(ejemplos) / cfg.batch)
+    pasos = epocas * lotes_por_epoca
     sched = get_linear_schedule_with_warmup(optim, int(0.1 * pasos), pasos)
     gold_dev = [e for o in dev for e in o.entidades if e[3] == cfg.tipo]
 
     mejor_f1, mejor_estado, sin_mejora, historial = -1.0, None, 0, []
-    for epoca in range(1, cfg.epocas + 1):
+    for epoca in range(1, epocas + 1):
         modelo.train()
         t0, perdida_total = time.time(), 0.0
         for lote in cargador:

@@ -47,7 +47,7 @@ destilacion:
   silver_n: 2000                # oraciones de train que anota el LLM (sin mirar su anotación)
   encoder: espanol_clinico      # sin riesgo de contaminación con el test
   epocas: 5
-  epocas_solo_gold: 20          # con 10–100 oraciones hacen falta más pasadas
+  pasos_min: 300                # mínimo de actualizaciones de pesos para todos los modelos de E4 (ver notebook 04)
 
 # E3 (opcional) — QLoRA con MLX
 qlora:
