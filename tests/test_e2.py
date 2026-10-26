@@ -52,3 +52,47 @@ def test_correr_con_oraculo_y_cache(tmp_path):
     ev = evaluar_respuestas(r, [O])
     assert set(ev["pred"]["Disease"]) == {("t1", 9, 12, "Disease")} and ev["tasa_alucinacion"] == 0
     assert "t1" in Cache(tmp_path / "c.jsonl")          # se retoma desde disco
+
+
+def test_llamador_api_sin_clave_da_error_claro(monkeypatch):
+    import pytest
+    from modelos.e2_llm import crear_llamador_api
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    with pytest.raises(RuntimeError, match="OPENAI_API_KEY"):
+        crear_llamador_api("openai")
+
+
+def test_cargar_claves(tmp_path, monkeypatch):
+    import os
+    from modelos.e2_llm import cargar_claves
+    (tmp_path / ".env").write_text("# comentario\nGEMINI_API_KEY='abc'\n")
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    assert cargar_claves(tmp_path / ".env") == ["GEMINI_API_KEY"] and os.environ["GEMINI_API_KEY"] == "abc"
+
+
+def test_llamador_api_reintenta_sin_parametro_rechazado(monkeypatch):
+    import openai
+    from types import SimpleNamespace
+    from modelos import e2_llm
+    llamadas = []
+
+    class Falso:
+        def __init__(self, **kw):
+            self.chat = SimpleNamespace(completions=SimpleNamespace(create=self.create))
+
+        def create(self, model, messages, **params):
+            llamadas.append(dict(params))
+            if "temperature" in params:
+                class Rechazo(openai.BadRequestError):
+                    def __init__(self, msg):
+                        Exception.__init__(self, msg)
+                raise Rechazo("Unsupported parameter: temperature")
+            return SimpleNamespace(choices=[SimpleNamespace(message=SimpleNamespace(content='{"entidades":[]}'))],
+                                   usage=SimpleNamespace(prompt_tokens=10, completion_tokens=3))
+
+    monkeypatch.setenv("OPENAI_API_KEY", "x")
+    monkeypatch.setattr(openai, "OpenAI", Falso)
+    llamar = e2_llm.crear_llamador_api("openai")
+    assert llamar("m", [{"role": "user", "content": "hola"}]) == '{"entidades":[]}'
+    assert llamar.parametros_omitidos == ["temperature"] and llamar.ultimo_uso == {"entrada": 10, "salida": 3}
+    assert "temperature" not in llamadas[-1]

@@ -203,6 +203,88 @@ def llamar_ollama(modelo: str, msgs: list[dict], semilla: int = 42, num_ctx: int
     return r["message"]["content"]
 
 
+# ----------------------------------------------------------------------------- LLM de nube (techo de referencia)
+
+PROVEEDORES = {
+    "openai": {"base_url": None, "variable": "OPENAI_API_KEY"},
+    # Gemini acepta el mismo formato que OpenAI en este endpoint
+    "gemini": {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai/", "variable": "GEMINI_API_KEY"},
+}
+
+
+def cargar_claves(ruta_env: Path) -> list[str]:
+    """Lee claves desde un archivo .env (NOMBRE=valor), que git ignora. Devuelve los nombres cargados."""
+    import os
+
+    cargadas = []
+    if Path(ruta_env).exists():
+        for linea in Path(ruta_env).read_text().splitlines():
+            if "=" in linea and not linea.strip().startswith("#"):
+                k, v = linea.split("=", 1)
+                os.environ[k.strip()] = v.strip().strip('"').strip("'")
+                cargadas.append(k.strip())
+    return cargadas
+
+
+def _esquema_estricto() -> dict:
+    """El mismo esquema, con las restricciones que exige el modo 'strict' de OpenAI."""
+    import copy
+
+    e = copy.deepcopy(ESQUEMA)
+    e["additionalProperties"] = False
+    e["properties"]["entidades"]["items"]["additionalProperties"] = False
+    return e
+
+
+def crear_llamador_api(proveedor: str):
+    """Devuelve una función llamar(modelo, mensajes, semilla) -> str para la API del proveedor.
+
+    Mismos parámetros que el LLM local cuando el modelo los acepta (temperatura 0, semilla, JSON con
+    esquema). Si el modelo rechaza alguno (p. ej. los modelos de razonamiento no aceptan temperatura),
+    se reintenta sin él y queda registrado en `llamar.parametros_omitidos`. Los tokens usados de la
+    última llamada quedan en `llamar.ultimo_uso` (para calcular el costo).
+    """
+    import os
+
+    from openai import BadRequestError, OpenAI
+
+    cfg = PROVEEDORES[proveedor]
+    clave = os.environ.get(cfg["variable"])
+    if not clave:
+        raise RuntimeError(f"Falta la clave {cfg['variable']} (agregarla al archivo .env de la raíz del proyecto)")
+    cliente = OpenAI(api_key=clave, base_url=cfg["base_url"], max_retries=6, timeout=120)
+    omitidos: set[str] = set()
+
+    def llamar(modelo: str, msgs: list[dict], semilla: int = 42) -> str:
+        params = {"temperature": 0, "seed": semilla, "max_completion_tokens": NUM_PREDICT * 2,
+                  "response_format": {"type": "json_schema",
+                                      "json_schema": {"name": "entidades", "schema": _esquema_estricto(), "strict": True}}}
+        for k in omitidos:
+            params.pop(k, None)
+        for _ in range(4):
+            try:
+                r = cliente.chat.completions.create(model=modelo, messages=msgs, **params)
+                break
+            except BadRequestError as e:
+                texto = str(e).lower()
+                culpable = next((k for k in ["temperature", "seed", "max_completion_tokens"] if k in texto), None)
+                if culpable is None and "response_format" in texto or culpable is None and "schema" in texto:
+                    params["response_format"] = {"type": "json_object"}; omitidos.add("json_schema")
+                    continue
+                if culpable is None:
+                    raise
+                params.pop(culpable, None); omitidos.add(culpable)
+        else:
+            raise RuntimeError("La API rechazó la llamada incluso con parámetros mínimos")
+        u = getattr(r, "usage", None)
+        llamar.ultimo_uso = {"entrada": getattr(u, "prompt_tokens", 0) or 0, "salida": getattr(u, "completion_tokens", 0) or 0}
+        llamar.parametros_omitidos = sorted(omitidos)
+        return r.choices[0].message.content or ""
+
+    llamar.ultimo_uso, llamar.parametros_omitidos = {}, []
+    return llamar
+
+
 def huella_ollama(modelo: str) -> dict:
     """Digest exacto del modelo instalado en Ollama (equivale a la 'revisión' de Hugging Face)."""
     try:
@@ -248,8 +330,11 @@ def correr(modelo: str, oraciones: list[Oracion], selector, cache: Cache, semill
         msgs = mensajes(o, selector(o) if selector else [])
         t = time.time()
         resp = llamar(modelo, msgs, semilla)
-        cache.guardar({"id": o.id, "respuesta": resp, "segundos": round(time.time() - t, 2),
-                       "huella_prompt": sha256_bytes(json.dumps(msgs, ensure_ascii=False).encode())[:16]})
+        registro_cache = {"id": o.id, "respuesta": resp, "segundos": round(time.time() - t, 2),
+                          "huella_prompt": sha256_bytes(json.dumps(msgs, ensure_ascii=False).encode())[:16]}
+        if getattr(llamar, "ultimo_uso", None):  # solo en APIs de nube: tokens para calcular costo
+            registro_cache["tokens"] = dict(llamar.ultimo_uso)
+        cache.guardar(registro_cache)
         if n % cada == 0 or n == len(pendientes):
             vel = (time.time() - t0) / n
             registro(f"  {n}/{len(pendientes)} oraciones · {vel:.1f} s/oración · faltan ~{vel * (len(pendientes) - n) / 60:.0f} min")

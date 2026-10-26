@@ -4,6 +4,16 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-26 · Techo de referencia con LLM de nube preparado
+
+- Notebook `03b` + `crear_llamador_api` en `e2_llm.py`: el mismo prompt, guía, ejemplos y métricas de E2, con un LLM comercial vía API (OpenAI y Gemini, este último por su endpoint compatible con OpenAI). Estrategias: zero-shot y few-shot dinámico.
+- Permitido porque el CWLC es público y anonimizado; con fichas reales no sería una opción directa. Riesgo de contaminación declarado (corpus público desde 2022).
+- Antes de correr, prueba 5 oraciones y proyecta el costo con los tokens reales; la corrida completa exige `CONFIRMAR_GASTO = True`. Se registran tokens, costo real y los parámetros que el modelo no acepte (p. ej. temperatura en modelos de razonamiento).
+- Claves en `.env` (ignorado por git). La suscripción a ChatGPT o Gemini no incluye la API: se paga aparte.
+- Modelos por defecto en la config (confirmar nombre y precio vigentes): `gpt-6.1-sol` y `gemini-3.1-pro`, ambos ~USD 2 por millón de tokens de entrada. Estimado: ~USD 5 por proveedor para las 990 oraciones con las 2 estrategias.
+
+---
+
 ## 2026-10-26 · E4 preparado
 
 - `src/modelos/e4_destilacion.py` + notebook `04`. Gold simulado: 0/10/50/100 oraciones de train con su anotación real, anidadas (semilla 42). Silver: 2.000 oraciones de train, disjuntas del gold, anotadas por qwen2.5:7b; con N = 0 zero-shot, con N > 0 los 5 ejemplos más parecidos buscados **solo dentro del gold** (buscar en todo train sería fuga).
