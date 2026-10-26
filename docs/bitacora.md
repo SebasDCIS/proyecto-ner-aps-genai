@@ -4,6 +4,23 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-25 (noche, 2) · E2 modo rápido (100 oraciones del test, semilla 42)
+
+- Primera corrida sin tope de generación: 4 respuestas entraron en bucle de repetición (35–70 min cada una). Se agregó `num_predict = 2048` y rescate de JSON cortado, y se repitió todo. Con tope, 1,0–3,9 s por oración.
+- **Disease (n = 112), F1 estricto:** zero-shot 0,45 (llama) / 0,50 (qwen); few-shot fijo 0,54 / 0,54 (DE 0,02 entre sets de ejemplos); few-shot dinámico **0,68 / 0,70**. E1 en las mismas 100 oraciones: 0,77 (español) / 0,80 (chileno). Brecha de 8–10 puntos con la mejor estrategia, dentro de lo que reporta la literatura (3–15).
+- El dinámico suma ~15 puntos sobre los ejemplos fijos. Sin duplicados baja solo ~2 puntos (0,695 → 0,676 en qwen), así que su ventaja no viene principalmente de copiar oraciones repetidas.
+- **El LLM encuentra casi lo mismo que E1, pero marca de más:** recall en Disease con dinámico 0,73–0,77 (E1 0,81–0,84) y en menciones nuevas 0,68 (E1 0,70–0,73; n = 34); la diferencia está en la precisión (0,61–0,66). F1 laxo ~0,78: muchos errores son de límites.
+- **Abbreviation:** los LLM quedan en 0,55–0,66 frente a 0,93 de E1. No aprenden solos las convenciones del corpus (APS, "+", unidades).
+- **Alucinaciones:** llama zero-shot inventa el 54% de las menciones y produce 3 JSON inválidos; con ejemplos baja a 7–22%. qwen: 5–10% y ningún JSON inválido.
+- Medication (5 menciones) y Abbreviation nuevas (3) no son interpretables en esta muestra: requieren el modo completo.
+- Reproducibilidad: el few-shot dinámico de llama dio exactamente los mismos F1 en la corrida anterior y en esta (0,677 / 0,667 / 0,659).
+- Tiempo estimado del modo completo: ~17 s por oración sumando las 10 corridas → ~4,6 h para las 990 oraciones.
+
+**Pendientes**
+- [ ] Correr el notebook 03 en modo completo
+
+---
+
 ## 2026-10-25 (noche) · E2 preparado
 
 - `src/modelos/e2_llm.py` + notebook `03`: LLM local vía Ollama (`llama3.1:8b`, `qwen2.5:7b`) con guía de anotación redactada solo desde train, salida JSON restringida a un esquema, temperatura 0 y semilla fija. Estrategias: zero-shot, few-shot fijo (k = 5; 3 semillas = 3 sets de ejemplos) y few-shot dinámico (5 ejemplos de train más parecidos por BM25).
