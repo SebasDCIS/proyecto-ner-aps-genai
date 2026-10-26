@@ -4,6 +4,36 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-26 · Resultados de E2 (test completo, 990 oraciones)
+
+Corrida nocturna en el Mac: 9.900 llamadas en ~4,4 h (1,1–3,1 s por oración; la más lenta 47 s, el tope de tokens funcionó). Digests: llama3.1:8b `46e0c10c039e`, qwen2.5:7b `845dbda0ea48`.
+
+**F1 estricto (few-shot fijo = media de 3 sets de ejemplos)**
+
+| Entidad | Zero-shot llama / qwen | Fijo llama / qwen | Dinámico llama / qwen | E1 español / chileno |
+|---|---|---|---|---|
+| Disease | 0,446 / 0,537 | 0,526 / 0,560 | 0,650 / **0,663** | 0,798 / 0,815 |
+| Medication | 0,451 / 0,589 | 0,393 / 0,617 | **0,697** / 0,670 | 0,840 / 0,794 |
+| Abbreviation | 0,524 / 0,516 | 0,603 / 0,554 | **0,703** / 0,642 | 0,950 / 0,952 |
+
+**Hallazgos**
+- **Brecha con E1:** con la mejor estrategia, los LLM quedan 13–15 puntos bajo E1 en Disease, 14–18 en Medication y 25–31 en Abbreviation (bootstrap pareado contra cada semilla de E1: todas las diferencias significativas). En Disease la brecha está en el extremo alto de lo que reporta la literatura (3–15). La muestra de 100 oraciones la había subestimado (8–10 puntos).
+- **Few-shot dinámico > fijo:** +12 puntos en Disease y +8–10 en Abbreviation (significativo); en Medication +31 en llama y no significativo en qwen. Sin duplicados baja solo ~1,5 puntos: la ventaja no viene de copiar oraciones repetidas.
+- **Los LLM no generalizan mejor que E1:** recall en enfermedades nuevas 0,56–0,60 frente a 0,70–0,73 de E1. La señal contraria del modo rápido era ruido (n = 34).
+- **También sufren con las abreviaturas:** recall en enfermedades abreviadas 0,65 frente a 0,72–0,76 en no abreviadas. E1 chileno no tenía esa brecha.
+- **Muchos errores son de límites:** Disease con qwen dinámico 0,66 estricto frente a 0,79 laxo (13 puntos; en E1 eran 10). La precisión es el punto débil (0,57–0,62 en Disease).
+- **Alucinaciones y formato:** qwen dinámico inventa el 5% de las menciones y no rompió ningún JSON; llama dinámico, el 19%. llama zero-shot inventa el 52% y dejó 22 JSON inválidos. qwen es más confiable; llama gana en Abbreviation y Medication con dinámico.
+- Variación entre sets de ejemplos fijos: DE 0,02–0,05 en Disease y Medication.
+
+**Interpretación**
+Sin entrenamiento, un LLM local de 7–8B con guía y ejemplos recuperados alcanza ~80% del F1 del encoder ajustado en enfermedades y fármacos, pero no reemplaza a E1 en NER estricto. Su fortaleza no es generalizar a menciones nuevas. Esto refuerza E4: usar el LLM para pre-anotar y entrenar un encoder, en vez de usarlo directamente.
+
+**Pendientes**
+- [ ] Subir `results/e2_completo/*.json` desde el Mac
+- [ ] E4: LLM como anotador + 0/10/50/100 documentos gold
+
+---
+
 ## 2026-10-25 (noche, 2) · E2 modo rápido (100 oraciones del test, semilla 42)
 
 - Primera corrida sin tope de generación: 4 respuestas entraron en bucle de repetición (35–70 min cada una). Se agregó `num_predict = 2048` y rescate de JSON cortado, y se repitió todo. Con tope, 1,0–3,9 s por oración.
