@@ -281,6 +281,7 @@ def crear_llamador_api(proveedor: str, extra: dict | None = None):
             raise RuntimeError("La API rechazó la llamada incluso con parámetros mínimos")
         u = getattr(r, "usage", None)
         llamar.ultimo_uso = {"entrada": getattr(u, "prompt_tokens", 0) or 0, "salida": getattr(u, "completion_tokens", 0) or 0}
+        llamar.ultimo_modelo = getattr(r, "model", None)  # versión exacta que respondió (puede cambiar en modelos "preview")
         llamar.parametros_omitidos = sorted(omitidos)
         return r.choices[0].message.content or ""
 
@@ -337,6 +338,8 @@ def correr(modelo: str, oraciones: list[Oracion], selector, cache: Cache, semill
                           "huella_prompt": sha256_bytes(json.dumps(msgs, ensure_ascii=False).encode())[:16]}
         if getattr(llamar, "ultimo_uso", None):  # solo en APIs de nube: tokens para calcular costo
             registro_cache["tokens"] = dict(llamar.ultimo_uso)
+            registro_cache["modelo_servido"] = getattr(llamar, "ultimo_modelo", None)
+            registro_cache["fecha"] = time.strftime("%Y-%m-%dT%H:%M:%S")
         cache.guardar(registro_cache)
         if n % cada == 0 or n == len(pendientes):
             vel = (time.time() - t0) / n

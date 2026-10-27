@@ -19,7 +19,7 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 - Casi no alucina (0,4–1%) y no tuvo ningún JSON inválido.
 - Sin duplicados baja ~1 punto. Posible contaminación (corpus público desde 2022): se declara.
 
-**Gemini 3.1 Pro** (`gemini-3.1-pro-preview`): el nivel de pago inicial (Tier 1) permite 250 consultas por día por modelo. Se alcanzó tras 237 oraciones zero-shot. Decisión: evaluar Gemini en una **submuestra fija** (primeras 237 oraciones del test) con ambas estrategias, y comparar todos los sistemas sobre esas mismas oraciones. El few-shot dinámico de Gemini se corre el 28-10 al renovarse la cuota.
+**Gemini 3.1 Pro** (`gemini-3.1-pro-preview`): el nivel de pago inicial (Tier 1) permite 250 consultas por día por modelo. Se alcanzó tras 237 oraciones zero-shot. Decisión (revisada el mismo día): correr Gemini sobre el **test completo**, igual que GPT-5.2, para comparar las dos familias de LLM en igualdad. Toma ~8 días con la cuota diaria. `scripts/correr_nube.py` avanza las corridas desde la terminal y `scripts/instalar_tarea_diaria.sh` lo programa con launchd todos los días a las 07:00. Como `gemini-3.1-pro-preview` puede cambiar de versión en esos días, cada respuesta registra la versión que la produjo y la fecha; el JSON final resume las versiones servidas y el período. Las respuestas de GPT-5.2 (en ~1 hora) se obtuvieron antes de registrar la versión.
 
 ---
 

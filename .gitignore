@@ -21,3 +21,4 @@ __pycache__/
 # Resultados intermedios pesados
 results/predicciones/
 results/cache/
+results/logs/
