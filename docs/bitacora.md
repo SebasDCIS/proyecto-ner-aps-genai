@@ -4,6 +4,42 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-27 · Resultados de E4 completo (2.000 silver, 3 entidades, 3 semillas)
+
+Anotación con qwen2.5:7b (~3,4 h) + 63 entrenamientos (~3,3 h). Todos con al menos 300 actualizaciones; sin dev para elegir la época.
+
+**F1 estricto en test (media de 3 semillas)**
+
+| Entidad | N gold | Maestro (silver) | Silver + gold | Solo gold | E1 (8.014 gold) |
+|---|---|---|---|---|---|
+| Disease | 0 | 0,532 | 0,561 | — | 0,798 |
+| Disease | 10 | 0,524 | 0,571 | 0,278 | |
+| Disease | 50 | 0,586 | **0,644** | 0,489 | |
+| Disease | 100 | 0,595 | **0,650** | 0,595 | |
+| Medication* | 0 | 0,662 | 0,661 | — | 0,840 |
+| Medication* | 10 | 0,663 | 0,587 | 0,000 | |
+| Medication* | 50 | 0,660 | 0,610 | 0,465 | |
+| Medication | 100 | 0,687 | **0,674** | 0,497 | |
+| Abbreviation | 0 | 0,526 | 0,527 | — | 0,950 |
+| Abbreviation | 10 | 0,496 | 0,555 | 0,353 | |
+| Abbreviation | 50 | 0,547 | 0,592 | 0,616 | |
+| Abbreviation | 100 | 0,550 | 0,634 | **0,729** | |
+
+\* En Medication con N = 0, 10 y 50, la semilla 43 colapsó: el modelo aprendió a no marcar nada (F1 0, pérdida estancada en ~0,03). La tabla muestra la media de las semillas 42 y 44; con las 3 semillas las medias son 0,441 / 0,391 / 0,406. Es la inestabilidad de ajuste fino descrita por Dodge et al. (2020) y Mosbach et al. (2021) en clases poco frecuentes. Se reporta, no se oculta.
+
+**Hallazgos**
+- **El alumno supera al maestro en Disease y Abbreviation** (Disease N = 50: 0,644 frente a 0,586) y lo iguala en Medication.
+- **El silver ayuda cuando hay poco gold:** en Disease, con 10 oraciones gold, 0,57 frente a 0,28; con 50, 0,64 frente a 0,49. La curva se aplana entre 50 y 100 (0,644 → 0,650).
+- **Pero el silver puede estorbar:** en Abbreviation con 50–100 gold, entrenar solo con gold gana (0,73 frente a 0,63). El maestro tiene precisión alta (0,90) y recall bajo (0,49), porque no conoce las convenciones del corpus (APS, "+", unidades), y el alumno hereda ese sesgo.
+- **H4 no se cumple en este corpus:** con 50 gold, el alumno queda 15–16 puntos bajo E1 en Disease, 23 en Medication y 36 en Abbreviation. En inglés el maestro rendía ~0,82; aquí, 0,53–0,69. El techo lo pone la calidad del maestro.
+- **Resultado práctico:** con 100 oraciones gold y sin LLM al momento de usarlo, el alumno de Disease (0,65) iguala al LLM directo con few-shot dinámico (0,66), que necesitó las 8.014 oraciones de train para buscar ejemplos y corre mucho más lento.
+
+**Pendientes**
+- [ ] Techo de referencia con LLM de nube (notebook 03b)
+- [ ] Informe final
+
+---
+
 ## 2026-10-26 (noche) · E4 modo rápido con 300 actualizaciones mínimas
 
 Solo Disease, 200 oraciones silver, 1 semilla; evaluado en el test completo (990 oraciones).
