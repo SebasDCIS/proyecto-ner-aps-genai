@@ -1,0 +1,558 @@
+{
+  "config": {
+    "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+    "tipo": "Abbreviation",
+    "epocas": 5,
+    "lr": 3e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 44,
+    "max_train": null,
+    "seleccion": "ultima",
+    "pasos_min": 300
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 1.0680154860019684,
+      "f1_dev": null,
+      "segundos": 2.4
+    },
+    {
+      "epoca": 2,
+      "perdida": 1.0010506957769394,
+      "f1_dev": null,
+      "segundos": 1.5
+    },
+    {
+      "epoca": 3,
+      "perdida": 0.8536765575408936,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 4,
+      "perdida": 0.6338544711470604,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 5,
+      "perdida": 0.42093300446867943,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 6,
+      "perdida": 0.30851466208696365,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 7,
+      "perdida": 0.21379483956843615,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 8,
+      "perdida": 0.20773090422153473,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 9,
+      "perdida": 0.2191704623401165,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 10,
+      "perdida": 0.16013576462864876,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 11,
+      "perdida": 0.09556497354060411,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 12,
+      "perdida": 0.06525959074497223,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 13,
+      "perdida": 0.03595775691792369,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 14,
+      "perdida": 0.0256724595092237,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 15,
+      "perdida": 0.033382037188857794,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 16,
+      "perdida": 0.01568499195855111,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 17,
+      "perdida": 0.01922516233753413,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 18,
+      "perdida": 0.009289042325690389,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 19,
+      "perdida": 0.007255988311953843,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 20,
+      "perdida": 0.010612850543111563,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 21,
+      "perdida": 0.008871123078279197,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 22,
+      "perdida": 0.005282001569867134,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 23,
+      "perdida": 0.004743951605632901,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 24,
+      "perdida": 0.007005861261859536,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 25,
+      "perdida": 0.003900545707438141,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 26,
+      "perdida": 0.0040618585189804435,
+      "f1_dev": null,
+      "segundos": 1.2
+    },
+    {
+      "epoca": 27,
+      "perdida": 0.0050401960616,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 28,
+      "perdida": 0.003098291461355984,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 29,
+      "perdida": 0.002828633412718773,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 30,
+      "perdida": 0.00315629382384941,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 31,
+      "perdida": 0.002605248795589432,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 32,
+      "perdida": 0.0023624879540875554,
+      "f1_dev": null,
+      "segundos": 1.2
+    },
+    {
+      "epoca": 33,
+      "perdida": 0.0022513323347084224,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 34,
+      "perdida": 0.00200869666878134,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 35,
+      "perdida": 0.0019983119855169207,
+      "f1_dev": null,
+      "segundos": 1.5
+    },
+    {
+      "epoca": 36,
+      "perdida": 0.0018478623824194074,
+      "f1_dev": null,
+      "segundos": 1.5
+    },
+    {
+      "epoca": 37,
+      "perdida": 0.0018344006966799498,
+      "f1_dev": null,
+      "segundos": 1.8
+    },
+    {
+      "epoca": 38,
+      "perdida": 0.001778678793925792,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 39,
+      "perdida": 0.001934521715156734,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 40,
+      "perdida": 0.0017653729591984302,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 41,
+      "perdida": 0.001671069738222286,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 42,
+      "perdida": 0.0018703679670579731,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 43,
+      "perdida": 0.001530975103378296,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 44,
+      "perdida": 0.0014981853892095387,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 45,
+      "perdida": 0.001997588900849223,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 46,
+      "perdida": 0.0015889166679698974,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 47,
+      "perdida": 0.0015279024955816567,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 48,
+      "perdida": 0.0015756160428281873,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 49,
+      "perdida": 0.0013923354854341596,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 50,
+      "perdida": 0.0013721155701205134,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 51,
+      "perdida": 0.0012888197670690715,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 52,
+      "perdida": 0.0013840280007570982,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 53,
+      "perdida": 0.0013679535768460482,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 54,
+      "perdida": 0.0013572557072620839,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 55,
+      "perdida": 0.001368123310385272,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 56,
+      "perdida": 0.0013119128707330674,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 57,
+      "perdida": 0.0011845691042253748,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 58,
+      "perdida": 0.0012764795392286032,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 59,
+      "perdida": 0.001311226689722389,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 60,
+      "perdida": 0.001227790315169841,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 61,
+      "perdida": 0.0012342644040472806,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 62,
+      "perdida": 0.0012070888478774577,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 63,
+      "perdida": 0.0012737564102280885,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 64,
+      "perdida": 0.0011968827166128904,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 65,
+      "perdida": 0.001275102695217356,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 66,
+      "perdida": 0.0012497949646785855,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 67,
+      "perdida": 0.0011804674722952768,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 68,
+      "perdida": 0.0012701225059572607,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 69,
+      "perdida": 0.0012273411848582327,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 70,
+      "perdida": 0.001209058187669143,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 71,
+      "perdida": 0.0013371380046010017,
+      "f1_dev": null,
+      "segundos": 1.3
+    },
+    {
+      "epoca": 72,
+      "perdida": 0.001156093887402676,
+      "f1_dev": null,
+      "segundos": 1.6
+    },
+    {
+      "epoca": 73,
+      "perdida": 0.0015956969582475722,
+      "f1_dev": null,
+      "segundos": 1.7
+    },
+    {
+      "epoca": 74,
+      "perdida": 0.0011979172995779663,
+      "f1_dev": null,
+      "segundos": 1.4
+    },
+    {
+      "epoca": 75,
+      "perdida": 0.0012002776784356683,
+      "f1_dev": null,
+      "segundos": 1.5
+    },
+    {
+      "semilla": {
+        "semilla": 44,
+        "determinista_solicitado": true,
+        "torch_determinista": true
+      },
+      "mejor_f1_dev": -1.0,
+      "revision_modelo": null
+    }
+  ],
+  "resultados": {
+    "huella_predicciones": "381262613cadf8f02bbe843aae1fa7bd0791872a84e9f6f02d7092b509db2597",
+    "estricto": {
+      "precision": 0.8160136286201022,
+      "recall": 0.4823766364551863,
+      "f1": 0.6063291139240505,
+      "ic95": [
+        0.5753038838647737,
+        0.6384606794531351
+      ],
+      "vp": 479,
+      "fp": 108,
+      "fn": 514
+    },
+    "laxo": {
+      "precision": 0.817717206132879,
+      "recall": 0.48338368580060426,
+      "f1": 0.6075949367088608,
+      "ic95": [
+        0.5756404063957361,
+        0.6397050612419675
+      ],
+      "vp": 480,
+      "fp": 107,
+      "fn": 513
+    },
+    "abreviadas": {
+      "n_gold": 0,
+      "recall_estricto": 0.0
+    },
+    "no_abreviadas": {
+      "n_gold": 993,
+      "recall_estricto": 0.4823766364551863
+    },
+    "test_sin_duplicados": {
+      "oraciones_excluidas": 96,
+      "f1_estricto": 0.6086395873629916,
+      "precision": 0.8137931034482758,
+      "recall": 0.486096807415036
+    },
+    "menciones_vistas": {
+      "n_gold": 927,
+      "recall_estricto": 0.4962243797195254
+    },
+    "menciones_nuevas": {
+      "n_gold": 66,
+      "recall_estricto": 0.2878787878787879
+    },
+    "condicion": "solo_gold",
+    "n_gold": 50,
+    "n_silver": 0,
+    "minutos_total": 2.2
+  },
+  "huella": {
+    "config": "c39585fdf8f5bbf64a52ebd9d4443ae63051dda4d0e4b15f35ae0886e50d3760",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "e3a3e5d18baf29d790612a77778f89c12a8a8aaa",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "modelo": {
+      "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+      "revision": "a3e805738e28ade482d74b57d8a1ad4ac18441da"
+    },
+    "ollama": {
+      "modelo": "qwen2.5:7b",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "tamano": 4683087332
+    }
+  }
+}

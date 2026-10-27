@@ -1,0 +1,138 @@
+{
+  "config": {
+    "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+    "tipo": "Abbreviation",
+    "epocas": 5,
+    "lr": 3e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 43,
+    "max_train": null,
+    "seleccion": "ultima",
+    "pasos_min": 300
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 0.24072547771036626,
+      "f1_dev": null,
+      "segundos": 43.9
+    },
+    {
+      "epoca": 2,
+      "perdida": 0.06532304995507002,
+      "f1_dev": null,
+      "segundos": 43.5
+    },
+    {
+      "epoca": 3,
+      "perdida": 0.052739174205809834,
+      "f1_dev": null,
+      "segundos": 43.3
+    },
+    {
+      "epoca": 4,
+      "perdida": 0.044294464480131863,
+      "f1_dev": null,
+      "segundos": 43.6
+    },
+    {
+      "epoca": 5,
+      "perdida": 0.034524418083950875,
+      "f1_dev": null,
+      "segundos": 43.9
+    },
+    {
+      "semilla": {
+        "semilla": 43,
+        "determinista_solicitado": true,
+        "torch_determinista": true
+      },
+      "mejor_f1_dev": -1.0,
+      "revision_modelo": null
+    }
+  ],
+  "resultados": {
+    "huella_predicciones": "6d71d2fb2da4566355c13b4048352565f40914d2ba7dbc1aaf6ec2f69f6b4755",
+    "estricto": {
+      "precision": 0.9549071618037135,
+      "recall": 0.36253776435045315,
+      "f1": 0.5255474452554744,
+      "ic95": [
+        0.48759559751825404,
+        0.5625485009507581
+      ],
+      "vp": 360,
+      "fp": 17,
+      "fn": 633
+    },
+    "laxo": {
+      "precision": 0.9575596816976127,
+      "recall": 0.3635448136958711,
+      "f1": 0.5270072992700731,
+      "ic95": [
+        0.489328113451589,
+        0.5649374780694759
+      ],
+      "vp": 361,
+      "fp": 16,
+      "fn": 632
+    },
+    "abreviadas": {
+      "n_gold": 0,
+      "recall_estricto": 0.0
+    },
+    "no_abreviadas": {
+      "n_gold": 993,
+      "recall_estricto": 0.36253776435045315
+    },
+    "test_sin_duplicados": {
+      "oraciones_excluidas": 96,
+      "f1_estricto": 0.5253731343283581,
+      "precision": 0.9539295392953929,
+      "recall": 0.36251287332646753
+    },
+    "menciones_vistas": {
+      "n_gold": 927,
+      "recall_estricto": 0.3851132686084142
+    },
+    "menciones_nuevas": {
+      "n_gold": 66,
+      "recall_estricto": 0.045454545454545456
+    },
+    "condicion": "silver_gold",
+    "n_gold": 0,
+    "n_silver": 2000,
+    "minutos_total": 3.8
+  },
+  "huella": {
+    "config": "22749cbb634c63740ef9608b6f081d68a8f0a98e77be4e7c41fd2567308dfd66",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "e3a3e5d18baf29d790612a77778f89c12a8a8aaa",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "modelo": {
+      "modelo": "PlanTL-GOB-ES/bsc-bio-ehr-es",
+      "revision": "a3e805738e28ade482d74b57d8a1ad4ac18441da"
+    },
+    "ollama": {
+      "modelo": "qwen2.5:7b",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "tamano": 4683087332
+    }
+  }
+}
