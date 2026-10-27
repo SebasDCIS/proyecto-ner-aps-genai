@@ -4,6 +4,25 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-27 (tarde) · Techo de referencia: GPT-5.2 (y Gemini, en curso)
+
+**GPT-5.2** (OpenAI, esfuerzo de razonamiento bajo; no acepta temperatura, se omitió y quedó registrado), test completo, costo total USD 4,26, ~2 s por oración:
+
+| Entidad | GPT-5.2 zero-shot | GPT-5.2 dinámico | Mejor LLM local | E1 español / chileno |
+|---|---|---|---|---|
+| Disease | 0,645 | **0,727** | 0,663 | 0,798 / 0,815 |
+| Medication | 0,768 | **0,772** | 0,697 | 0,840 / 0,794 |
+| Abbreviation | 0,776 | **0,887** | 0,703 | 0,950 / 0,952 |
+
+- **H5 apoyada:** el modelo grande achica la brecha (de 13–31 puntos con los LLM locales a 6–8), pero no supera a E1. Bootstrap pareado contra cada semilla de E1 español: diferencias significativas en Disease y Abbreviation en las 3 semillas; en Medication solo en 1 de 3.
+- El few-shot dinámico también ayuda al modelo grande: +8 puntos en Disease y +11 en Abbreviation.
+- Casi no alucina (0,4–1%) y no tuvo ningún JSON inválido.
+- Sin duplicados baja ~1 punto. Posible contaminación (corpus público desde 2022): se declara.
+
+**Gemini 3.1 Pro** (`gemini-3.1-pro-preview`): el nivel de pago inicial (Tier 1) permite 250 consultas por día por modelo. Se alcanzó tras 237 oraciones zero-shot. Decisión: evaluar Gemini en una **submuestra fija** (primeras 237 oraciones del test) con ambas estrategias, y comparar todos los sistemas sobre esas mismas oraciones. El few-shot dinámico de Gemini se corre el 28-10 al renovarse la cuota.
+
+---
+
 ## 2026-10-27 · Resultados de E4 completo (2.000 silver, 3 entidades, 3 semillas)
 
 Anotación con qwen2.5:7b (~3,4 h) + 63 entrenamientos (~3,3 h). Todos con al menos 300 actualizaciones; sin dev para elegir la época.
