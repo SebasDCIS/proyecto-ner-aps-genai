@@ -4,6 +4,33 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-10-27 (noche) · Estado del proyecto: resumen
+
+**F1 estricto en el test completo (990 oraciones)**
+
+| Sistema | Disease | Medication | Abbreviation |
+|---|---|---|---|
+| E1 · encoder español ajustado (8.014 gold, 3 semillas) | 0,798 | 0,840 | 0,950 |
+| E1 · encoder chileno ajustado | 0,815 | 0,794 | 0,952 |
+| E2 · LLM local, zero-shot (llama / qwen) | 0,446 / 0,537 | 0,451 / 0,589 | 0,524 / 0,516 |
+| E2 · LLM local, few-shot dinámico (llama / qwen) | 0,650 / 0,663 | 0,697 / 0,670 | 0,703 / 0,642 |
+| E2 nube · GPT-5.2 zero-shot | 0,645 | 0,768 | 0,776 |
+| E2 nube · GPT-5.2 few-shot dinámico | 0,727 | 0,772 | 0,887 |
+| E4 · silver (qwen) + 50 gold | 0,644 | 0,610* | 0,592 |
+| E4 · silver (qwen) + 100 gold | 0,650 | 0,674 | 0,634 |
+
+\* Media de 2 semillas; la tercera colapsó (ver entrada de E4).
+
+**Hipótesis:** H1 apoyada · H2 apoyada · H3 apoyada en Disease · H4 no apoyada · H5 apoyada con GPT-5.2 (falta Gemini).
+
+**En curso:** Gemini 3.1 Pro en el test completo, ~250 consultas por día (tarea diaria con launchd a las 07:00; 237/990 zero-shot hechas el 27-10).
+
+**Pendientes:** terminar Gemini · validar con el prof. Salas y confirmar la fecha de entrega · informe final (TRIPOD-LLM).
+
+**Documentos:** guía completa y guía de estudio del grupo (Claude Docs); página del proyecto en Notion (Doctorado › Segundo semestre › Electivo IA Generativa).
+
+---
+
 ## 2026-10-27 (tarde) · Techo de referencia: GPT-5.2 (y Gemini, en curso)
 
 **GPT-5.2** (OpenAI, esfuerzo de razonamiento bajo; no acepta temperatura, se omitió y quedó registrado), test completo, costo total USD 4,26, ~2 s por oración:
