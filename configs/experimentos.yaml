@@ -31,14 +31,17 @@ temperatura: 0
 
 # Techo de referencia (API comercial, solo texto público del CWLC)
 llm_comercial:              # techo de referencia (corpus público y anonimizado); confirmar nombres y precios vigentes
+  # Los mismos modelos de frontera evaluados en Vishwanath et al. 2026 (Nature Medicine); ambos "razonan"
   - proveedor: openai
-    modelo: gpt-6.1-sol       # USD 2 / 10 por millón de tokens (entrada / salida), según lista de oct-2026
-    precio_entrada: 2.0
-    precio_salida: 10.0
+    modelo: gpt-5.2           # USD 1,75 / 14 por millón de tokens (entrada / salida)
+    precio_entrada: 1.75
+    precio_salida: 14.0
+    parametros_extra: {reasoning_effort: low}
   - proveedor: gemini
     modelo: gemini-3.1-pro    # USD 2 / 12 por millón de tokens
     precio_entrada: 2.0
     precio_salida: 12.0
+    parametros_extra: {reasoning_effort: low}
 
 # E4 — LLM como anotador + gold simulado
 destilacion:

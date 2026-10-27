@@ -236,13 +236,15 @@ def _esquema_estricto() -> dict:
     return e
 
 
-def crear_llamador_api(proveedor: str):
+def crear_llamador_api(proveedor: str, extra: dict | None = None):
     """Devuelve una función llamar(modelo, mensajes, semilla) -> str para la API del proveedor.
 
     Mismos parámetros que el LLM local cuando el modelo los acepta (temperatura 0, semilla, JSON con
     esquema). Si el modelo rechaza alguno (p. ej. los modelos de razonamiento no aceptan temperatura),
     se reintenta sin él y queda registrado en `llamar.parametros_omitidos`. Los tokens usados de la
     última llamada quedan en `llamar.ultimo_uso` (para calcular el costo).
+    `extra` agrega parámetros propios del modelo, p. ej. {"reasoning_effort": "low"} en modelos de
+    razonamiento: menos "pensamiento" = menos tokens de salida = menor costo.
     """
     import os
 
@@ -258,7 +260,8 @@ def crear_llamador_api(proveedor: str):
     def llamar(modelo: str, msgs: list[dict], semilla: int = 42) -> str:
         params = {"temperature": 0, "seed": semilla, "max_completion_tokens": NUM_PREDICT * 2,
                   "response_format": {"type": "json_schema",
-                                      "json_schema": {"name": "entidades", "schema": _esquema_estricto(), "strict": True}}}
+                                      "json_schema": {"name": "entidades", "schema": _esquema_estricto(), "strict": True}},
+                  **(extra or {})}
         for k in omitidos:
             params.pop(k, None)
         for _ in range(4):
@@ -267,7 +270,7 @@ def crear_llamador_api(proveedor: str):
                 break
             except BadRequestError as e:
                 texto = str(e).lower()
-                culpable = next((k for k in ["temperature", "seed", "max_completion_tokens"] if k in texto), None)
+                culpable = next((k for k in ["temperature", "seed", "max_completion_tokens", "reasoning_effort"] if k in texto), None)
                 if culpable is None and "response_format" in texto or culpable is None and "schema" in texto:
                     params["response_format"] = {"type": "json_object"}; omitidos.add("json_schema")
                     continue
