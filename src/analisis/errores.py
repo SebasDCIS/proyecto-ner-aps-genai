@@ -301,6 +301,60 @@ def rescate_sin_choque(pred_a: list, pred_b: list) -> list:
     return sorted(set(pred_a) | set(extra))
 
 
+def rescate_dirigido(pred_a: list, pred_b: list, test: list[Oracion], vocabulario: Counter) -> list:
+    """Como `rescate_sin_choque`, pero el LLM solo aporta menciones con alguna palabra nunca vista en train
+    (posible error de tipeo o sigla nueva), que es donde el encoder falla más."""
+    por_id = {o.id: o for o in test}
+
+    def desconocida(e):
+        return any(t.isalpha() and len(t) >= 3 and vocabulario[normalizar(t)] == 0
+                   for t in por_id[e[0]].mencion(e).split())
+
+    por_doc = defaultdict(list)
+    for p in pred_a:
+        por_doc[p[0]].append(p)
+    extra = [q for q in set(pred_b)
+             if desconocida(q) and not any(q[1] < p[2] and p[1] < q[2] for p in por_doc[q[0]])]
+    return sorted(set(pred_a) | set(extra))
+
+
+def espurias_sobre_otros_tipos(test: list[Oracion], tipo: str, pred: list) -> Counter:
+    """Predicciones espurias de `tipo` (no tocan ninguna entidad gold de ese tipo), según con qué
+    otra entidad gold se superponen. Ej.: 'Finding' = el sistema marcó como enfermedad un hallazgo."""
+    por_id = {o.id: o for o in test}
+    c = Counter()
+    for p in set(pred):
+        ents = por_id[p[0]].entidades
+        if any(g[3] == tipo and p[1] < g[2] and g[1] < p[2] for g in ents):
+            continue
+        otros = sorted({g[3] for g in ents if g[3] != tipo and p[1] < g[2] and g[1] < p[2]})
+        c[" + ".join(otros) if otros else "ninguna entidad"] += 1
+    return c
+
+
+def dif_recall_pareada(gold_grupo: list, pred_a: list, pred_b: list, n_boot: int = 1000,
+                       semilla: int = 42) -> tuple[float, float, float]:
+    """Recall(A) − Recall(B) en un grupo de entidades gold, con IC 95% remuestreando oraciones."""
+    a, b = set(pred_a), set(pred_b)
+    por_doc = defaultdict(lambda: [0, 0, 0])
+    for g in gold_grupo:
+        por_doc[g[0]][0] += g in a
+        por_doc[g[0]][1] += g in b
+        por_doc[g[0]][2] += 1
+    if not por_doc:
+        return float("nan"), float("nan"), float("nan")
+    arr = np.array(list(por_doc.values()))
+    tot = arr.sum(0)
+    obs = (tot[0] - tot[1]) / tot[2]
+    rng = np.random.default_rng(semilla)
+    ds = []
+    for _ in range(n_boot):
+        s = arr[rng.integers(0, len(arr), len(arr))].sum(0)
+        ds.append((s[0] - s[1]) / s[2])
+    lo, hi = np.percentile(ds, [2.5, 97.5])
+    return float(obs), float(lo), float(hi)
+
+
 def f1_con_ic(gold: list, pred: list, n_boot: int = 1000) -> dict:
     c = metricas.contar(gold, pred, "estricto")
     f1, lo, hi = metricas.bootstrap_f1(metricas.por_documento(gold, pred, "estricto"), n=n_boot)

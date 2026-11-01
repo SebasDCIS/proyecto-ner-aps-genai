@@ -41,3 +41,12 @@ def test_cruce_y_combinaciones():
     assert (c["ambos"], c["solo B"], c["ninguno"]) == (1, 1, 1) and abs(c["recall_oraculo"] - 2 / 3) < 1e-9
     assert A.rescate_sin_choque(a, b) == [("d", 0, 5, "Disease"), ("d", 10, 15, "Disease")]
     assert A.interseccion(a, b) == a and len(A.union(a, b)) == 3
+
+
+def test_espurias_sobre_hallazgo_y_recall_pareado():
+    o = Oracion("d", ["dolor", "y", "HTA"], [("d", 0, 5, "Finding"), ("d", 8, 11, "Disease")])
+    pred = [("d", 0, 5, "Disease"), ("d", 8, 11, "Disease")]
+    assert A.espurias_sobre_otros_tipos([o], "Disease", pred) == {"Finding": 1}
+    g = [("d", 8, 11, "Disease")]
+    obs, lo, hi = A.dif_recall_pareada(g, pred, [], n_boot=50)
+    assert obs == 1.0 and lo == hi == 1.0
