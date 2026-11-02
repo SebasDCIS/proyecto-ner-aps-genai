@@ -4,6 +4,12 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-11-02 · Lote manual de Gemini desde el entorno Linux del puente
+
+Para adelantar la corrida, a las 06:18 se lanzó `scripts/correr_nube.py` desde el entorno Linux que accede a la carpeta del proyecto en el Mac (misma carpeta, misma caché, mismo código y parámetros). Se instaló `openai==3.37.0`, la misma versión del `.venv` del Mac (con 3.42 el mensaje de error 400 no traía el detalle y fallaba el reintento sin `seed`), y se usaron stubs de `torch`/`transformers` fuera del repositorio, porque el script solo importa `evaluar()` de E1. El proceso se cerró al terminar la llamada del puente: aportó 26 oraciones (494 → 520) de Gemini con ejemplos parecidos. Esas 26 respuestas tienen el campo `fecha` en UTC (las demás, en hora de Chile). La tarea diaria de las 07:00 continúa desde ahí.
+
+---
+
 ## 2026-11-01 · Notebook 05: análisis de errores, y una idea que queda para un estudio aparte
 
 **Qué se hizo.** Notebook 05 y `src/analisis/errores.py`. No entrena ni consulta modelos: reutiliza las predicciones guardadas (E1: 2 encoders × 3 semillas; E2 y nube: las corridas completas). Incluye tipología de errores, palabras mal escritas reales del corpus, menciones vistas vs nuevas, abreviaturas por frecuencia en train y cruce encoder × LLM con tres híbridos simples. Resultados (solo números) en `results/e5_analisis/analisis_errores.json`. Gemini con ejemplos parecidos entra cuando termine (3 de noviembre).
