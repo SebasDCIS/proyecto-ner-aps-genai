@@ -5,6 +5,7 @@
       "E1 español (media 3 semillas)": 0.7982,
       "GPT-5.2 ej. parecidos": 0.7271,
       "GPT-5.2 sin ejemplos": 0.6445,
+      "Gemini 3.1 Pro ej. parecidos": 0.7172,
       "Gemini 3.1 Pro sin ejemplos": 0.618,
       "Llama 8B ej. parecidos": 0.6502,
       "Llama 8B sin ejemplos": 0.4461,
@@ -16,6 +17,7 @@
       "E1 español (media 3 semillas)": 0.8402,
       "GPT-5.2 ej. parecidos": 0.7716,
       "GPT-5.2 sin ejemplos": 0.7684,
+      "Gemini 3.1 Pro ej. parecidos": 0.8442,
       "Gemini 3.1 Pro sin ejemplos": 0.765,
       "Llama 8B ej. parecidos": 0.697,
       "Llama 8B sin ejemplos": 0.4514,
@@ -27,6 +29,7 @@
       "E1 español (media 3 semillas)": 0.9498,
       "GPT-5.2 ej. parecidos": 0.8865,
       "GPT-5.2 sin ejemplos": 0.7763,
+      "Gemini 3.1 Pro ej. parecidos": 0.9011,
       "Gemini 3.1 Pro sin ejemplos": 0.8877,
       "Llama 8B ej. parecidos": 0.7029,
       "Llama 8B sin ejemplos": 0.5242,
@@ -45,7 +48,8 @@
         "Qwen 7B ej. parecidos": 765,
         "GPT-5.2 sin ejemplos": 776,
         "GPT-5.2 ej. parecidos": 854,
-        "Gemini 3.1 Pro sin ejemplos": 843
+        "Gemini 3.1 Pro sin ejemplos": 843,
+        "Gemini 3.1 Pro ej. parecidos": 899
       },
       "más larga": {
         "E1 español (s42)": 57,
@@ -56,7 +60,8 @@
         "Qwen 7B ej. parecidos": 102,
         "GPT-5.2 sin ejemplos": 108,
         "GPT-5.2 ej. parecidos": 96,
-        "Gemini 3.1 Pro sin ejemplos": 123
+        "Gemini 3.1 Pro sin ejemplos": 123,
+        "Gemini 3.1 Pro ej. parecidos": 91
       },
       "más corta": {
         "E1 español (s42)": 73,
@@ -67,7 +72,8 @@
         "Qwen 7B ej. parecidos": 58,
         "GPT-5.2 sin ejemplos": 81,
         "GPT-5.2 ej. parecidos": 42,
-        "Gemini 3.1 Pro sin ejemplos": 55
+        "Gemini 3.1 Pro sin ejemplos": 55,
+        "Gemini 3.1 Pro ej. parecidos": 40
       },
       "desplazada": {
         "E1 español (s42)": 1,
@@ -78,7 +84,8 @@
         "Qwen 7B ej. parecidos": 1,
         "GPT-5.2 sin ejemplos": 0,
         "GPT-5.2 ej. parecidos": 0,
-        "Gemini 3.1 Pro sin ejemplos": 0
+        "Gemini 3.1 Pro sin ejemplos": 0,
+        "Gemini 3.1 Pro ej. parecidos": 0
       },
       "espuria": {
         "E1 español (s42)": 116,
@@ -89,7 +96,8 @@
         "Qwen 7B ej. parecidos": 311,
         "GPT-5.2 sin ejemplos": 372,
         "GPT-5.2 ej. parecidos": 286,
-        "Gemini 3.1 Pro sin ejemplos": 636
+        "Gemini 3.1 Pro sin ejemplos": 636,
+        "Gemini 3.1 Pro ej. parecidos": 406
       },
       "omitida": {
         "E1 español (s42)": 82,
@@ -100,7 +108,8 @@
         "Qwen 7B ej. parecidos": 115,
         "GPT-5.2 sin ejemplos": 83,
         "GPT-5.2 ej. parecidos": 64,
-        "Gemini 3.1 Pro sin ejemplos": 13
+        "Gemini 3.1 Pro sin ejemplos": 13,
+        "Gemini 3.1 Pro ej. parecidos": 26
       }
     },
     "Medication": {
@@ -113,7 +122,8 @@
         "Qwen 7B ej. parecidos": 60,
         "GPT-5.2 sin ejemplos": 73,
         "GPT-5.2 ej. parecidos": 76,
-        "Gemini 3.1 Pro sin ejemplos": 83
+        "Gemini 3.1 Pro sin ejemplos": 83,
+        "Gemini 3.1 Pro ej. parecidos": 84
       },
       "más larga": {
         "E1 español (s42)": 1,
@@ -124,7 +134,8 @@
         "Qwen 7B ej. parecidos": 3,
         "GPT-5.2 sin ejemplos": 0,
         "GPT-5.2 ej. parecidos": 0,
-        "Gemini 3.1 Pro sin ejemplos": 0
+        "Gemini 3.1 Pro sin ejemplos": 0,
+        "Gemini 3.1 Pro ej. parecidos": 0
       },
       "más corta": {
         "E1 español (s42)": 2,
@@ -135,7 +146,8 @@
         "Qwen 7B ej. parecidos": 4,
         "GPT-5.2 sin ejemplos": 5,
         "GPT-5.2 ej. parecidos": 6,
-        "Gemini 3.1 Pro sin ejemplos": 8
+        "Gemini 3.1 Pro sin ejemplos": 8,
+        "Gemini 3.1 Pro ej. parecidos": 4
       },
       "desplazada": {
         "E1 español (s42)": 0,
@@ -146,7 +158,8 @@
         "Qwen 7B ej. parecidos": 0,
         "GPT-5.2 sin ejemplos": 0,
         "GPT-5.2 ej. parecidos": 0,
-        "Gemini 3.1 Pro sin ejemplos": 0
+        "Gemini 3.1 Pro sin ejemplos": 0,
+        "Gemini 3.1 Pro ej. parecidos": 0
       },
       "espuria": {
         "E1 español (s42)": 11,
@@ -157,7 +170,8 @@
         "Qwen 7B ej. parecidos": 20,
         "GPT-5.2 sin ejemplos": 20,
         "GPT-5.2 ej. parecidos": 23,
-        "Gemini 3.1 Pro sin ejemplos": 34
+        "Gemini 3.1 Pro sin ejemplos": 34,
+        "Gemini 3.1 Pro ej. parecidos": 19
       },
       "omitida": {
         "E1 español (s42)": 9,
@@ -168,7 +182,8 @@
         "Qwen 7B ej. parecidos": 25,
         "GPT-5.2 sin ejemplos": 15,
         "GPT-5.2 ej. parecidos": 12,
-        "Gemini 3.1 Pro sin ejemplos": 4
+        "Gemini 3.1 Pro sin ejemplos": 4,
+        "Gemini 3.1 Pro ej. parecidos": 5
       }
     },
     "Abbreviation": {
@@ -181,7 +196,8 @@
         "Qwen 7B ej. parecidos": 572,
         "GPT-5.2 sin ejemplos": 845,
         "GPT-5.2 ej. parecidos": 918,
-        "Gemini 3.1 Pro sin ejemplos": 929
+        "Gemini 3.1 Pro sin ejemplos": 929,
+        "Gemini 3.1 Pro ej. parecidos": 938
       },
       "más larga": {
         "E1 español (s42)": 4,
@@ -192,7 +208,8 @@
         "Qwen 7B ej. parecidos": 6,
         "GPT-5.2 sin ejemplos": 36,
         "GPT-5.2 ej. parecidos": 18,
-        "Gemini 3.1 Pro sin ejemplos": 12
+        "Gemini 3.1 Pro sin ejemplos": 12,
+        "Gemini 3.1 Pro ej. parecidos": 12
       },
       "más corta": {
         "E1 español (s42)": 4,
@@ -203,7 +220,8 @@
         "Qwen 7B ej. parecidos": 7,
         "GPT-5.2 sin ejemplos": 10,
         "GPT-5.2 ej. parecidos": 9,
-        "Gemini 3.1 Pro sin ejemplos": 11
+        "Gemini 3.1 Pro sin ejemplos": 11,
+        "Gemini 3.1 Pro ej. parecidos": 9
       },
       "desplazada": {
         "E1 español (s42)": 0,
@@ -214,7 +232,8 @@
         "Qwen 7B ej. parecidos": 0,
         "GPT-5.2 sin ejemplos": 0,
         "GPT-5.2 ej. parecidos": 0,
-        "Gemini 3.1 Pro sin ejemplos": 0
+        "Gemini 3.1 Pro sin ejemplos": 0,
+        "Gemini 3.1 Pro ej. parecidos": 0
       },
       "espuria": {
         "E1 español (s42)": 45,
@@ -225,7 +244,8 @@
         "Qwen 7B ej. parecidos": 204,
         "GPT-5.2 sin ejemplos": 293,
         "GPT-5.2 ej. parecidos": 133,
-        "Gemini 3.1 Pro sin ejemplos": 148
+        "Gemini 3.1 Pro sin ejemplos": 148,
+        "Gemini 3.1 Pro ej. parecidos": 130
       },
       "omitida": {
         "E1 español (s42)": 37,
@@ -236,7 +256,8 @@
         "Qwen 7B ej. parecidos": 405,
         "GPT-5.2 sin ejemplos": 101,
         "GPT-5.2 ej. parecidos": 45,
-        "Gemini 3.1 Pro sin ejemplos": 39
+        "Gemini 3.1 Pro sin ejemplos": 39,
+        "Gemini 3.1 Pro ej. parecidos": 31
       }
     }
   },
@@ -250,7 +271,8 @@
       "Qwen 7B ej. parecidos": 172,
       "GPT-5.2 sin ejemplos": 281,
       "GPT-5.2 ej. parecidos": 216,
-      "Gemini 3.1 Pro sin ejemplos": 510
+      "Gemini 3.1 Pro sin ejemplos": 510,
+      "Gemini 3.1 Pro ej. parecidos": 317
     },
     "Body_Part + Finding": {
       "E1 español (s42)": 11,
@@ -261,7 +283,8 @@
       "Qwen 7B ej. parecidos": 45,
       "GPT-5.2 sin ejemplos": 36,
       "GPT-5.2 ej. parecidos": 23,
-      "Gemini 3.1 Pro sin ejemplos": 69
+      "Gemini 3.1 Pro sin ejemplos": 69,
+      "Gemini 3.1 Pro ej. parecidos": 48
     },
     "ninguna entidad": {
       "E1 español (s42)": 13,
@@ -272,7 +295,8 @@
       "Qwen 7B ej. parecidos": 25,
       "GPT-5.2 sin ejemplos": 14,
       "GPT-5.2 ej. parecidos": 18,
-      "Gemini 3.1 Pro sin ejemplos": 21
+      "Gemini 3.1 Pro sin ejemplos": 21,
+      "Gemini 3.1 Pro ej. parecidos": 16
     },
     "Abbreviation": {
       "E1 español (s42)": 6,
@@ -283,7 +307,8 @@
       "Qwen 7B ej. parecidos": 10,
       "GPT-5.2 sin ejemplos": 9,
       "GPT-5.2 ej. parecidos": 5,
-      "Gemini 3.1 Pro sin ejemplos": 8
+      "Gemini 3.1 Pro sin ejemplos": 8,
+      "Gemini 3.1 Pro ej. parecidos": 4
     },
     "Procedure": {
       "E1 español (s42)": 3,
@@ -294,7 +319,8 @@
       "Qwen 7B ej. parecidos": 13,
       "GPT-5.2 sin ejemplos": 10,
       "GPT-5.2 ej. parecidos": 10,
-      "Gemini 3.1 Pro sin ejemplos": 3
+      "Gemini 3.1 Pro sin ejemplos": 3,
+      "Gemini 3.1 Pro ej. parecidos": 3
     },
     "Abbreviation + Finding": {
       "E1 español (s42)": 1,
@@ -305,7 +331,8 @@
       "Qwen 7B ej. parecidos": 10,
       "GPT-5.2 sin ejemplos": 9,
       "GPT-5.2 ej. parecidos": 6,
-      "Gemini 3.1 Pro sin ejemplos": 11
+      "Gemini 3.1 Pro sin ejemplos": 11,
+      "Gemini 3.1 Pro ej. parecidos": 8
     },
     "total espurias": {
       "E1 español (s42)": 116,
@@ -316,7 +343,8 @@
       "Qwen 7B ej. parecidos": 311,
       "GPT-5.2 sin ejemplos": 372,
       "GPT-5.2 ej. parecidos": 286,
-      "Gemini 3.1 Pro sin ejemplos": 636
+      "Gemini 3.1 Pro sin ejemplos": 636,
+      "Gemini 3.1 Pro ej. parecidos": 406
     }
   },
   "mal_escritas": {
@@ -329,6 +357,7 @@
         "Gemini 3.1 Pro sin ejemplos": 0.7875,
         "GPT-5.2 sin ejemplos": 0.7279,
         "GPT-5.2 ej. parecidos": 0.801,
+        "Gemini 3.1 Pro ej. parecidos": 0.8433,
         "Qwen 7B ej. parecidos": 0.7183,
         "Llama 8B sin ejemplos": 0.5721,
         "Qwen 7B sin ejemplos": 0.5471,
@@ -340,6 +369,7 @@
         "Gemini 3.1 Pro sin ejemplos": 0.7742,
         "GPT-5.2 sin ejemplos": 0.6129,
         "GPT-5.2 ej. parecidos": 0.6774,
+        "Gemini 3.1 Pro ej. parecidos": 0.7097,
         "Qwen 7B ej. parecidos": 0.5806,
         "Llama 8B sin ejemplos": 0.4194,
         "Qwen 7B sin ejemplos": 0.3871,
@@ -351,6 +381,7 @@
         "Gemini 3.1 Pro sin ejemplos": 0.0133,
         "GPT-5.2 sin ejemplos": 0.115,
         "GPT-5.2 ej. parecidos": 0.1235,
+        "Gemini 3.1 Pro ej. parecidos": 0.1336,
         "Qwen 7B ej. parecidos": 0.1376,
         "Llama 8B sin ejemplos": 0.1528,
         "Qwen 7B sin ejemplos": 0.16,
@@ -370,7 +401,8 @@
       "Qwen 7B ej. parecidos": 0.8125,
       "GPT-5.2 sin ejemplos": 0.7927,
       "GPT-5.2 ej. parecidos": 0.8659,
-      "Gemini 3.1 Pro sin ejemplos": 0.8491
+      "Gemini 3.1 Pro sin ejemplos": 0.8491,
+      "Gemini 3.1 Pro ej. parecidos": 0.8979
     },
     "recall nuevas": {
       "E1 español (3 semillas)": 0.7012,
@@ -381,7 +413,8 @@
       "Qwen 7B ej. parecidos": 0.559,
       "GPT-5.2 sin ejemplos": 0.6169,
       "GPT-5.2 ej. parecidos": 0.6892,
-      "Gemini 3.1 Pro sin ejemplos": 0.6892
+      "Gemini 3.1 Pro sin ejemplos": 0.6892,
+      "Gemini 3.1 Pro ej. parecidos": 0.747
     }
   },
   "abreviaturas_por_frecuencia": {
@@ -400,7 +433,8 @@
         "Qwen 7B ej. parecidos": 0.6305,
         "GPT-5.2 sin ejemplos": 0.8734,
         "GPT-5.2 ej. parecidos": 0.9457,
-        "Gemini 3.1 Pro sin ejemplos": 0.9432
+        "Gemini 3.1 Pro sin ejemplos": 0.9432,
+        "Gemini 3.1 Pro ej. parecidos": 0.9587
       },
       "rara (1–9 en train)": {
         "E1 español (3 semillas)": 0.9499,
@@ -411,7 +445,8 @@
         "Qwen 7B ej. parecidos": 0.4575,
         "GPT-5.2 sin ejemplos": 0.817,
         "GPT-5.2 ej. parecidos": 0.9085,
-        "Gemini 3.1 Pro sin ejemplos": 0.9739
+        "Gemini 3.1 Pro sin ejemplos": 0.9739,
+        "Gemini 3.1 Pro ej. parecidos": 0.9673
       },
       "nunca vista en train": {
         "E1 español (3 semillas)": 0.6061,
@@ -422,7 +457,8 @@
         "Qwen 7B ej. parecidos": 0.2121,
         "GPT-5.2 sin ejemplos": 0.6667,
         "GPT-5.2 ej. parecidos": 0.7121,
-        "Gemini 3.1 Pro sin ejemplos": 0.7576
+        "Gemini 3.1 Pro sin ejemplos": 0.7576,
+        "Gemini 3.1 Pro ej. parecidos": 0.7273
       }
     }
   },
@@ -540,6 +576,34 @@
       "¿rescate dirigido significativo?": "empeora"
     },
     {
+      "tipo": "Enfermedad",
+      "encoder": "E1 español",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.8129,
+      "recall oráculo": 0.9069,
+      "solo LLM": 100.6667,
+      "ΔF1 unión": -0.0774,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0754,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0173,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Enfermedad",
+      "encoder": "E1 chileno",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.836,
+      "recall oráculo": 0.9116,
+      "solo LLM": 81.0,
+      "ΔF1 unión": -0.0886,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0845,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0206,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
       "tipo": "Medicamento",
       "encoder": "E1 español",
       "LLM": "Llama 8B ej. parecidos",
@@ -649,6 +713,34 @@
       "ΔF1 rescate": -0.0633,
       "¿rescate significativo?": "no",
       "ΔF1 rescate dirigido": -0.0241,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Medicamento",
+      "encoder": "E1 español",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.8478,
+      "recall oráculo": 0.9638,
+      "solo LLM": 10.6667,
+      "ΔF1 unión": -0.0037,
+      "¿unión significativo?": "no",
+      "ΔF1 rescate": -0.0104,
+      "¿rescate significativo?": "no",
+      "ΔF1 rescate dirigido": 0.0042,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Medicamento",
+      "encoder": "E1 chileno",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.8188,
+      "recall oráculo": 0.942,
+      "solo LLM": 11.3333,
+      "ΔF1 unión": 0.0129,
+      "¿unión significativo?": "no",
+      "ΔF1 rescate": -0.0034,
+      "¿rescate significativo?": "no",
+      "ΔF1 rescate dirigido": 0.0037,
       "¿rescate dirigido significativo?": "no"
     },
     {
@@ -762,6 +854,34 @@
       "¿rescate significativo?": "empeora",
       "ΔF1 rescate dirigido": 0.0034,
       "¿rescate dirigido significativo?": "mejora"
+    },
+    {
+      "tipo": "Abreviatura",
+      "encoder": "E1 español",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.949,
+      "recall oráculo": 0.9768,
+      "solo LLM": 27.6667,
+      "ΔF1 unión": -0.0438,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0402,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0002,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Abreviatura",
+      "encoder": "E1 chileno",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.9554,
+      "recall oráculo": 0.9789,
+      "solo LLM": 23.3333,
+      "ΔF1 unión": -0.0432,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0379,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": 0.0023,
+      "¿rescate dirigido significativo?": "no"
     }
   ],
   "sistemas_llm": [
@@ -771,13 +891,12 @@
     "Qwen 7B ej. parecidos",
     "GPT-5.2 sin ejemplos",
     "GPT-5.2 ej. parecidos",
-    "Gemini 3.1 Pro sin ejemplos"
-  ],
-  "parciales": [
+    "Gemini 3.1 Pro sin ejemplos",
     "Gemini 3.1 Pro ej. parecidos"
   ],
+  "parciales": [],
   "codigo": {
-    "commit": "bbd61a78512d3120b5181e7223a4bcd629c814c4",
-    "cambios_sin_commit": true
+    "commit": "54eda33f9a259837f7869fa06aed7f175351aecc",
+    "cambios_sin_commit": false
   }
 }
