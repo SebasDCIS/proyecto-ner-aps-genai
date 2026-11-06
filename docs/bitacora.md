@@ -4,6 +4,32 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-11-02 · Lote manual de Gemini desde el entorno Linux del puente
+
+Para adelantar la corrida, a las 06:18 se lanzó `scripts/correr_nube.py` desde el entorno Linux que accede a la carpeta del proyecto en el Mac (misma carpeta, misma caché, mismo código y parámetros). Se instaló `openai==3.37.0`, la misma versión del `.venv` del Mac (con 3.42 el mensaje de error 400 no traía el detalle y fallaba el reintento sin `seed`), y se usaron stubs de `torch`/`transformers` fuera del repositorio, porque el script solo importa `evaluar()` de E1. El proceso se cerró al terminar la llamada del puente: aportó 26 oraciones (494 → 520) de Gemini con ejemplos parecidos. Esas 26 respuestas tienen el campo `fecha` en UTC (las demás, en hora de Chile). La tarea diaria de las 07:00 continúa desde ahí.
+
+---
+
+## 2026-11-01 · Notebook 05: análisis de errores, y una idea que queda para un estudio aparte
+
+**Qué se hizo.** Notebook 05 y `src/analisis/errores.py`. No entrena ni consulta modelos: reutiliza las predicciones guardadas (E1: 2 encoders × 3 semillas; E2 y nube: las corridas completas). Incluye tipología de errores, palabras mal escritas reales del corpus, menciones vistas vs nuevas, abreviaturas por frecuencia en train y cruce encoder × LLM con tres híbridos simples. Resultados (solo números) en `results/e5_analisis/analisis_errores.json`. Gemini con ejemplos parecidos entra cuando termine (3 de noviembre).
+
+**Hallazgos (primera lectura):**
+- Los LLM aciertan casi lo mismo que E1 en Enfermedad (GPT-5.2 con ejemplos: 854 exactas vs 895 del encoder chileno s42), pero tienen muchas más espurias (286 vs 112; Gemini sin ejemplos 636). Entre 67% y 88% de las espurias de todos los sistemas caen sobre un hallazgo (*Finding*) anotado: "dolor", "vómitos", "mordida invertida". Diferencia de criterio con la guía del corpus.
+- Palabras mal escritas: heurística (diccionario de español + vocabulario de train + distancia de edición 1–2), revisada a mano. 31 enfermedades y 5 medicamentos en el test. Recall en enfermedades mal escritas: E1 ~0,52–0,56 (vs 0,82–0,84 bien escritas); Gemini 0,77 (vs 0,79). Pareado sobre las mismas 31: Gemini − encoder = +0,19 a +0,32 (IC con límite inferior en 0 o apenas sobre 0); GPT-5.2 con ejemplos +0,10 a +0,23, no significativo. Explicación: "furosemida" es 1 token, "FUSROSEMIDA" son 5 piezas.
+- Abreviaturas nunca vistas en train (66): E1 0,60, GPT-5.2 con ejemplos 0,71, Gemini 0,76; frecuentes (774): E1 0,98. El encoder memoriza la jerga; los LLM grandes deducen mejor la nueva.
+- Recall oráculo encoder ∪ LLM en Enfermedad: 0,90–0,92 (vs 0,84). Pero unión, rescate y rescate dirigido a palabras desconocidas empeoran el F1 (significativo en Enfermedad), porque lo que aporta el LLM viene con muchos falsos positivos. Un híbrido útil necesitaría confianza del encoder o un paso de verificación.
+- Decisión: no se implementa una corrección en este proyecto, porque los errores ortográficos son el 3% de las enfermedades. Recomendación para implementación: reentrenar con aumento de datos (errores simulados), con evidencia en Moradi y Samwald 2022.
+
+**Idea futura (fuera de este proyecto): texto escrito por pacientes.** Se discutió medir cómo rinden los modelos con lenguaje de paciente (un chatbot), lo que el CWLC no permite porque lo escriben profesionales. Quedó diseñado, pero se dejó para un estudio aparte porque cambia la pregunta del proyecto:
+- Cuatro versiones de cada oración del test: C0 original, C1 vocabulario de paciente ("HTA" → "presión alta", "caries profunda" → "muela picada"), C2 ruido de chat (minúsculas, sin tildes, emojis, "xq", errores de tipeo), C3 ambas. La respuesta correcta se recalcula sola porque el cambio es por reglas; solo se reemplaza cuando la entidad completa calza con la lista.
+- Lista de equivalencias en borrador: cubre 237 oraciones del test, 316 enfermedades y 32 medicamentos. Requiere revisión con criterio clínico (casos dudosos: "el azúcar", "sobrepeso", "la pastilla de la presión").
+- Hipótesis: el encoder caería más que los LLM (Moradi y Samwald 2021; Singh et al. 2024; Kim et al. 2025).
+- Antecedente chileno: Dunstan et al. 2024 (modelo entrenado en lista de espera aplicado a anamnesis de la ACHS; corpus disponible a solicitud). Validación externa posible con SocialDisNER (tweets en español con enfermedades).
+- Lo ideal sería complementarlo con mensajes reales, con aprobación de un comité de ética.
+
+---
+
 ## 2026-10-27 (noche) · Estado del proyecto: resumen
 
 **F1 estricto en el test completo (990 oraciones)**

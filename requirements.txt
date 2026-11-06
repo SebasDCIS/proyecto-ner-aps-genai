@@ -21,6 +21,9 @@ mlx-lm ; platform_system == "Darwin" and platform_machine == "arm64"
 # Recuperación de ejemplos para few-shot dinámico (E2)
 rank-bm25
 
+# Análisis de errores (notebook 05): diccionario de español para detectar palabras mal escritas
+pyspellchecker
+
 # LLM comercial (techo de referencia)
 openai
 

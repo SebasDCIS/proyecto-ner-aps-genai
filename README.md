@@ -70,6 +70,7 @@ python -m pytest -q tests          # verifica las métricas
 | `03_e2_llm_prompting.ipynb` | E2: LLM local (Ollama) con guía de anotación; zero-shot, few-shot fijo (3 semillas) y dinámico (BM25); alucinaciones y comparación con E1 en las mismas oraciones |
 | `03b_e2_llm_nube.ipynb` | Techo de referencia: el mismo E2 con un LLM comercial de nube (OpenAI o Gemini), con proyección de costo antes de correr; claves en `.env` (ignorado por git) |
 | `04_e4_llm_anotador.ipynb` | E4: el LLM anota 2.000 oraciones (silver) y se entrena un encoder con silver + 0/10/50/100 oraciones gold simuladas; curva frente a E1 y E2 |
+| `05_analisis_errores.ipynb` | Análisis de errores sin entrenar nada: tipos de error, palabras mal escritas reales, abreviaturas frecuentes vs nunca vistas, menciones vistas vs nuevas, y cruce encoder × LLM con tres híbridos simples. Requiere `pip install pyspellchecker` |
 
 **Reproducibilidad:** cada experimento entrenable se corre con las semillas 42, 43 y 44 y se reporta media ± DE. Cada JSON de `results/` guarda su huella (datos, config, commit, revisión del modelo en Hugging Face, entorno), y los notebooks verifican que el corpus coincida con `configs/huellas_datos.json` antes de entrenar.
 
