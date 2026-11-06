@@ -21,6 +21,8 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 - Se agregó un registro de velocidad dentro de la época (segundos por lote y minutos restantes).
 - E1 no cambia: con `acumular=1` el código hace exactamente lo mismo.
 
+**Actualización 06-11, 11:15.** Con lote 8 × 2 el Mac igual se frenó: 2 s por lote al comienzo, 8,6 s de promedio a los 100 lotes, más de 2 h por época. Se decidió entrenar en una GPU de Google Colab con el notebook `02c_e1_rigoberta_colab.ipynb`. Es el mismo código, clonado del repositorio, con los mismos datos (huellas verificadas) y los mismos hiperparámetros: lote 16 sin acumulación, igual que E1. Lo único que cambia es el hardware, que queda registrado en `resultados.hardware` y en la huella del entorno. Hallazgo práctico para el informe: un encoder *large* no se puede ajustar en un computador personal de 16 GB. Un CESFAM necesitaría GPU o un servicio externo.
+
 ---
 
 ## 2026-11-02 · Lote manual de Gemini desde el entorno Linux del puente
