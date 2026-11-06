@@ -301,6 +301,18 @@ def rescate_sin_choque(pred_a: list, pred_b: list) -> list:
     return sorted(set(pred_a) | set(extra))
 
 
+def votacion(predicciones: list[list], minimo: int | None = None) -> list:
+    """Ensamble por votación: una entidad queda si al menos `minimo` modelos la marcan exactamente igual.
+
+    Por defecto `minimo` = mayoría estricta (n // 2 + 1), una regla fijada de antemano y no ajustada
+    con el test. Con 3 semillas es 2 de 3; con 6 modelos es 4 de 6.
+    """
+    n = len(predicciones)
+    k = n // 2 + 1 if minimo is None else minimo
+    cuenta = Counter(e for p in predicciones for e in set(p))
+    return sorted(e for e, c in cuenta.items() if c >= k)
+
+
 def rescate_dirigido(pred_a: list, pred_b: list, test: list[Oracion], vocabulario: Counter) -> list:
     """Como `rescate_sin_choque`, pero el LLM solo aporta menciones con alguna palabra nunca vista en train
     (posible error de tipeo o sigla nueva), que es donde el encoder falla más."""

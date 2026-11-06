@@ -50,3 +50,11 @@ def test_espurias_sobre_hallazgo_y_recall_pareado():
     g = [("d", 8, 11, "Disease")]
     obs, lo, hi = A.dif_recall_pareada(g, pred, [], n_boot=50)
     assert obs == 1.0 and lo == hi == 1.0
+
+
+def test_votacion_mayoria_estricta():
+    a, b, c = ("d", 0, 3, "Disease"), ("d", 5, 9, "Disease"), ("d", 12, 15, "Disease")
+    preds = [[a, b], [a, c], [a, b]]
+    assert A.votacion(preds) == [a, b]               # 2 de 3
+    assert A.votacion(preds, minimo=3) == [a]
+    assert A.votacion([[a], [a], [b], [b]]) == []    # 4 modelos: hacen falta 3 votos

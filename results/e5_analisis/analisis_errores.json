@@ -884,6 +884,120 @@
       "¿rescate dirigido significativo?": "no"
     }
   ],
+  "votacion": [
+    {
+      "ensamble": "E1 español (3 semillas)",
+      "tipo": "Enfermedad",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.7982,
+      "F1 votación": 0.8155,
+      "IC95": "0.793–0.837",
+      "P": 0.8159,
+      "R": 0.8151,
+      "mejora vs cada modelo": "+0.013 a +0.024",
+      "significativa vs todos": true
+    },
+    {
+      "ensamble": "E1 español (3 semillas)",
+      "tipo": "Medicamento",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.8402,
+      "F1 votación": 0.8478,
+      "IC95": "0.779–0.906",
+      "P": 0.8478,
+      "R": 0.8478,
+      "mejora vs cada modelo": "-0.006 a +0.015",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "E1 español (3 semillas)",
+      "tipo": "Abreviatura",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.9498,
+      "F1 votación": 0.9547,
+      "IC95": "0.942–0.965",
+      "P": 0.9547,
+      "R": 0.9547,
+      "mejora vs cada modelo": "+0.001 a +0.010",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "E1 chileno (3 semillas)",
+      "tipo": "Enfermedad",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.8155,
+      "F1 votación": 0.8241,
+      "IC95": "0.802–0.846",
+      "P": 0.8129,
+      "R": 0.8357,
+      "mejora vs cada modelo": "+0.000 a +0.019",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "E1 chileno (3 semillas)",
+      "tipo": "Medicamento",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.794,
+      "F1 votación": 0.837,
+      "IC95": "0.757–0.898",
+      "P": 0.837,
+      "R": 0.837,
+      "mejora vs cada modelo": "+0.013 a +0.096",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "E1 chileno (3 semillas)",
+      "tipo": "Abreviatura",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.9523,
+      "F1 votación": 0.9533,
+      "IC95": "0.941–0.965",
+      "P": 0.95,
+      "R": 0.9567,
+      "mejora vs cada modelo": "-0.001 a +0.003",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "Todos los encoders (6 modelos)",
+      "tipo": "Enfermedad",
+      "votos mínimos": "4 de 6",
+      "F1 individual (media)": 0.8068,
+      "F1 votación": 0.8367,
+      "IC95": "0.815–0.857",
+      "P": 0.8615,
+      "R": 0.8133,
+      "mejora vs cada modelo": "+0.013 a +0.045",
+      "significativa vs todos": true
+    },
+    {
+      "ensamble": "Todos los encoders (6 modelos)",
+      "tipo": "Medicamento",
+      "votos mínimos": "4 de 6",
+      "F1 individual (media)": 0.8171,
+      "F1 votación": 0.8315,
+      "IC95": "0.759–0.889",
+      "P": 0.8605,
+      "R": 0.8043,
+      "mejora vs cada modelo": "-0.023 a +0.090",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "Todos los encoders (6 modelos)",
+      "tipo": "Abreviatura",
+      "votos mínimos": "4 de 6",
+      "F1 individual (media)": 0.951,
+      "F1 votación": 0.957,
+      "IC95": "0.945–0.968",
+      "P": 0.9614,
+      "R": 0.9527,
+      "mejora vs cada modelo": "+0.002 a +0.012",
+      "significativa vs todos": false
+    }
+  ],
+  "encoders": [
+    "E1 español",
+    "E1 chileno"
+  ],
   "sistemas_llm": [
     "Llama 8B sin ejemplos",
     "Llama 8B ej. parecidos",
@@ -896,7 +1010,7 @@
   ],
   "parciales": [],
   "codigo": {
-    "commit": "54eda33f9a259837f7869fa06aed7f175351aecc",
-    "cambios_sin_commit": false
+    "commit": "28907b4e89973f9341c96adee0d0c94a7cf39363",
+    "cambios_sin_commit": true
   }
 }

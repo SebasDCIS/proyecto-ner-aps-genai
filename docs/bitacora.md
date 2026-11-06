@@ -4,6 +4,20 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-11-06 · Votación entre modelos y encoder más grande
+
+- **Votación (notebook 05, sección 7):** se formalizó la combinación por mayoría estricta, con la regla fijada antes de mirar el test (gana una entidad si la predicen al menos n//2+1 modelos). Con 6 modelos (3 semillas de cada encoder de E1) y 4 votos, Disease llega a F1 estricto 0,837 [0,815–0,857] (P 0,86, R 0,81), significativamente mejor que cada modelo por separado. En Abbreviation queda en 0,957, y en Medication en 0,832 (diferencia no significativa). Función `votacion()` en `src/analisis/errores.py`, con su prueba.
+- **Encoder grande (notebook 02b):** se preparó E1 con RigoBERTa Clinical (XLM-RoBERTa *large*, ~560 M de parámetros, preentrenado con ClinText-SP). Licencia no comercial: sirve para investigación, no para un producto.
+  - Cambio declarado: tasa de aprendizaje 2×10⁻⁵ (en vez de 3×10⁻⁵), por estabilidad en modelos *large*. Lo demás es igual que en E1.
+  - Prueba de humo en la nube: tokenizador, alineación de etiquetas (0 oraciones desalineadas en 500), paso hacia adelante y hacia atrás, y predicción funcionan. El paso del optimizador no se probó, porque AdamW necesita unos 10 GB y la nube tiene 7 GB. Se corre en el Mac.
+- **Por qué:** la votación muestra que la variabilidad entre semillas se puede aprovechar en vez de solo reportarla. El encoder grande responde si el techo de E1 sube con más escala y más preentrenamiento clínico.
+
+**Pendiente**
+- [ ] Correr el notebook 02b en el Mac (primero `rapido`, después `completo`; unas 9–10 h).
+- [ ] Volver a correr el notebook 05 para sumar RigoBERTa a las tablas y a la votación.
+
+---
+
 ## 2026-11-02 · Lote manual de Gemini desde el entorno Linux del puente
 
 Para adelantar la corrida, a las 06:18 se lanzó `scripts/correr_nube.py` desde el entorno Linux que accede a la carpeta del proyecto en el Mac (misma carpeta, misma caché, mismo código y parámetros). Se instaló `openai==3.37.0`, la misma versión del `.venv` del Mac (con 3.42 el mensaje de error 400 no traía el detalle y fallaba el reintento sin `seed`), y se usaron stubs de `torch`/`transformers` fuera del repositorio, porque el script solo importa `evaluar()` de E1. El proceso se cerró al terminar la llamada del puente: aportó 26 oraciones (494 → 520) de Gemini con ejemplos parecidos. Esas 26 respuestas tienen el campo `fecha` en UTC (las demás, en hora de Chile). La tarea diaria de las 07:00 continúa desde ahí.
