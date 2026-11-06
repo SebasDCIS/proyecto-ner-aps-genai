@@ -70,6 +70,7 @@ class Config:
     semilla: int = 42
     max_train: int | None = None  # para pruebas rápidas o curvas de aprendizaje
     seleccion: str = "dev"        # "dev": guarda la mejor época según F1 en dev | "ultima": usa la última época
+    acumular: int = 1             # acumulación de gradientes: lote efectivo = batch × acumular (ahorra memoria sin cambiar el lote)
     pasos_min: int = 0            # mínimo de actualizaciones de pesos: con muy pocas oraciones se agregan épocas
                                   # hasta llegar a este número (si no, 10 oraciones = 1 sola actualización por época)
                                   # ("ultima" se usa en E4, donde no se supone que existan etiquetas de dev)
@@ -158,7 +159,7 @@ def entrenar(cfg: Config, train: list[Oracion], dev: list[Oracion], registro=pri
     cargador = DataLoader(ejemplos, batch_size=cfg.batch, shuffle=True, collate_fn=cod.collate,
                           generator=torch.Generator().manual_seed(cfg.semilla))
 
-    lotes_por_epoca = math.ceil(len(ejemplos) / cfg.batch)
+    lotes_por_epoca = math.ceil(len(ejemplos) / (cfg.batch * cfg.acumular))
     epocas = max(cfg.epocas, math.ceil(cfg.pasos_min / lotes_por_epoca)) if cfg.pasos_min else cfg.epocas
     if epocas != cfg.epocas:
         registro(f"  {len(ejemplos)} oraciones = {lotes_por_epoca} lotes por época: se usan {epocas} épocas para llegar a {cfg.pasos_min} actualizaciones")
@@ -171,22 +172,27 @@ def entrenar(cfg: Config, train: list[Oracion], dev: list[Oracion], registro=pri
     for epoca in range(1, epocas + 1):
         modelo.train()
         t0, perdida_total = time.time(), 0.0
-        for lote in cargador:
+        n_lotes = len(cargador)
+        for i, lote in enumerate(cargador, 1):
             lote = {k: v.to(disp) for k, v in lote.items()}
             perdida = modelo(**lote).loss
-            perdida.backward()
-            torch.nn.utils.clip_grad_norm_(modelo.parameters(), 1.0)
-            optim.step(); sched.step(); optim.zero_grad()
+            (perdida / cfg.acumular).backward()
+            if i % cfg.acumular == 0 or i == n_lotes:
+                torch.nn.utils.clip_grad_norm_(modelo.parameters(), 1.0)
+                optim.step(); sched.step(); optim.zero_grad()
             perdida_total += perdida.item()
+            if n_lotes >= 100 and i in {25, 100} | set(range(250, n_lotes, 250)):
+                seg = time.time() - t0
+                registro(f"    lote {i}/{n_lotes} · {seg / i:.1f} s por lote · faltan ~{(n_lotes - i) * seg / i / 60:.0f} min de esta época")
         if cfg.seleccion == "ultima":
-            historial.append({"epoca": epoca, "perdida": perdida_total / len(cargador), "f1_dev": None,
+            historial.append({"epoca": epoca, "perdida": perdida_total / n_lotes, "f1_dev": None,
                               "segundos": round(time.time() - t0, 1)})
             registro(f"  época {epoca}: pérdida={historial[-1]['perdida']:.4f}  ({historial[-1]['segundos']} s)")
             mejor_estado = {k: v.detach().cpu().clone() for k, v in modelo.state_dict().items()}
             continue
         pred_dev = predecir(modelo, cod, dev, cfg.tipo, disp=disp)
         f1 = metricas.contar(gold_dev, pred_dev, "estricto").f1
-        historial.append({"epoca": epoca, "perdida": perdida_total / len(cargador), "f1_dev": f1,
+        historial.append({"epoca": epoca, "perdida": perdida_total / n_lotes, "f1_dev": f1,
                           "segundos": round(time.time() - t0, 1)})
         registro(f"  época {epoca}: pérdida={historial[-1]['perdida']:.4f}  F1 dev={f1:.4f}  ({historial[-1]['segundos']} s)")
         if f1 > mejor_f1:

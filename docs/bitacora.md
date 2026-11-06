@@ -16,6 +16,11 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 - [ ] Correr el notebook 02b en el Mac (primero `rapido`, después `completo`; unas 9–10 h).
 - [ ] Volver a correr el notebook 05 para sumar RigoBERTa a las tablas y a la votación.
 
+**Actualización 06-11, mañana.** La primera corrida completa (lote 16) no terminó ni una época en 7,5 h. La causa probable es la memoria: el modelo *large* con lote 16 llena la memoria unificada del Mac y el sistema pasa a usar disco (*swap*). Cambios:
+- Se agregó acumulación de gradientes (`Config.acumular`): lote 8 × 2 = lote efectivo 16, el mismo hiperparámetro de E1. Hay una diferencia menor: la pérdida se promedia por medio lote. Queda declarada.
+- Se agregó un registro de velocidad dentro de la época (segundos por lote y minutos restantes).
+- E1 no cambia: con `acumular=1` el código hace exactamente lo mismo.
+
 ---
 
 ## 2026-11-02 · Lote manual de Gemini desde el entorno Linux del puente
