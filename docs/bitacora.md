@@ -4,6 +4,25 @@ Registro de decisiones, avances y pendientes. Cada entrada responde tres pregunt
 
 ---
 
+## 2026-11-06 (tarde) · Resultados de RigoBERTa Clinical (E1 con encoder *large*)
+
+Se entrenó en Colab con una GPU A100 (80 GB), con lote 16 sin acumulación: los mismos hiperparámetros de E1, salvo la lr de 2×10⁻⁵. Código del commit `2d5dfc9`, datos con huellas verificadas. Unos 11 minutos por entrenamiento.
+
+| Entidad | RigoBERTa (media ± DE, 3 semillas) | E1 español clínico | E1 chileno clínico |
+|---|---|---|---|
+| Disease | 0,803 ± 0,004 | 0,798 | 0,815 |
+| Medication | 0,780 ± 0,015 | 0,840 | 0,794 |
+| Abbreviation | 0,946 ± 0,013 | 0,950 | 0,952 |
+
+- **Lectura preliminar:** un modelo 4,5 veces más grande, preentrenado con el mayor corpus clínico en español, **no supera** al encoder base adaptado con derivaciones chilenas. Queda en Disease entre los dos encoders de E1, y bajo ambos en Medication y Abbreviation. Para este corpus pesa más el dominio local del preentrenamiento que la escala.
+- Medication tiene pocas menciones en el test (92), así que su IC es ancho: [0,66–0,85] con la semilla 42.
+- **Pendiente:**
+  - [ ] Comparación pareada por semilla (notebook 02b, sección 3).
+  - [ ] Votación con 9 modelos (notebook 05).
+  - Ambas necesitan las predicciones (`.pkl`) que están en Google Drive.
+
+---
+
 ## 2026-11-06 · Votación entre modelos y encoder más grande
 
 - **Votación (notebook 05, sección 7):** se formalizó la combinación por mayoría estricta, con la regla fijada antes de mirar el test (gana una entidad si la predicen al menos n//2+1 modelos). Con 6 modelos (3 semillas de cada encoder de E1) y 4 votos, Disease llega a F1 estricto 0,837 [0,815–0,857] (P 0,86, R 0,81), significativamente mejor que cada modelo por separado. En Abbreviation queda en 0,957, y en Medication en 0,832 (diferencia no significativa). Función `votacion()` en `src/analisis/errores.py`, con su prueba.
