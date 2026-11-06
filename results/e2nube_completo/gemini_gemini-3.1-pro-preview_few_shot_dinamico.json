@@ -1,0 +1,212 @@
+{
+  "config": {
+    "proveedor": "gemini",
+    "modelo": "gemini-3.1-pro-preview",
+    "precio_entrada": 2.0,
+    "precio_salida": 12.0,
+    "parametros_extra": {
+      "reasoning_effort": "low"
+    },
+    "estrategia": "few_shot_dinamico",
+    "k": 5,
+    "temperatura": 0,
+    "guia": "03cbc96db2b125a71c58e11d74a0a3eeaa81764a23071510e946368dd6aab4da",
+    "modo": "completo",
+    "n_oraciones": 990,
+    "oraciones": "17859a5db6f43615d13b3f93463272051b98b4c39ae8fe4f2666578ac4a4258a"
+  },
+  "resultados": {
+    "modelo": "gemini:gemini-3.1-pro-preview",
+    "estrategia": "few_shot_dinamico",
+    "tasa_alucinacion": 0.1421121251629726,
+    "json_invalidos": 3,
+    "segundos_por_oracion": 4.215909090909091,
+    "tokens_entrada": 821365,
+    "tokens_salida": 74475,
+    "costo_usd": 2.53643,
+    "parametros_omitidos": [
+      "seed"
+    ],
+    "versiones_servidas": {
+      "null": 5,
+      "gemini-3.1-pro-preview": 985
+    },
+    "periodo": [
+      "2026-10-31T07:01:10",
+      "2026-11-04T07:00:15"
+    ],
+    "por_tipo": {
+      "Disease": {
+        "huella_predicciones": "f961908a065f7820ffde31c35da5a60c22c61d742d8cf3da89e64bb6c5983471",
+        "estricto": {
+          "precision": 0.6260445682451253,
+          "recall": 0.8394024276377218,
+          "f1": 0.7171918627842042,
+          "ic95": [
+            0.692119580585687,
+            0.7432225056434291
+          ],
+          "vp": 899,
+          "fp": 537,
+          "fn": 172
+        },
+        "laxo": {
+          "precision": 0.7123955431754875,
+          "recall": 0.9551820728291317,
+          "f1": 0.8161148783406462,
+          "ic95": [
+            0.7968090307554533,
+            0.834651738512402
+          ],
+          "vp": 1023,
+          "fp": 413,
+          "fn": 48
+        },
+        "abreviadas": {
+          "n_gold": 119,
+          "recall_estricto": 0.8235294117647058
+        },
+        "no_abreviadas": {
+          "n_gold": 952,
+          "recall_estricto": 0.8413865546218487
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.7052896725440806,
+          "precision": 0.6122448979591837,
+          "recall": 0.8316831683168316
+        },
+        "menciones_vistas": {
+          "n_gold": 656,
+          "recall_estricto": 0.8978658536585366
+        },
+        "menciones_nuevas": {
+          "n_gold": 415,
+          "recall_estricto": 0.7469879518072289
+        }
+      },
+      "Medication": {
+        "huella_predicciones": "8d075cff8ddc245be22db7b59e4222d72af14cce02c2a8687370348f7adaa1d1",
+        "estricto": {
+          "precision": 0.7850467289719626,
+          "recall": 0.9130434782608695,
+          "f1": 0.8442211055276382,
+          "ic95": [
+            0.7573964497041421,
+            0.9043521957614159
+          ],
+          "vp": 84,
+          "fp": 23,
+          "fn": 8
+        },
+        "laxo": {
+          "precision": 0.8130841121495327,
+          "recall": 0.9456521739130435,
+          "f1": 0.8743718592964823,
+          "ic95": [
+            0.8047337278106509,
+            0.9219441190949059
+          ],
+          "vp": 87,
+          "fp": 20,
+          "fn": 5
+        },
+        "abreviadas": {
+          "n_gold": 23,
+          "recall_estricto": 0.9130434782608695
+        },
+        "no_abreviadas": {
+          "n_gold": 69,
+          "recall_estricto": 0.9130434782608695
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.8426395939086294,
+          "precision": 0.7830188679245284,
+          "recall": 0.9120879120879121
+        },
+        "menciones_vistas": {
+          "n_gold": 57,
+          "recall_estricto": 0.9473684210526315
+        },
+        "menciones_nuevas": {
+          "n_gold": 35,
+          "recall_estricto": 0.8571428571428571
+        }
+      },
+      "Abbreviation": {
+        "huella_predicciones": "fad8367b29292d94a7860f4ab3a420c0532b0049fffe55ba227d9406f6f83b93",
+        "estricto": {
+          "precision": 0.8613406795224977,
+          "recall": 0.9446122860020141,
+          "f1": 0.9010566762728145,
+          "ic95": [
+            0.8590851389338627,
+            0.9321394219435145
+          ],
+          "vp": 938,
+          "fp": 151,
+          "fn": 55
+        },
+        "laxo": {
+          "precision": 0.8797061524334252,
+          "recall": 0.9647532729103726,
+          "f1": 0.920268972142171,
+          "ic95": [
+            0.8781085156170911,
+            0.94875475170676
+          ],
+          "vp": 958,
+          "fp": 131,
+          "fn": 35
+        },
+        "abreviadas": {
+          "n_gold": 0,
+          "recall_estricto": 0.0
+        },
+        "no_abreviadas": {
+          "n_gold": 993,
+          "recall_estricto": 0.9446122860020141
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.8993618065783014,
+          "precision": 0.8592870544090057,
+          "recall": 0.9433573635427395
+        },
+        "menciones_vistas": {
+          "n_gold": 927,
+          "recall_estricto": 0.9600862998921251
+        },
+        "menciones_nuevas": {
+          "n_gold": 66,
+          "recall_estricto": 0.7272727272727273
+        }
+      }
+    }
+  },
+  "huella": {
+    "config": "cbbd6c5858375cb72435076e59e5966d4ea647d5ec9c134f15f9760676b65731",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "6668c9c327baaf0a4303e3ccc18821a4b3d09998",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "datos_contenido": {
+      "train": "8f2ece1bab064380239c51a4c0408e324b4436d17a611980d0e4e8883f2dfc93",
+      "test": "4ff6eb70e93b2ca9d95246f04aefdcf32f0afde51ff7ac7e7215e505e7856e54"
+    }
+  }
+}

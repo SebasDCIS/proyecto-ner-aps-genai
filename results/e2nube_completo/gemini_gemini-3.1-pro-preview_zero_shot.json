@@ -1,0 +1,212 @@
+{
+  "config": {
+    "proveedor": "gemini",
+    "modelo": "gemini-3.1-pro-preview",
+    "precio_entrada": 2.0,
+    "precio_salida": 12.0,
+    "parametros_extra": {
+      "reasoning_effort": "low"
+    },
+    "estrategia": "zero_shot",
+    "k": 5,
+    "temperatura": 0,
+    "guia": "03cbc96db2b125a71c58e11d74a0a3eeaa81764a23071510e946368dd6aab4da",
+    "modo": "completo",
+    "n_oraciones": 990,
+    "oraciones": "17859a5db6f43615d13b3f93463272051b98b4c39ae8fe4f2666578ac4a4258a"
+  },
+  "resultados": {
+    "modelo": "gemini:gemini-3.1-pro-preview",
+    "estrategia": "zero_shot",
+    "tasa_alucinacion": 0.12956810631229235,
+    "json_invalidos": 3,
+    "segundos_por_oracion": 6.234878787878787,
+    "tokens_entrada": 433115,
+    "tokens_salida": 88229,
+    "costo_usd": 1.924978,
+    "parametros_omitidos": [
+      "seed"
+    ],
+    "versiones_servidas": {
+      "null": 237,
+      "gemini-3.1-pro-preview": 753
+    },
+    "periodo": [
+      "2026-10-28T07:00:15",
+      "2026-10-31T07:01:05"
+    ],
+    "por_tipo": {
+      "Disease": {
+        "huella_predicciones": "5bb12812762feeecad038d6c6aeefea1e9bb4a0d7330231560855f1c19530665",
+        "estricto": {
+          "precision": 0.5087507543753772,
+          "recall": 0.7871148459383753,
+          "f1": 0.6180351906158358,
+          "ic95": [
+            0.5908559149344593,
+            0.6421655493613719
+          ],
+          "vp": 843,
+          "fp": 814,
+          "fn": 228
+        },
+        "laxo": {
+          "precision": 0.6077248038624019,
+          "recall": 0.9402427637721755,
+          "f1": 0.7382697947214076,
+          "ic95": [
+            0.7143857942172469,
+            0.7609735046085899
+          ],
+          "vp": 1007,
+          "fp": 650,
+          "fn": 64
+        },
+        "abreviadas": {
+          "n_gold": 119,
+          "recall_estricto": 0.7563025210084033
+        },
+        "no_abreviadas": {
+          "n_gold": 952,
+          "recall_estricto": 0.7909663865546218
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.6047765793528506,
+          "precision": 0.49495586380832285,
+          "recall": 0.7772277227722773
+        },
+        "menciones_vistas": {
+          "n_gold": 656,
+          "recall_estricto": 0.8490853658536586
+        },
+        "menciones_nuevas": {
+          "n_gold": 415,
+          "recall_estricto": 0.689156626506024
+        }
+      },
+      "Medication": {
+        "huella_predicciones": "1edac3a854508dd2e7d80cc3b817000720061f940ff2efcd346968311b7f62f3",
+        "estricto": {
+          "precision": 0.664,
+          "recall": 0.9021739130434783,
+          "f1": 0.7649769585253456,
+          "ic95": [
+            0.666591928251121,
+            0.8416993801652892
+          ],
+          "vp": 83,
+          "fp": 42,
+          "fn": 9
+        },
+        "laxo": {
+          "precision": 0.704,
+          "recall": 0.9565217391304348,
+          "f1": 0.8110599078341013,
+          "ic95": [
+            0.7252715121136174,
+            0.8721866394381015
+          ],
+          "vp": 88,
+          "fp": 37,
+          "fn": 4
+        },
+        "abreviadas": {
+          "n_gold": 23,
+          "recall_estricto": 0.8695652173913043
+        },
+        "no_abreviadas": {
+          "n_gold": 69,
+          "recall_estricto": 0.9130434782608695
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.7627906976744186,
+          "precision": 0.6612903225806451,
+          "recall": 0.9010989010989011
+        },
+        "menciones_vistas": {
+          "n_gold": 57,
+          "recall_estricto": 0.9473684210526315
+        },
+        "menciones_nuevas": {
+          "n_gold": 35,
+          "recall_estricto": 0.8285714285714286
+        }
+      },
+      "Abbreviation": {
+        "huella_predicciones": "9ed8136012fc133160213bef3a79bc47b7074e3a1ba1278b7c0707151b92c1b2",
+        "estricto": {
+          "precision": 0.8445454545454546,
+          "recall": 0.9355488418932527,
+          "f1": 0.8877209746774963,
+          "ic95": [
+            0.8518668216713228,
+            0.9189228245586627
+          ],
+          "vp": 929,
+          "fp": 171,
+          "fn": 64
+        },
+        "laxo": {
+          "precision": 0.8654545454545455,
+          "recall": 0.9587109768378651,
+          "f1": 0.9096989966555185,
+          "ic95": [
+            0.8734420095530138,
+            0.9376954792760795
+          ],
+          "vp": 952,
+          "fp": 148,
+          "fn": 41
+        },
+        "abreviadas": {
+          "n_gold": 0,
+          "recall_estricto": 0.0
+        },
+        "no_abreviadas": {
+          "n_gold": 993,
+          "recall_estricto": 0.9355488418932527
+        },
+        "test_sin_duplicados": {
+          "oraciones_excluidas": 96,
+          "f1_estricto": 0.8881289692232535,
+          "precision": 0.8447955390334573,
+          "recall": 0.9361483007209063
+        },
+        "menciones_vistas": {
+          "n_gold": 927,
+          "recall_estricto": 0.948220064724919
+        },
+        "menciones_nuevas": {
+          "n_gold": 66,
+          "recall_estricto": 0.7575757575757576
+        }
+      }
+    }
+  },
+  "huella": {
+    "config": "8e5ec48e2605b646bcf2dfc8dc29a1d10ab991d100299b3af239abda436c5f6f",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "6668c9c327baaf0a4303e3ccc18821a4b3d09998",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.14.7",
+      "sistema": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "procesador": "arm",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "numpy": "2.5.4",
+      "datasets": "5.1.0",
+      "ollama": "0.6.3",
+      "mlx-lm": "0.32.2",
+      "dispositivo": "mps"
+    },
+    "datos_contenido": {
+      "train": "8f2ece1bab064380239c51a4c0408e324b4436d17a611980d0e4e8883f2dfc93",
+      "test": "4ff6eb70e93b2ca9d95246f04aefdcf32f0afde51ff7ac7e7215e505e7856e54"
+    }
+  }
+}
