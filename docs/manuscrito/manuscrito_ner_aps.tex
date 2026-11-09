@@ -1,0 +1,358 @@
+%==============================================================================
+% Manuscrito final - Electivo IA Generativa y Modelos Fundacionales (UV, 2026)
+% Transferibilidad de estrategias de NER clínico en derivaciones de APS chilena
+% Formato: IEEEtran (igual que el informe BME513). Compilar:
+%   pdflatex manuscrito_ner_aps && bibtex manuscrito_ner_aps && pdflatex x2
+%==============================================================================
+
+\documentclass[10pt,journal,a4paper]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla,es-noindentfirst,es-nodecimaldot]{babel}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{cite}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={Transferibilidad de estrategias de NER clínico en derivaciones de APS chilena},
+    pdfauthor={Sebastián Inostroza, Maite Bahamondes, Ruth Vergara}
+}
+
+\newcommand{\ent}[1]{\textit{#1}}
+
+\title{¿Lo que funciona afuera funciona en la APS chilena? Encoders ajustados y LLM generativos para reconocer entidades clínicas en derivaciones reales}
+
+\author{
+    Sebasti\'an Inostroza Hurtado, Maite Bahamondes y Ruth Vergara
+    \thanks{Doctorado en Ciencias e Ingenier\'ia para la Salud, Universidad de Valpara\'iso, Valpara\'iso, Chile. Contacto: sebastian.inostroza@postgrado.uv.cl. Trabajo desarrollado para el curso Inteligencia Artificial Generativa y Modelos Fundacionales (prof. Rodrigo Salas).}
+}
+
+\markboth{Inteligencia Artificial Generativa y Modelos Fundacionales, Universidad de Valpara\'iso, 2026}{Inostroza, Bahamondes y Vergara: NER cl\'inico en derivaciones de APS chilena}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Buena parte de la información clínica de la Atención Primaria de Salud (APS) chilena está escrita como texto libre, con abreviaturas locales y estilo telegráfico. La literatura internacional indica que, para reconocer entidades clínicas (NER), un encoder ajustado supera a los modelos de lenguaje grandes (LLM) usados con prompting, y que la selección dinámica de ejemplos y la destilación achican esa distancia. Esa evidencia viene casi siempre de casos clínicos publicados o de notas en inglés. Medimos si se mantiene en el Chilean Waiting List Corpus, con 990 oraciones de prueba de derivaciones reales y tres tipos de entidad: enfermedad, medicamento y abreviatura. Comparamos tres encoders ajustados (uno clínico español, uno adaptado a derivaciones chilenas y RigoBERTa Clinical, de tamaño \emph{large}), dos LLM locales de 7--8B parámetros con tres estrategias de prompting, dos LLM comerciales (GPT-5.2 y Gemini 3.1 Pro) y la destilación de un LLM anotador hacia un encoder con 0 a 100 oraciones etiquetadas. Cada modelo entrenable se repitió con tres semillas y las diferencias se probaron con \emph{bootstrap} pareado. El encoder chileno obtuvo el mayor F1 estricto en enfermedad (0,815) y los encoders llegaron a 0,95 en abreviatura. El mejor LLM local quedó 13 a 25 puntos abajo. Los ejemplos recuperados por similitud mejoraron a todos los LLM. Gemini 3.1 Pro con esos ejemplos alcanzó al encoder en medicamento (0,844) y quedó bajo él en las otras dos entidades. El encoder \emph{large} no superó a los encoders base, y la destilación con 50 oraciones etiquetadas quedó 15 a 36 puntos bajo el encoder entrenado con todo el conjunto. La votación entre seis encoders subió el F1 de enfermedad a 0,837. Los LLM comerciales reconocieron mejor las palabras mal escritas y las abreviaturas nunca vistas, pero marcaron muchos hallazgos como enfermedades. Para extraer entidades de derivaciones en un centro de salud, un encoder base ajustado con datos locales sigue siendo la opción más precisa entre las que corren en un computador común sin enviar datos fuera.
+\end{abstract}
+
+\begin{IEEEkeywords}
+NER clínico, atención primaria, español clínico, modelos de lenguaje grandes, encoders, few-shot, destilación, Chile.
+\end{IEEEkeywords}
+
+%==============================================================================
+\section{Introducci\'on}\label{sec:intro}
+%==============================================================================
+
+\IEEEPARstart{E}{n} la APS chilena, el médico que deriva a un paciente escribe frases como ``pcte c/ DM2 desc, s/ ctrl hace 6m''. La nota dice que el paciente tiene diabetes tipo 2 descompensada y lleva seis meses sin control, pero un sistema administrativo no puede leerla. Reconocer entidades nombradas (NER, por sus siglas en inglés) es el primer paso para convertir ese texto en datos: ubicar en la oración qué palabras son una enfermedad, un fármaco o una abreviatura.
+
+La literatura da una receta clara. En NER clínico en español, un encoder del tipo BERT o RoBERTa ajustado con datos anotados supera a un LLM generativo usado solo con prompting por 3 a 15 puntos de F1 \cite{naguib2024,chen2025}. El prompting estructurado, con la guía de anotación dentro del prompt, cierra cerca de la mitad de esa distancia \cite{hu2024}. Elegir los ejemplos del prompt por similitud con la oración de entrada (\emph{few-shot} dinámico, una forma de recuperación aumentada) suma entre 5 y 9 puntos sobre ejemplos fijos \cite{ge2026}. Para cuando hay poca anotación, se ha propuesto usar un LLM como anotador y entrenar con sus etiquetas un encoder pequeño (destilación).
+
+Casi toda esa evidencia viene de casos clínicos publicados en revistas o de notas en inglés. Las derivaciones de APS son otra cosa: oraciones cortas, siglas locales, faltas de ortografía y plantillas repetidas. El único corpus público chileno de este tipo es el Chilean Waiting List Corpus (CWLC) \cite{baez2020,baez2022}. Sobre él se han publicado encoders y arquitecturas para entidades anidadas \cite{rojas2022coling,rojas2022louhi,rojas2022flair}, y una comparación \emph{few-shot} con 100 oraciones de entrenamiento, donde un RoBERTa clínico superó a Llama-3-8B por 14 puntos \cite{naguib2024}. No encontramos trabajos que comparen, con el CWLC completo, encoders ajustados, LLM locales con distintas estrategias de prompting, LLM comerciales y destilación bajo un mismo protocolo de evaluación.
+
+Proveedores de ficha electrónica ya ofrecen herramientas de IA generativa en la APS chilena sin métricas públicas, y la Ley 21.719 de protección de datos personales, que entra en vigencia en diciembre de 2026, restringe el envío de datos de salud a servicios externos \cite{ley21719}. Un CESFAM necesita saber qué estrategia funciona con modelos que pueda correr en sus propios equipos y cuánta anotación requiere.
+
+Este trabajo es un estudio de transferibilidad. Implementamos con derivaciones reales las estrategias que la literatura reporta como mejores y medimos si su desempeño relativo se mantiene. Planteamos cinco hipótesis antes de correr cada experimento:
+
+\begin{itemize}
+\item \textbf{H1.} El encoder clínico ajustado obtiene el mayor F1 estricto.
+\item \textbf{H2.} El \emph{few-shot} dinámico mejora al LLM respecto del \emph{zero-shot} y del \emph{few-shot} con ejemplos fijos.
+\item \textbf{H3.} La distancia entre LLM y encoder es mayor en las entidades abreviadas.
+\item \textbf{H4.} Un encoder entrenado con etiquetas de un LLM más 50 oraciones anotadas queda a pocos puntos del encoder entrenado con todo el conjunto.
+\item \textbf{H5.} Un LLM comercial grande achica la distancia con el encoder, pero no la cierra.
+\end{itemize}
+
+Las contribuciones son cuatro. Primero, una comparación de dieciséis sistemas sobre el mismo test, con tres semillas por modelo entrenable y pruebas pareadas. Segundo, la evaluación NER del encoder adaptado a derivaciones chilenas (\texttt{plncmm/roberta-clinical-wl-es}), que no tenía una publicada, y de RigoBERTa Clinical en el CWLC. Tercero, un análisis de errores que separa errores de límite, entidades espurias, palabras mal escritas y abreviaturas nunca vistas, y que muestra en qué casos cada familia de modelos falla. Cuarto, un repositorio público con el código, los prompts, las huellas SHA-256 de los datos y los resultados de cada corrida.
+
+%==============================================================================
+\section{Materiales y M\'etodos}\label{sec:metodos}
+%==============================================================================
+
+\subsection{Corpus}
+
+Usamos la versión 4 del CWLC (Zenodo 5591011), en los archivos CoNLL que publicaron Báez et al. \cite{baez2022}. El corpus contiene derivaciones desidentificadas de la lista de espera no GES, escritas por médicos y dentistas de APS y anotadas por profesionales de la salud con siete tipos de entidad. La licencia es CC BY-NC-SA 4.0. Mantuvimos la partición oficial en oraciones: 8.014 de entrenamiento, 890 de validación y 990 de prueba. Así los resultados son comparables con los de Báez et al.
+
+Trabajamos con tres tipos de entidad (Tabla~\ref{tab:corpus}). Enfermedad y medicamento son las entidades con valor clínico directo. Abreviatura mide lo más propio del texto de APS. Las entidades pueden anidarse: una abreviatura suele estar dentro de una enfermedad (``DM2'' dentro de ``DM2 descompensada''). El 11,1\,\% de las enfermedades del test (119) se superpone con una abreviatura anotada. Con esos casos medimos H3, aunque con intervalos más anchos.
+
+\begin{table}[!t]
+\centering
+\caption{Partici\'on del CWLC y entidades usadas}
+\label{tab:corpus}
+\begin{tabular}{lrrr}
+\toprule
+ & Entrenamiento & Validaci\'on & Prueba \\
+\midrule
+Oraciones & 8.014 & 890 & 990 \\
+Palabras & 149.574 & 16.754 & 18.436 \\
+Enfermedad & 8.860 & 981 & 1.071 \\
+Medicamento & 823 & 95 & 92 \\
+Abreviatura & 8.402 & 942 & 993 \\
+\midrule
+\multicolumn{4}{l}{\footnotesize Menciones del test ya vistas en entrenamiento: enfermedad 61\,\%,}\\
+\multicolumn{4}{l}{\footnotesize medicamento 62\,\%, abreviatura 93\,\%.}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Antes de entrenar auditamos el corpus en busca de fugas. El 9,7\,\% de las oraciones del test (96) también aparece en entrenamiento, casi siempre plantillas como ``se deriva para evaluación y manejo'' o descripciones de la CIE-10. Esas oraciones contienen el 2,7\,\% de las entidades del test, y por eso reportamos las métricas también sobre el test sin ellas. Encontramos también 42 textos idénticos anotados de forma distinta, un ruido de etiquetas que pone techo al F1 alcanzable.
+
+\subsection{Diseño experimental}
+
+La Tabla~\ref{tab:diseno} resume los experimentos. Todos predicen sobre las mismas 990 oraciones y se evalúan con las mismas funciones.
+
+\begin{table*}[!t]
+\centering
+\caption{Experimentos. Los modelos entrenables se repitieron con las semillas 42, 43 y 44}
+\label{tab:diseno}
+\begin{tabular}{p{2.1cm}p{5.6cm}p{4.6cm}p{3.6cm}}
+\toprule
+Experimento & Modelos & Estrategia & Datos que usa \\
+\midrule
+E1 · encoder ajustado & \texttt{bsc-bio-ehr-es} (RoBERTa clínico español, 125M) \cite{carrino2022}; \texttt{roberta-clinical-wl-es} (el mismo, con preentrenamiento continuo en derivaciones chilenas); RigoBERTa Clinical (XLM-RoBERTa \emph{large}, 560M) \cite{subies2025} & Un etiquetador BIO por tipo de entidad; \emph{early stopping} con F1 en validación & 8.014 oraciones anotadas \\
+E2 · LLM local & Llama 3.1 8B \cite{llama3} y Qwen 2.5 7B \cite{qwen25}, cuantizados, vía Ollama & \emph{Zero-shot}, \emph{few-shot} fijo ($k=5$, tres sets) y \emph{few-shot} dinámico ($k=5$, BM25) & Guía de anotación; ejemplos solo de entrenamiento \\
+E2 nube · techo comercial & GPT-5.2 \cite{openai2025} y Gemini 3.1 Pro \cite{gemini2026} vía API & \emph{Zero-shot} y \emph{few-shot} dinámico, con el mismo prompt de E2 & Igual que E2 \\
+E4 · destilación & Maestro: Qwen 2.5 7B. Alumno: \texttt{bsc-bio-ehr-es} & El maestro etiqueta 2.000 oraciones (\emph{silver}); el alumno se entrena con \emph{silver} + 0, 10, 50 o 100 oraciones \emph{gold} & Hasta 100 oraciones anotadas \\
+Votación & Seis modelos de E1 (dos encoders base $\times$ tres semillas) & Mayoría estricta, fijada antes de mirar el test & Las predicciones de E1 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsubsection{E1: encoders ajustados}
+Para conservar el anidamiento entrenamos un etiquetador BIO independiente por tipo de entidad, la arquitectura que en el CWLC rinde mejor que las especializadas en entidades anidadas \cite{rojas2022coling}. Cada oración se divide en subpalabras y solo la primera subpalabra de cada palabra lleva etiqueta. Usamos AdamW con tasa de aprendizaje $3\times10^{-5}$, lote de 16, hasta cinco épocas, calentamiento lineal del 10\,\% y \emph{early stopping} con paciencia 2 según el F1 estricto en validación. Para RigoBERTa Clinical bajamos la tasa a $2\times10^{-5}$, el rango habitual en modelos \emph{large}, y dejamos todo lo demás igual. Los encoders base se entrenaron en un Mac M5 de 24 GB (unos 15 minutos por modelo). RigoBERTa no cupo en esa memoria: con lote 16, e incluso con lote 8 y acumulación de gradientes, el sistema empezó a usar el disco y cada época superaba las dos horas. Lo entrenamos en una GPU A100 de Google Colab con el mismo código, los mismos datos (verificados por huella) y lote 16, en unos 11 minutos por modelo.
+
+\subsubsection{E2: LLM con prompting}
+El prompt incluye la tarea, una guía de anotación redactada solo a partir del conjunto de entrenamiento y un esquema JSON que restringe la salida a una lista de pares \{tipo, texto\}. Usamos temperatura 0 y semilla fija. Un programa busca cada texto devuelto dentro de la oración, prefiriendo palabras completas, y lo convierte en posiciones de carácter. Lo que no aparece en la oración se descarta y se cuenta como alucinación. Con respuestas perfectas, este paso de ubicación pierde menos de 0,5 puntos de F1. En el \emph{few-shot} fijo usamos tres sets de cinco ejemplos elegidos al azar y reportamos la media. En el dinámico, BM25 \cite{robertson2009} recupera las cinco oraciones de entrenamiento más parecidas a cada oración de prueba. En el 8,3\,\% del test el ejemplo recuperado es la misma oración, repetida en entrenamiento; el análisis sin duplicados controla esa fuga.
+
+Los LLM comerciales recibieron el mismo prompt, la misma guía y los mismos ejemplos. GPT-5.2 se usó con esfuerzo de razonamiento bajo; no acepta temperatura y ese parámetro se omitió. Gemini 3.1 Pro (\texttt{gemini-3.1-pro-preview}) se corrió durante varios días por el límite de 250 consultas diarias; cada respuesta registra la versión servida. Enviar el test a una API es aceptable aquí porque el CWLC es público y desidentificado. Con fichas reales no lo sería.
+
+\subsubsection{E4: LLM como anotador}
+Simulamos un centro con mucho texto y poca anotación. Qwen 2.5 7B, el LLM local más confiable de E2, etiquetó 2.000 oraciones de entrenamiento. Con $N=0$ lo hizo en \emph{zero-shot}; con $N>0$ recibió los cinco ejemplos más parecidos buscados solo dentro de las $N$ oraciones \emph{gold}. Luego entrenamos el encoder español con esas etiquetas \emph{silver} más las $N$ oraciones \emph{gold}, y comparamos con el mismo encoder entrenado solo con las $N$ oraciones \emph{gold}. Como en ese escenario no existiría un conjunto de validación, usamos la última época y fijamos un mínimo de 300 actualizaciones de pesos para que los conjuntos pequeños no queden sin entrenar.
+
+\subsubsection{Votación entre encoders}
+Combinamos las predicciones de los seis modelos de E1 base (dos encoders por tres semillas). Una entidad entra a la predicción final si al menos cuatro de los seis modelos la predicen con el mismo inicio, fin y tipo. Fijamos la regla de mayoría estricta antes de mirar el test. Al terminar E1 con RigoBERTa repetimos la votación con nueve modelos y cinco votos.
+
+\subsection{Evaluación}
+
+La métrica principal es el F1 estricto: una predicción es correcta solo si coinciden el inicio, el fin y el tipo. El F1 laxo acepta cualquier superposición con el tipo correcto; la diferencia entre ambos estima los errores de límite. Calculamos intervalos de confianza del 95\,\% con 1.000 remuestreos \emph{bootstrap} por oración \cite{efron1993}, y comparamos sistemas con \emph{bootstrap} pareado sobre las mismas oraciones \cite{bergkirkpatrick2012}.
+
+La semilla cambia el resultado del ajuste fino \cite{dodge2020,mosbach2021}. Por eso cada modelo entrenable se repitió con tres semillas, reportamos media $\pm$ desviación estándar, y solo afirmamos que un encoder supera a otro si la comparación pareada es significativa en las tres semillas. Para los LLM con temperatura 0 hay una sola corrida por estrategia, y los comparamos contra cada semilla del encoder.
+
+Agregamos cuatro análisis por subgrupo: recall en menciones vistas y nuevas respecto del entrenamiento, recall en enfermedades abreviadas y no abreviadas (H3), recall en palabras mal escritas y recall en abreviaturas según su frecuencia en entrenamiento. Detectamos las palabras mal escritas con un diccionario de español, el vocabulario de entrenamiento y una distancia de edición de 1 a 2, y revisamos a mano la lista resultante: 31 enfermedades y 5 medicamentos del test. En los LLM medimos también la tasa de alucinación, los JSON inválidos, el tiempo por oración y el costo.
+
+\subsection{Reproducibilidad}
+
+Cada resultado guarda la huella SHA-256 de los 21 archivos del corpus, de la configuración, del código (commit de git) y de las predicciones, junto con la revisión exacta del modelo en Hugging Face o el \emph{digest} en Ollama y las versiones del entorno. Cada notebook verifica la huella de los datos antes de entrenar. El código, los prompts y los resultados están en \url{https://github.com/SebasDCIS/proyecto-ner-aps-genai}. El corpus y los pesos no se versionan; el repositorio indica cómo descargarlos. El reporte sigue la guía TRIPOD-LLM \cite{gallifant2025}.
+
+%==============================================================================
+\section{Resultados y Discusi\'on}\label{sec:resultados}
+%==============================================================================
+
+\subsection{Desempeño global}
+
+La Fig.~\ref{fig:comparacion} y la Tabla~\ref{tab:resultados} muestran el F1 estricto de todos los sistemas. Los encoders ajustados obtuvieron los valores más altos en enfermedad y abreviatura. El encoder chileno llegó a 0,815 en enfermedad y los tres encoders quedaron entre 0,946 y 0,952 en abreviatura. En medicamento el encoder español (0,840) y Gemini 3.1 Pro con ejemplos dinámicos (0,844) quedaron empatados. Sin las oraciones repetidas, el F1 de los encoders bajó como máximo 0,007, así que la fuga detectada en la auditoría no explica estos valores.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.95\textwidth]{figuras/fig_comparacion_f1.pdf}
+\caption{F1 estricto con IC 95\,\% en las 990 oraciones de prueba. Para los encoders se muestra la media de tres semillas y el promedio de sus intervalos. La línea punteada marca el mejor encoder individual. La votación combina seis encoders base con mayoría estricta.}
+\label{fig:comparacion}
+\end{figure*}
+
+\begin{table}[!t]
+\centering
+\caption{F1 estricto en el test (media $\pm$ DE de 3 semillas para E1)}
+\label{tab:resultados}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccc}
+\toprule
+Sistema & Enfermedad & Medicamento & Abreviatura \\
+\midrule
+E1 español & 0,798 $\pm$ 0,006 & \textbf{0,840} $\pm$ 0,012 & 0,950 $\pm$ 0,004 \\
+E1 chileno & \textbf{0,815} $\pm$ 0,010 & 0,794 $\pm$ 0,046 & \textbf{0,952} $\pm$ 0,002 \\
+E1 RigoBERTa & 0,803 $\pm$ 0,004 & 0,780 $\pm$ 0,015 & 0,946 $\pm$ 0,013 \\
+\midrule
+Llama 8B zero-shot & 0,446 & 0,451 & 0,524 \\
+Llama 8B fijo & 0,526 & 0,393 & 0,603 \\
+Llama 8B dinámico & 0,650 & 0,697 & 0,703 \\
+Qwen 7B zero-shot & 0,537 & 0,589 & 0,516 \\
+Qwen 7B fijo & 0,560 & 0,617 & 0,554 \\
+Qwen 7B dinámico & 0,663 & 0,670 & 0,642 \\
+\midrule
+GPT-5.2 zero-shot & 0,645 & 0,768 & 0,776 \\
+GPT-5.2 dinámico & 0,727 & 0,772 & 0,887 \\
+Gemini 3.1 zero-shot & 0,618 & 0,765 & 0,888 \\
+Gemini 3.1 dinámico & 0,717 & \textbf{0,844} & 0,901 \\
+\midrule
+E4 \emph{silver} + 50 \emph{gold} & 0,644 & 0,406$^\dagger$ & 0,592 \\
+E4 \emph{silver} + 100 \emph{gold} & 0,650 & 0,674 & 0,634 \\
+\midrule
+Votación (6 encoders) & \textbf{0,837} & 0,831 & \textbf{0,957} \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^\dagger$Una de las tres semillas colapsó y no marcó ninguna entidad (Sec.~\ref{sec:e4}).}
+\end{tabular}
+\end{table}
+
+Nuestros encoders superan a los del piloto del CWLC (0,77 en enfermedad, 0,75 en medicamento y 0,92 en abreviatura) \cite{baez2020}, que usó una versión más pequeña del corpus. El mejor resultado publicado en el CWLC, 83,16 de micro-F1 sobre siete tipos de entidad \cite{rojas2022louhi}, usa otra partición y otro conjunto de entidades, y no se puede comparar de forma directa.
+
+Entre los encoders base, el chileno superó al español en enfermedad por 2,6 y 2,4 puntos en dos semillas (significativo) y por 0,2 en la tercera. Con la regla de exigir las tres semillas, la diferencia no es robusta, aunque la tendencia es consistente. En medicamento el español rindió más, pero el chileno tuvo una corrida inestable (0,741 con la semilla 42) y la diferencia solo fue significativa en esa semilla. El test tiene 92 medicamentos, y con tan pocas menciones los intervalos se abren a $\pm$7 puntos.
+
+\subsection{LLM: el efecto de la estrategia}
+
+Sin ejemplos, los LLM locales quedaron lejos: entre 0,45 y 0,59 de F1 estricto. Llama 3.1 8B en \emph{zero-shot} inventó el 52,5\,\% de las menciones que devolvió y produjo 22 JSON inválidos. Los ejemplos dinámicos mejoraron a los cuatro LLM en las tres entidades (Fig.~\ref{fig:estrategias}), lo que apoya H2. Respecto de los ejemplos fijos, el \emph{few-shot} dinámico sumó 12,4 y 10,3 puntos en enfermedad y 10,0 y 8,8 en abreviatura (Llama y Qwen, respectivamente, todos significativos), dentro del rango de 5 a 9 puntos que reporta la literatura o algo por encima \cite{ge2026}. Al quitar las oraciones repetidas, la ventaja bajó solo 1,5 puntos: no viene de copiar oraciones idénticas.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.95\textwidth]{figuras/fig_estrategias_llm.pdf}
+\caption{F1 estricto de cada LLM según la estrategia de prompting. Para el \emph{few-shot} fijo se muestra la media de tres sets de ejemplos; a los LLM comerciales no se les aplicó esa estrategia. La línea azul marca el mejor encoder de E1 en cada entidad.}
+\label{fig:estrategias}
+\end{figure*}
+
+Aun con la mejor estrategia, el mejor LLM local quedó 13,5 a 15,2 puntos bajo los encoders en enfermedad, 14,3 bajo el encoder español en medicamento y 24,7 a 24,9 en abreviatura. Todas esas diferencias fueron significativas contra cada semilla de E1. En enfermedad la distancia está en el extremo alto de lo que reporta la literatura en español \cite{naguib2024}. La debilidad de los LLM locales fue la precisión: Qwen con ejemplos dinámicos encontró el 71\,\% de las enfermedades, pero solo el 62\,\% de lo que marcó era correcto. Su F1 laxo en enfermedad (0,793) quedó 13 puntos sobre el estricto; en los encoders esa diferencia fue de 10 puntos. Qwen resultó más confiable que Llama: con ejemplos dinámicos inventó el 5,2\,\% de las menciones, contra el 19,4\,\% de Llama, y no rompió ningún JSON.
+
+Los LLM comerciales achicaron la distancia sin cerrarla en dos de tres entidades, lo que apoya H5 de forma parcial. GPT-5.2 con ejemplos dinámicos llegó a 0,727 en enfermedad y 0,887 en abreviatura, y casi no alucinó (0,4\,\%). Gemini 3.1 Pro llegó a 0,717 y 0,901, y alcanzó al encoder en medicamento (0,844 contra 0,840 del encoder español, diferencia no significativa). Frente a GPT-5.2, Gemini fue mejor en medicamento (+0,073; IC 95\,\% de 0,027 a 0,135) y no hubo diferencias significativas en las otras dos entidades. Frente a E1, Gemini quedó entre 7 y 11 puntos abajo en enfermedad y entre 4 y 5 en abreviatura, significativo en las tres semillas. Gemini tuvo el recall más alto de todos los sistemas en enfermedad (0,839), pero con una precisión de 0,626 y una tasa de alucinación del 14\,\%.
+
+Los ejemplos dinámicos también mejoraron a los modelos comerciales: GPT-5.2 subió 8 puntos en enfermedad y 11 en abreviatura. El costo total de las 990 oraciones con ambas estrategias fue de 4,26 dólares con GPT-5.2 y de 4,46 con Gemini (Tabla~\ref{tab:costos}).
+
+\begin{table}[!t]
+\centering
+\caption{Confiabilidad y costo de los LLM con \emph{few-shot} din\'amico}
+\label{tab:costos}
+\setlength{\tabcolsep}{3pt}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Modelo & Alucin. & JSON inv. & s/oración & USD \\
+\midrule
+Llama 3.1 8B (local) & 19,4\,\% & 3 & 2,1 & 0 \\
+Qwen 2.5 7B (local) & 5,2\,\% & 0 & 1,6 & 0 \\
+GPT-5.2 (API) & 0,4\,\% & 0 & 2,0 & 2,52 \\
+Gemini 3.1 Pro (API) & 14,2\,\% & 3 & 4,2 & 2,54 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Alucin.: menciones devueltas que no aparecen en la oración.}\\
+\multicolumn{5}{l}{\footnotesize USD: costo de las 990 oraciones.}\\
+\multicolumn{5}{l}{\footnotesize Tiempos locales en un Mac M5 de 24 GB.}
+\end{tabular}
+\end{table}
+
+\subsection{Abreviaturas (H3)}
+
+En enfermedad, los LLM reconocieron peor las menciones que contienen una abreviatura. Con ejemplos dinámicos, el recall en enfermedades abreviadas fue 0,655 contra 0,764 en no abreviadas para Llama, 0,647 contra 0,723 para Qwen, 0,748 contra 0,804 para GPT-5.2 y 0,824 contra 0,841 para Gemini. El encoder chileno no mostró esa brecha (0,843 contra 0,835) y el español sí, aunque menor (0,790 contra 0,816). H3 se cumple en enfermedad. Es también la señal más clara a favor de la adaptación local: en enfermedades abreviadas el encoder chileno superó al español por 5,3 puntos ($n=119$).
+
+En la entidad abreviatura la distancia entre LLM locales y encoders fue la mayor del estudio (25 a 31 puntos). Los LLM no aprendieron solos las convenciones del corpus, como anotar ``APS'' o ``+'' como abreviaturas. Los comerciales las aprendieron mejor con los ejemplos dinámicos y quedaron a 5 o 6 puntos.
+
+\subsection{Escala del encoder}
+
+RigoBERTa Clinical tiene 4,5 veces más parámetros que los encoders base y se preentrenó con el corpus clínico abierto más grande en español \cite{subies2025}. No los superó en ninguna entidad. En enfermedad empató con el encoder español (diferencias de +0,003 a +0,008, ninguna significativa) y perdió contra el chileno en dos de tres semillas ($-0,018$ y $-0,019$). En medicamento quedó bajo el español en las tres semillas, con significancia en una. En abreviatura empató salvo en la semilla 42. Para este corpus pesó más que el modelo hubiera visto derivaciones chilenas que su tamaño.
+
+Un subgrupo fue la excepción: en las 66 abreviaturas que nunca aparecen en entrenamiento, RigoBERTa tuvo un recall de 0,662, contra 0,601 del encoder chileno y 0,606 del español. Es coherente con un preentrenamiento clínico más amplio, aunque el subgrupo es pequeño. El costo práctico también cuenta: el modelo \emph{large} no se pudo ajustar en el computador del proyecto y necesitó una GPU de 80 GB.
+
+\subsection{Destilación con un LLM anotador (H4)}\label{sec:e4}
+
+La Fig.~\ref{fig:e4} muestra la curva de E4. El alumno superó a su maestro en enfermedad y abreviatura: con 50 oraciones \emph{gold}, el encoder entrenado con etiquetas de Qwen obtuvo 0,644 en enfermedad, contra 0,586 de las etiquetas del propio Qwen. Las etiquetas \emph{silver} ayudaron cuando había poco \emph{gold}: con 10 oraciones anotadas, el alumno llegó a 0,571 en enfermedad y el modelo entrenado solo con esas 10 oraciones, a 0,278. Entre 50 y 100 oraciones la curva se aplanó (0,644 a 0,650).
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.95\textwidth]{figuras/fig_destilacion_e4.pdf}
+\caption{Destilación (E4): F1 estricto medio de tres semillas según las oraciones \emph{gold} disponibles. El maestro es Qwen 2.5 7B; su F1 se mide contra el \emph{gold} de las 2.000 oraciones que etiquetó. En medicamento, con $N=0$, 10 y 50, una semilla del alumno colapsó y no marcó ninguna entidad; la media incluye esa semilla.}
+\label{fig:e4}
+\end{figure*}
+
+H4 no se cumplió. Con 50 oraciones \emph{gold}, el alumno quedó 15 a 16 puntos bajo E1 en enfermedad, 23 en medicamento (con las dos semillas que no colapsaron) y 36 en abreviatura. En abreviatura las etiquetas \emph{silver} estorbaron: con 100 oraciones, entrenar solo con \emph{gold} dio 0,729 y agregar \emph{silver} bajó el F1 a 0,634. El maestro tuvo precisión alta (0,90) y recall bajo (0,49) en esa entidad porque no conocía las convenciones del corpus, y el alumno heredó ese sesgo. El maestro local rindió entre 0,50 y 0,69 de F1 según la entidad, y esa calidad puso el techo del alumno.
+
+El colapso de una semilla en medicamento (F1 0 con la pérdida estancada) es la inestabilidad del ajuste fino en clases poco frecuentes que describen Dodge et al. y Mosbach et al. \cite{dodge2020,mosbach2021}. Lo reportamos en lugar de repetir la corrida con otra semilla.
+
+Aun así, E4 deja un resultado útil. Con 100 oraciones anotadas, el alumno de enfermedad (0,650) igualó al LLM local con ejemplos dinámicos (0,663), que necesitó las 8.014 oraciones de entrenamiento para buscar ejemplos y tarda más de un segundo por oración.
+
+\subsection{Análisis de errores}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figuras/fig_tipologia_errores.pdf}
+\caption{Tipolog\'ia de predicciones de enfermedad en el test (semilla 42 para E1). ``Espuria sobre un hallazgo'': predicción que no coincide con ninguna enfermedad del \emph{gold} y que se superpone con un hallazgo (\ent{Finding}) anotado.}
+\label{fig:tipologia}
+\end{figure}
+
+Los LLM con ejemplos dinámicos acertaron casi tantas enfermedades exactas como los encoders: 899 Gemini y 854 GPT-5.2, contra 895 del encoder chileno (Fig.~\ref{fig:tipologia}). La diferencia en F1 vino de las predicciones espurias: 112 del encoder chileno, 286 de GPT-5.2, 406 de Gemini con ejemplos y 636 de Gemini sin ellos. Entre el 67\,\% y el 93\,\% de las espurias, según el sistema, se superpusieron con un hallazgo anotado, como ``dolor'', ``vómitos'' o ``mordida invertida''. La guía del CWLC distingue el hallazgo (un signo o síntoma) de la enfermedad, y los LLM no adoptaron esa distinción ni con la guía en el prompt. Una parte del ``error'' de los LLM es, entonces, un desacuerdo de criterio con la anotación.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figuras/fig_subgrupos_recall.pdf}
+\caption{Recall estricto por subgrupo. Encoders: media de tres semillas. Las palabras mal escritas se detectaron con diccionario y distancia de edición y se revisaron a mano.}
+\label{fig:subgrupos}
+\end{figure}
+
+Los LLM comerciales fueron mejores en dos subgrupos (Fig.~\ref{fig:subgrupos}). En las 31 enfermedades mal escritas, el recall de los encoders cayó de 0,82--0,84 a 0,52--0,56, mientras Gemini sin ejemplos se mantuvo en 0,77. La diferencia pareada entre Gemini y los encoders en esas 31 menciones fue de +0,19 a +0,32, con el límite inferior del intervalo en cero o apenas sobre cero. La tokenización ayuda a explicarlo: ``furosemida'' es una sola pieza para el encoder y ``FUSROSEMIDA'' son cinco, que nunca vio juntas en entrenamiento \cite{moradi2021}. En las 66 abreviaturas nunca vistas, los encoders base llegaron a 0,60 y los LLM comerciales a 0,71--0,76. En las 774 abreviaturas frecuentes, los encoders llegaron a 0,97--0,99. El encoder reconoce casi siempre la jerga que vio en entrenamiento y le cuesta la que no vio, que los LLM grandes deducen mejor. Los LLM locales no mostraron esa ventaja: en enfermedades nuevas su recall (0,56--0,60) quedó bajo el de los encoders (0,70--0,73).
+
+Con esa complementariedad en mente probamos sistemas híbridos. Si se suman las enfermedades que encuentra el encoder y las que encuentra un LLM, el recall sube de 0,81--0,84 a 0,87--0,92. Probamos tres combinaciones simples: unión, rescate de las predicciones del LLM que no chocan con las del encoder, y rescate limitado a palabras que el encoder nunca vio. Las tres empeoraron el F1 en enfermedad de forma significativa, porque cada acierto que aporta el LLM llega acompañado de varios falsos positivos. Un híbrido útil necesitaría la confianza del encoder o un paso de verificación, y lo dejamos como trabajo futuro. Las palabras mal escritas son el 3\,\% de las enfermedades del test, así que no justifican por ahora un componente aparte.
+
+\subsection{Votación entre encoders}
+
+Combinar las semillas resultó más eficaz que agrandar el modelo. La votación de seis encoders base obtuvo 0,837 (IC 95\,\% de 0,815 a 0,857) en enfermedad, con precisión 0,862 y recall 0,813. Superó a cada uno de los seis modelos por separado, por 1,3 a 4,5 puntos, de forma significativa. Es el mejor resultado del estudio en esa entidad. En abreviatura llegó a 0,957 y en medicamento a 0,831, sin diferencias significativas. Al agregar las tres semillas de RigoBERTa (nueve modelos, cinco votos) el F1 de enfermedad quedó en 0,838 y la mejora dejó de ser significativa contra todos los modelos individuales. La ganancia de la votación viene de promediar la variación entre semillas de los dos encoders base. El costo es correr seis modelos de 125M en lugar de uno, todavía factible en un computador común.
+
+\subsection{Resumen de hipótesis}
+
+La Tabla~\ref{tab:hipotesis} resume las hipótesis. El patrón que reporta la literatura se mantuvo en las derivaciones chilenas: el encoder ajustado gana y los ejemplos dinámicos ayudan. Dos resultados se apartaron de lo esperado. La destilación quedó mucho más lejos del encoder que en inglés, y un LLM comercial alcanzó al encoder en medicamento.
+
+\begin{table}[!t]
+\centering
+\caption{Resultado de las hip\'otesis}
+\label{tab:hipotesis}
+\begin{tabular}{p{0.6cm}p{2.0cm}p{4.9cm}}
+\toprule
+ & Resultado & Evidencia \\
+\midrule
+H1 & Apoyada & Mayor F1 en enfermedad y abreviatura; en medicamento, empate con Gemini dinámico \\
+H2 & Apoyada & Dinámico $>$ fijo y \emph{zero-shot} en los cuatro LLM \\
+H3 & Apoyada en enfermedad & Recall menor en enfermedades abreviadas para los cuatro LLM; el encoder chileno no tiene brecha \\
+H4 & No apoyada & Con 50 \emph{gold}, 15 a 36 puntos bajo E1 \\
+H5 & Apoyada en 2 de 3 & Los LLM comerciales quedan bajo E1 en enfermedad y abreviatura; Gemini empata en medicamento \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Limitaciones}\label{sec:limitaciones}
+
+Las derivaciones no son fichas clínicas completas de CESFAM. Son textos cortos, escritos para justificar una interconsulta, y los resultados pueden cambiar en evoluciones o planes de cuidado. No existe hoy un corpus público de ese tipo en Chile.
+
+Hay riesgo de contaminación. El encoder chileno se preentrenó con derivaciones de la lista de espera sin que se publique cuáles, y pudo leer oraciones del test. Los LLM comerciales pudieron ver el CWLC, que es público desde 2022. Si eso ocurrió, sus resultados son un techo optimista.
+
+El corpus tiene ruido de anotación (42 textos idénticos con anotación distinta) y medicamento tiene solo 92 menciones en el test, con intervalos de $\pm$7 puntos. Los LLM se corrieron una vez por estrategia; con temperatura 0 la variación debería ser baja, pero no la medimos, y Gemini se sirvió como versión preliminar durante los días de la corrida. No evaluamos el ajuste fino de un LLM con LoRA (E3) ni la normalización previa de abreviaturas (E5), que quedaron fuera por tiempo. Por último, el criterio de ``hallazgo'' frente a ``enfermedad'' de la guía del CWLC penaliza a los LLM, y otra guía podría cambiar esa parte del resultado.
+
+%==============================================================================
+\section{Conclusiones}\label{sec:conclusiones}
+%==============================================================================
+
+En derivaciones reales de APS chilena se mantuvo lo que la literatura internacional reporta: un encoder ajustado con datos anotados reconoce enfermedades, medicamentos y abreviaturas mejor que un LLM generativo con prompting. El encoder adaptado a derivaciones chilenas obtuvo el mejor F1 individual en enfermedad (0,815) y la votación de seis encoders base subió esa cifra a 0,837. Un encoder 4,5 veces más grande no mejoró el resultado. Los ejemplos recuperados por similitud mejoraron a todos los LLM, pero los locales de 7--8B siguieron 13 a 25 puntos abajo, y la destilación con 50 oraciones anotadas no se acercó al encoder.
+
+Los LLM comerciales mostraron fortalezas que el encoder no tiene: palabras mal escritas y abreviaturas que nunca aparecieron en entrenamiento. A cambio, marcaron muchos hallazgos como enfermedades y requieren enviar el texto a un servicio externo.
+
+Para un CESFAM la recomendación es concreta. Si existe un conjunto anotado, un encoder base ajustado con texto local, o una votación de varios, es la opción más precisa, corre en un computador común y no saca datos del centro. Si no existe, conviene invertir en anotar algunos cientos de oraciones con criterio clínico antes que confiar en etiquetas generadas por un LLM local.
+
+\subsection*{Trabajo futuro}
+
+Tres líneas quedan abiertas. La primera es un sistema híbrido que use la confianza del encoder para decidir cuándo consultar al LLM. La segunda es validar los modelos en evoluciones y planes de cuidado de CESFAM, que es el objetivo de la tesis doctoral del primer autor. La tercera es medir la robustez frente a texto escrito por pacientes, con vocabulario coloquial y ruido de mensajería, para lo que ya diseñamos una lista de equivalencias que requiere revisión clínica.
+
+\section*{Disponibilidad de c\'odigo y datos}
+El código, los prompts, las configuraciones y los resultados están en \url{https://github.com/SebasDCIS/proyecto-ner-aps-genai}. El CWLC está disponible en Zenodo (registro 5591011) bajo licencia CC BY-NC-SA 4.0.
+
+\section*{Uso de herramientas de IA}
+Los autores usaron Claude (Anthropic) como asistente de programación, análisis y redacción. Los autores revisaron el código, verificaron las cifras contra los archivos de resultados y son responsables del contenido.
+
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+
+\end{document}

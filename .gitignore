@@ -22,3 +22,9 @@ __pycache__/
 results/predicciones/
 results/cache/
 results/logs/
+
+# LaTeX auxiliares
+docs/manuscrito/*.aux
+docs/manuscrito/*.log
+docs/manuscrito/*.out
+docs/manuscrito/*.blg
