@@ -155,7 +155,7 @@ Agregamos cuatro análisis por subgrupo: recall en menciones vistas y nuevas res
 
 \subsection{Reproducibilidad}
 
-Cada resultado guarda la huella SHA-256 de los 21 archivos del corpus, de la configuración, del código (commit de git) y de las predicciones, junto con la revisión exacta del modelo en Hugging Face o el \emph{digest} en Ollama y las versiones del entorno. Cada notebook verifica la huella de los datos antes de entrenar. El código, los prompts y los resultados están en \url{https://github.com/SebasDCIS/proyecto-ner-aps-genai}. El corpus y los pesos no se versionan; el repositorio indica cómo descargarlos. El reporte sigue la guía TRIPOD-LLM \cite{gallifant2025}.
+Cada resultado guarda la huella SHA-256 de los 21 archivos del corpus, de la configuración, del código (commit de git) y de las predicciones, junto con la revisión exacta del modelo en Hugging Face o el \emph{digest} en Ollama y las versiones del entorno. Cada notebook verifica la huella de los datos antes de entrenar. Todas las comparaciones pareadas citadas aquí se regeneran con \texttt{scripts/comparaciones\_pareadas.py} a partir de las predicciones guardadas. El código, los prompts y los resultados están en \url{https://github.com/SebasDCIS/proyecto-ner-aps-genai}. El corpus y los pesos no se versionan; el repositorio indica cómo descargarlos. El reporte sigue la guía TRIPOD-LLM \cite{gallifant2025}.
 
 %==============================================================================
 \section{Resultados y Discusi\'on}\label{sec:resultados}
@@ -295,13 +295,13 @@ Los LLM con ejemplos dinámicos acertaron casi tantas enfermedades exactas como 
 \label{fig:subgrupos}
 \end{figure}
 
-Los LLM comerciales fueron mejores en dos subgrupos (Fig.~\ref{fig:subgrupos}). En las 31 enfermedades mal escritas, el recall de los encoders cayó de 0,82--0,84 a 0,52--0,56, mientras Gemini sin ejemplos se mantuvo en 0,77. La diferencia pareada entre Gemini y los encoders en esas 31 menciones fue de +0,19 a +0,32, con el límite inferior del intervalo en cero o apenas sobre cero. La tokenización ayuda a explicarlo: ``furosemida'' es una sola pieza para el encoder y ``FUSROSEMIDA'' son cinco, que nunca vio juntas en entrenamiento \cite{moradi2021}. En las 66 abreviaturas nunca vistas, los encoders base llegaron a 0,60, los LLM comerciales con ejemplos dinámicos y Gemini sin ellos a 0,71--0,76, y GPT-5.2 sin ejemplos a 0,67. En las 774 abreviaturas frecuentes, los encoders llegaron a 0,97--0,99. El encoder reconoce casi siempre la jerga que vio en entrenamiento y le cuesta la que no vio, que los LLM grandes deducen mejor. Los LLM locales no mostraron esa ventaja: en enfermedades nuevas su recall (0,56--0,60) quedó bajo el de los encoders (0,70--0,73).
+Los LLM comerciales fueron mejores en dos subgrupos (Fig.~\ref{fig:subgrupos}). En las 31 enfermedades mal escritas, el recall de los encoders cayó de 0,82--0,84 a 0,52--0,56, mientras Gemini sin ejemplos se mantuvo en 0,77. La diferencia pareada entre Gemini y los encoders base en esas 31 menciones fue de +0,19 a +0,32: significativa en tres de las seis comparaciones (dos encoders por tres semillas), y en las otras tres el límite inferior del intervalo quedó en cero. La tokenización ayuda a explicarlo: ``furosemida'' es una sola pieza para el encoder y ``FUSROSEMIDA'' son cinco, que nunca vio juntas en entrenamiento \cite{moradi2021}. En las 66 abreviaturas nunca vistas, los encoders base llegaron a 0,60, los LLM comerciales con ejemplos dinámicos y Gemini sin ellos a 0,71--0,76, y GPT-5.2 sin ejemplos a 0,67. En las 774 abreviaturas frecuentes, los encoders llegaron a 0,97--0,99. El encoder reconoce casi siempre la jerga que vio en entrenamiento y le cuesta la que no vio, que los LLM grandes deducen mejor. Los LLM locales no mostraron esa ventaja: en enfermedades nuevas su recall (0,56--0,60) quedó bajo el de los encoders (0,70--0,73).
 
 Con esa complementariedad en mente probamos sistemas híbridos. Si se suman las enfermedades que encuentra el encoder y las que encuentra un LLM, el recall sube de 0,81--0,84 a 0,87--0,92. Probamos tres combinaciones simples: unión, rescate de las predicciones del LLM que no chocan con las del encoder, y rescate limitado a palabras que el encoder nunca vio. Las tres empeoraron el F1 en enfermedad de forma significativa, porque cada acierto que aporta el LLM llega acompañado de varios falsos positivos. Un híbrido útil necesitaría la confianza del encoder o un paso de verificación, y lo dejamos como trabajo futuro. Las palabras mal escritas son el 3\,\% de las enfermedades del test, así que no justifican por ahora un componente aparte.
 
 \subsection{Votación entre encoders}
 
-Combinar las semillas resultó más eficaz que agrandar el modelo. La votación de seis encoders base obtuvo 0,837 (IC 95\,\% de 0,815 a 0,857) en enfermedad, con precisión 0,862 y recall 0,813. Superó a cada uno de los seis modelos por separado, por 1,3 a 4,5 puntos, de forma significativa. Es el mejor resultado del estudio en esa entidad. En abreviatura llegó a 0,957 y en medicamento a 0,831, sin diferencias significativas. Al agregar las tres semillas de RigoBERTa (nueve modelos, cinco votos) el F1 de enfermedad quedó en 0,838 y la mejora dejó de ser significativa contra todos los modelos individuales. La ganancia de la votación viene de promediar la variación entre semillas de los dos encoders base. El costo es correr seis modelos de 125M en lugar de uno, todavía factible en un computador común.
+Combinar las semillas resultó más eficaz que agrandar el modelo. La votación de seis encoders base obtuvo 0,837 (IC 95\,\% de 0,815 a 0,857) en enfermedad, con precisión 0,862 y recall 0,813. Superó a cada uno de los seis modelos por separado, por 1,3 a 4,5 puntos, de forma significativa. Es el mejor resultado del estudio en esa entidad. En abreviatura llegó a 0,957, mejor que dos de los seis modelos, y en medicamento a 0,831, sin diferencias significativas. Al agregar las tres semillas de RigoBERTa (nueve modelos, cinco votos) el F1 de enfermedad quedó en 0,838 y la mejora dejó de ser significativa contra todos los modelos individuales. La ganancia de la votación viene de promediar la variación entre semillas de los dos encoders base. El costo es correr seis modelos de 125M en lugar de uno, todavía factible en un computador común.
 
 \subsection{Resumen de hipótesis}
 
@@ -349,8 +349,8 @@ Tres líneas quedan abiertas. La primera es un sistema híbrido que use la confi
 \section*{Disponibilidad de c\'odigo y datos}
 El código, los prompts, las configuraciones y los resultados están en \url{https://github.com/SebasDCIS/proyecto-ner-aps-genai}. El CWLC está disponible en Zenodo (registro 5591011) bajo licencia CC BY-NC-SA 4.0.
 
-\section*{Uso de herramientas de IA}
-Los autores usaron Claude (Anthropic) como asistente de programación, análisis y redacción. Los autores revisaron el código, verificaron las cifras contra los archivos de resultados y son responsables del contenido.
+\section*{Agradecimientos}
+Se usaron herramientas de IA como apoyo en la programación y la edición del texto.
 
 \bibliographystyle{IEEEtran}
 \bibliography{referencias}

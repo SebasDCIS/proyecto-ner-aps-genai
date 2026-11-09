@@ -1,0 +1,1860 @@
+{
+ "descripcion": "Bootstrap pareado por oración (1.000 remuestreos), F1 estricto salvo que se indique otra cosa.",
+ "llm_vs_llm": [
+  {
+   "A": "Gemini dinámico",
+   "B": "GPT-5.2 dinámico",
+   "tipo": "Disease",
+   "dif_F1": -0.0099,
+   "ic95": [
+    -0.0296,
+    0.0103
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "GPT-5.2 dinámico",
+   "tipo": "Medication",
+   "dif_F1": 0.0726,
+   "ic95": [
+    0.027,
+    0.1349
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "GPT-5.2 dinámico",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0145,
+   "ic95": [
+    -0.0312,
+    0.0438
+   ],
+   "significativa": false
+  }
+ ],
+ "llm_vs_e1": [
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.0742,
+   "ic95": [
+    -0.0976,
+    -0.0501
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.0857,
+   "ic95": [
+    -0.109,
+    -0.0609
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.083,
+   "ic95": [
+    -0.1067,
+    -0.0589
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.0998,
+   "ic95": [
+    -0.1236,
+    -0.075
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.0881,
+   "ic95": [
+    -0.1123,
+    -0.063
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.1069,
+   "ic95": [
+    -0.1313,
+    -0.0849
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.0643,
+   "ic95": [
+    -0.0874,
+    -0.0404
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.0758,
+   "ic95": [
+    -0.0999,
+    -0.0516
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.0731,
+   "ic95": [
+    -0.1004,
+    -0.0487
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.0899,
+   "ic95": [
+    -0.1155,
+    -0.065
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.0781,
+   "ic95": [
+    -0.1023,
+    -0.0527
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.097,
+   "ic95": [
+    -0.1197,
+    -0.0714
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.1285,
+   "ic95": [
+    -0.1572,
+    -0.1002
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.14,
+   "ic95": [
+    -0.1672,
+    -0.1134
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.1373,
+   "ic95": [
+    -0.1661,
+    -0.1087
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.1541,
+   "ic95": [
+    -0.1796,
+    -0.1273
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.1423,
+   "ic95": [
+    -0.1696,
+    -0.1153
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.1612,
+   "ic95": [
+    -0.1912,
+    -0.134
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.1411,
+   "ic95": [
+    -0.1677,
+    -0.1154
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.1527,
+   "ic95": [
+    -0.1786,
+    -0.1271
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.1499,
+   "ic95": [
+    -0.1801,
+    -0.1234
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.1667,
+   "ic95": [
+    -0.1933,
+    -0.14
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": -0.155,
+   "ic95": [
+    -0.1832,
+    -0.1297
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.1739,
+   "ic95": [
+    -0.2002,
+    -0.1491
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.0098,
+   "ic95": [
+    -0.0868,
+    0.0631
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": 0.0118,
+   "ic95": [
+    -0.0651,
+    0.0891
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": 0.01,
+   "ic95": [
+    -0.0635,
+    0.0783
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": 0.1031,
+   "ic95": [
+    0.0136,
+    0.1841
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": 0.02,
+   "ic95": [
+    -0.0484,
+    0.0825
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": 0.0275,
+   "ic95": [
+    -0.0469,
+    0.091
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.0825,
+   "ic95": [
+    -0.1682,
+    -0.0109
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.0609,
+   "ic95": [
+    -0.1431,
+    0.0198
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.0627,
+   "ic95": [
+    -0.144,
+    0.0079
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": 0.0305,
+   "ic95": [
+    -0.0781,
+    0.1178
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.0526,
+   "ic95": [
+    -0.1357,
+    0.0186
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.0452,
+   "ic95": [
+    -0.1381,
+    0.0308
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.1837,
+   "ic95": [
+    -0.2782,
+    -0.1042
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.162,
+   "ic95": [
+    -0.2553,
+    -0.0688
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.1638,
+   "ic95": [
+    -0.2614,
+    -0.0734
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.0707,
+   "ic95": [
+    -0.1812,
+    0.0365
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.1538,
+   "ic95": [
+    -0.2582,
+    -0.0552
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.1464,
+   "ic95": [
+    -0.2496,
+    -0.0578
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.1571,
+   "ic95": [
+    -0.2441,
+    -0.0838
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.1355,
+   "ic95": [
+    -0.2299,
+    -0.0522
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.1373,
+   "ic95": [
+    -0.2264,
+    -0.0602
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.0441,
+   "ic95": [
+    -0.1493,
+    0.0554
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.1272,
+   "ic95": [
+    -0.216,
+    -0.0482
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.1198,
+   "ic95": [
+    -0.2135,
+    -0.0415
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0493,
+   "ic95": [
+    -0.098,
+    -0.0177
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0527,
+   "ic95": [
+    -0.0917,
+    -0.0218
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0441,
+   "ic95": [
+    -0.0874,
+    -0.0147
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0509,
+   "ic95": [
+    -0.0915,
+    -0.0214
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0537,
+   "ic95": [
+    -0.0989,
+    -0.0254
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0491,
+   "ic95": [
+    -0.0935,
+    -0.019
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0638,
+   "ic95": [
+    -0.0839,
+    -0.0465
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0672,
+   "ic95": [
+    -0.0857,
+    -0.0496
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0586,
+   "ic95": [
+    -0.0779,
+    -0.0401
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0655,
+   "ic95": [
+    -0.0827,
+    -0.0495
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0682,
+   "ic95": [
+    -0.0855,
+    -0.0513
+   ],
+   "significativa": true
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0636,
+   "ic95": [
+    -0.081,
+    -0.0454
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.3084,
+   "ic95": [
+    -0.3363,
+    -0.2805
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.3118,
+   "ic95": [
+    -0.3372,
+    -0.2832
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.3032,
+   "ic95": [
+    -0.3314,
+    -0.2739
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.31,
+   "ic95": [
+    -0.3388,
+    -0.2816
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.3128,
+   "ic95": [
+    -0.341,
+    -0.2842
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.3082,
+   "ic95": [
+    -0.3345,
+    -0.2819
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.2474,
+   "ic95": [
+    -0.2753,
+    -0.2197
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.2508,
+   "ic95": [
+    -0.2791,
+    -0.2233
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "espanol_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.2422,
+   "ic95": [
+    -0.2697,
+    -0.2151
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.2491,
+   "ic95": [
+    -0.2758,
+    -0.2206
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.2518,
+   "ic95": [
+    -0.2784,
+    -0.2244
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "chileno_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.2472,
+   "ic95": [
+    -0.2741,
+    -0.2198
+   ],
+   "significativa": true
+  }
+ ],
+ "dinamico_vs_fijo": [
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s42",
+   "tipo": "Disease",
+   "dif_F1": 0.1157,
+   "ic95": [
+    0.0844,
+    0.1488
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s43",
+   "tipo": "Disease",
+   "dif_F1": 0.109,
+   "ic95": [
+    0.0786,
+    0.1375
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s44",
+   "tipo": "Disease",
+   "dif_F1": 0.0833,
+   "ic95": [
+    0.0526,
+    0.1147
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s42",
+   "tipo": "Disease",
+   "dif_F1": 0.1235,
+   "ic95": [
+    0.0965,
+    0.1532
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s43",
+   "tipo": "Disease",
+   "dif_F1": 0.1702,
+   "ic95": [
+    0.142,
+    0.1991
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s44",
+   "tipo": "Disease",
+   "dif_F1": 0.0785,
+   "ic95": [
+    0.0527,
+    0.1048
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s42",
+   "tipo": "Medication",
+   "dif_F1": 0.0388,
+   "ic95": [
+    -0.0547,
+    0.1367
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s43",
+   "tipo": "Medication",
+   "dif_F1": 0.0336,
+   "ic95": [
+    -0.0691,
+    0.1353
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s44",
+   "tipo": "Medication",
+   "dif_F1": 0.0889,
+   "ic95": [
+    -0.0112,
+    0.1922
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s42",
+   "tipo": "Medication",
+   "dif_F1": 0.3109,
+   "ic95": [
+    0.2335,
+    0.3788
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s43",
+   "tipo": "Medication",
+   "dif_F1": 0.2619,
+   "ic95": [
+    0.1889,
+    0.33
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s44",
+   "tipo": "Medication",
+   "dif_F1": 0.3385,
+   "ic95": [
+    0.2659,
+    0.4142
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s42",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0837,
+   "ic95": [
+    0.0447,
+    0.1245
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s43",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0904,
+   "ic95": [
+    0.056,
+    0.1257
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Qwen dinámico",
+   "B": "Qwen fijo s44",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0903,
+   "ic95": [
+    0.053,
+    0.1266
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s42",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.1009,
+   "ic95": [
+    0.0662,
+    0.136
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s43",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0983,
+   "ic95": [
+    0.0686,
+    0.1316
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Llama dinámico",
+   "B": "Llama fijo s44",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.1006,
+   "ic95": [
+    0.0662,
+    0.1378
+   ],
+   "significativa": true
+  }
+ ],
+ "e1_vs_e1": [
+  {
+   "A": "chileno_clinico s42",
+   "B": "espanol_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": 0.0256,
+   "ic95": [
+    0.0087,
+    0.0425
+   ],
+   "significativa": true
+  },
+  {
+   "A": "rigoberta_clinico s42",
+   "B": "espanol_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": 0.0077,
+   "ic95": [
+    -0.0129,
+    0.0271
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s42",
+   "B": "chileno_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": -0.0179,
+   "ic95": [
+    -0.0388,
+    -0.0005
+   ],
+   "significativa": true
+  },
+  {
+   "A": "chileno_clinico s43",
+   "B": "espanol_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": 0.0023,
+   "ic95": [
+    -0.0157,
+    0.0201
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s43",
+   "B": "espanol_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": 0.0027,
+   "ic95": [
+    -0.0145,
+    0.0195
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s43",
+   "B": "chileno_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": 0.0004,
+   "ic95": [
+    -0.0178,
+    0.018
+   ],
+   "significativa": false
+  },
+  {
+   "A": "chileno_clinico s44",
+   "B": "espanol_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": 0.0239,
+   "ic95": [
+    0.0066,
+    0.0422
+   ],
+   "significativa": true
+  },
+  {
+   "A": "rigoberta_clinico s44",
+   "B": "espanol_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": 0.0052,
+   "ic95": [
+    -0.0126,
+    0.0231
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s44",
+   "B": "chileno_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": -0.0187,
+   "ic95": [
+    -0.0384,
+    -0.0004
+   ],
+   "significativa": true
+  },
+  {
+   "A": "chileno_clinico s42",
+   "B": "espanol_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.1129,
+   "ic95": [
+    -0.2037,
+    -0.0145
+   ],
+   "significativa": true
+  },
+  {
+   "A": "rigoberta_clinico s42",
+   "B": "espanol_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.0881,
+   "ic95": [
+    -0.1558,
+    -0.0311
+   ],
+   "significativa": true
+  },
+  {
+   "A": "rigoberta_clinico s42",
+   "B": "chileno_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": 0.0248,
+   "ic95": [
+    -0.0745,
+    0.1325
+   ],
+   "significativa": false
+  },
+  {
+   "A": "chileno_clinico s43",
+   "B": "espanol_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.0083,
+   "ic95": [
+    -0.078,
+    0.0549
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s43",
+   "B": "espanol_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.0541,
+   "ic95": [
+    -0.1242,
+    0.0125
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s43",
+   "B": "chileno_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.0458,
+   "ic95": [
+    -0.1133,
+    0.0262
+   ],
+   "significativa": false
+  },
+  {
+   "A": "chileno_clinico s44",
+   "B": "espanol_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.0175,
+   "ic95": [
+    -0.0661,
+    0.0283
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s44",
+   "B": "espanol_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.0386,
+   "ic95": [
+    -0.0974,
+    0.0112
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s44",
+   "B": "chileno_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.0212,
+   "ic95": [
+    -0.087,
+    0.0437
+   ],
+   "significativa": false
+  },
+  {
+   "A": "chileno_clinico s42",
+   "B": "espanol_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0017,
+   "ic95": [
+    -0.0077,
+    0.011
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s42",
+   "B": "espanol_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.018,
+   "ic95": [
+    -0.0299,
+    -0.0067
+   ],
+   "significativa": true
+  },
+  {
+   "A": "rigoberta_clinico s42",
+   "B": "chileno_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0197,
+   "ic95": [
+    -0.0309,
+    -0.0091
+   ],
+   "significativa": true
+  },
+  {
+   "A": "chileno_clinico s43",
+   "B": "espanol_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.001,
+   "ic95": [
+    -0.0051,
+    0.008
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s43",
+   "B": "espanol_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0037,
+   "ic95": [
+    -0.0062,
+    0.0126
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s43",
+   "B": "chileno_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0027,
+   "ic95": [
+    -0.0061,
+    0.0109
+   ],
+   "significativa": false
+  },
+  {
+   "A": "chileno_clinico s44",
+   "B": "espanol_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.005,
+   "ic95": [
+    -0.0036,
+    0.0143
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s44",
+   "B": "espanol_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0037,
+   "ic95": [
+    -0.006,
+    0.0124
+   ],
+   "significativa": false
+  },
+  {
+   "A": "rigoberta_clinico s44",
+   "B": "chileno_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": -0.0013,
+   "ic95": [
+    -0.0096,
+    0.0064
+   ],
+   "significativa": false
+  }
+ ],
+ "votacion_6": [
+  {
+   "tipo": "Disease",
+   "f1": 0.8367,
+   "ic95": [
+    0.8154,
+    0.8566
+   ],
+   "precision": 0.8615,
+   "recall": 0.8133
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": 0.0453,
+   "ic95": [
+    0.0331,
+    0.0587
+   ],
+   "significativa": true
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": 0.0338,
+   "ic95": [
+    0.0212,
+    0.0475
+   ],
+   "significativa": true
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": 0.0365,
+   "ic95": [
+    0.0236,
+    0.0511
+   ],
+   "significativa": true
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s42",
+   "tipo": "Disease",
+   "dif_F1": 0.0197,
+   "ic95": [
+    0.0089,
+    0.0304
+   ],
+   "significativa": true
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s43",
+   "tipo": "Disease",
+   "dif_F1": 0.0314,
+   "ic95": [
+    0.0188,
+    0.0451
+   ],
+   "significativa": true
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s44",
+   "tipo": "Disease",
+   "dif_F1": 0.0126,
+   "ic95": [
+    0.0014,
+    0.024
+   ],
+   "significativa": true
+  },
+  {
+   "tipo": "Medication",
+   "f1": 0.8315,
+   "ic95": [
+    0.7586,
+    0.8889
+   ],
+   "precision": 0.8605,
+   "recall": 0.8043
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": -0.0226,
+   "ic95": [
+    -0.0664,
+    0.0154
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": -0.001,
+   "ic95": [
+    -0.052,
+    0.0481
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": -0.0028,
+   "ic95": [
+    -0.0407,
+    0.0326
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s42",
+   "tipo": "Medication",
+   "dif_F1": 0.0903,
+   "ic95": [
+    -0.0004,
+    0.1797
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s43",
+   "tipo": "Medication",
+   "dif_F1": 0.0073,
+   "ic95": [
+    -0.0374,
+    0.0578
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s44",
+   "tipo": "Medication",
+   "dif_F1": 0.0147,
+   "ic95": [
+    -0.0321,
+    0.0605
+   ],
+   "significativa": false
+  },
+  {
+   "tipo": "Abbreviation",
+   "f1": 0.957,
+   "ic95": [
+    0.945,
+    0.9679
+   ],
+   "precision": 0.9614,
+   "recall": 0.9527
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0067,
+   "ic95": [
+    0.0008,
+    0.0135
+   ],
+   "significativa": true
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0032,
+   "ic95": [
+    -0.0022,
+    0.0089
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "espanol_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0118,
+   "ic95": [
+    0.0057,
+    0.0187
+   ],
+   "significativa": true
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s42",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.005,
+   "ic95": [
+    -0.0012,
+    0.0114
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s43",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0022,
+   "ic95": [
+    -0.0032,
+    0.0076
+   ],
+   "significativa": false
+  },
+  {
+   "A": "votación 6",
+   "B": "chileno_clinico s44",
+   "tipo": "Abbreviation",
+   "dif_F1": 0.0068,
+   "ic95": [
+    -0.0003,
+    0.0146
+   ],
+   "significativa": false
+  }
+ ],
+ "mal_escritas": [
+  {
+   "A": "Gemini zero-shot",
+   "B": "espanol_clinico s42",
+   "n": 31,
+   "dif_recall": 0.2258,
+   "ic95": [
+    0.0,
+    0.4333
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "espanol_clinico s43",
+   "n": 31,
+   "dif_recall": 0.3226,
+   "ic95": [
+    0.1212,
+    0.5165
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "espanol_clinico s44",
+   "n": 31,
+   "dif_recall": 0.2258,
+   "ic95": [
+    0.0323,
+    0.4062
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "chileno_clinico s42",
+   "n": 31,
+   "dif_recall": 0.1935,
+   "ic95": [
+    0.0,
+    0.3871
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "chileno_clinico s43",
+   "n": 31,
+   "dif_recall": 0.2258,
+   "ic95": [
+    0.0,
+    0.4333
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "chileno_clinico s44",
+   "n": 31,
+   "dif_recall": 0.2258,
+   "ic95": [
+    0.0312,
+    0.4333
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "rigoberta_clinico s42",
+   "n": 31,
+   "dif_recall": 0.2581,
+   "ic95": [
+    0.0323,
+    0.4852
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "rigoberta_clinico s43",
+   "n": 31,
+   "dif_recall": 0.1613,
+   "ic95": [
+    -0.0341,
+    0.3667
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini zero-shot",
+   "B": "rigoberta_clinico s44",
+   "n": 31,
+   "dif_recall": 0.2258,
+   "ic95": [
+    0.0618,
+    0.4194
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s42",
+   "n": 31,
+   "dif_recall": 0.1613,
+   "ic95": [
+    -0.034,
+    0.3667
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s43",
+   "n": 31,
+   "dif_recall": 0.2581,
+   "ic95": [
+    0.0625,
+    0.4548
+   ],
+   "significativa": true
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "espanol_clinico s44",
+   "n": 31,
+   "dif_recall": 0.1613,
+   "ic95": [
+    -0.0646,
+    0.3669
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s42",
+   "n": 31,
+   "dif_recall": 0.129,
+   "ic95": [
+    -0.0333,
+    0.3
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s43",
+   "n": 31,
+   "dif_recall": 0.1613,
+   "ic95": [
+    -0.0626,
+    0.3753
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "chileno_clinico s44",
+   "n": 31,
+   "dif_recall": 0.1613,
+   "ic95": [
+    -0.0333,
+    0.3667
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "rigoberta_clinico s42",
+   "n": 31,
+   "dif_recall": 0.1935,
+   "ic95": [
+    -0.0323,
+    0.4062
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "rigoberta_clinico s43",
+   "n": 31,
+   "dif_recall": 0.0968,
+   "ic95": [
+    -0.0969,
+    0.2903
+   ],
+   "significativa": false
+  },
+  {
+   "A": "Gemini dinámico",
+   "B": "rigoberta_clinico s44",
+   "n": 31,
+   "dif_recall": 0.1613,
+   "ic95": [
+    0.0,
+    0.3438
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s42",
+   "n": 31,
+   "dif_recall": 0.129,
+   "ic95": [
+    -0.0938,
+    0.3438
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s43",
+   "n": 31,
+   "dif_recall": 0.2258,
+   "ic95": [
+    0.0,
+    0.4375
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "espanol_clinico s44",
+   "n": 31,
+   "dif_recall": 0.129,
+   "ic95": [
+    -0.0968,
+    0.3438
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s42",
+   "n": 31,
+   "dif_recall": 0.0968,
+   "ic95": [
+    -0.0968,
+    0.2903
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s43",
+   "n": 31,
+   "dif_recall": 0.129,
+   "ic95": [
+    -0.0645,
+    0.3226
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "chileno_clinico s44",
+   "n": 31,
+   "dif_recall": 0.129,
+   "ic95": [
+    -0.0333,
+    0.3
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "rigoberta_clinico s42",
+   "n": 31,
+   "dif_recall": 0.1613,
+   "ic95": [
+    -0.0333,
+    0.375
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "rigoberta_clinico s43",
+   "n": 31,
+   "dif_recall": 0.0645,
+   "ic95": [
+    -0.0938,
+    0.2258
+   ],
+   "significativa": false
+  },
+  {
+   "A": "GPT-5.2 dinámico",
+   "B": "rigoberta_clinico s44",
+   "n": 31,
+   "dif_recall": 0.129,
+   "ic95": [
+    -0.0667,
+    0.3125
+   ],
+   "significativa": false
+  }
+ ]
+}
