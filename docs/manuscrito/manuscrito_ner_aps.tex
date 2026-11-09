@@ -84,7 +84,7 @@ Las contribuciones son cuatro. Primero, una comparación de dieciséis sistemas 
 
 \subsection{Corpus}
 
-Usamos la versión 4 del CWLC (Zenodo 5591011), en los archivos CoNLL que publicaron Báez et al. \cite{baez2022}. El corpus contiene derivaciones desidentificadas de la lista de espera no GES, escritas por médicos y dentistas de APS y anotadas por profesionales de la salud con siete tipos de entidad. La licencia es CC BY-NC-SA 4.0. Mantuvimos la partición oficial en oraciones: 8.014 de entrenamiento, 890 de validación y 990 de prueba. Así los resultados son comparables con los de Báez et al.
+Usamos la versión 4 del CWLC (Zenodo 5591011), en los archivos CoNLL que publicaron Báez et al. \cite{baez2022}. El corpus contiene derivaciones desidentificadas de la lista de espera no GES, escritas y anotadas por médicos y dentistas, con siete tipos de entidad. La licencia es CC BY-NC-SA 4.0. Mantuvimos la partición oficial en oraciones: 8.014 de entrenamiento, 890 de validación y 990 de prueba. Así los resultados son comparables con los de Báez et al.
 
 Trabajamos con tres tipos de entidad (Tabla~\ref{tab:corpus}). Enfermedad y medicamento son las entidades con valor clínico directo. Abreviatura mide lo más propio del texto de APS. Las entidades pueden anidarse: una abreviatura suele estar dentro de una enfermedad (``DM2'' dentro de ``DM2 descompensada''). El 11,1\,\% de las enfermedades del test (119) se superpone con una abreviatura anotada. Con esos casos medimos H3, aunque con intervalos más anchos.
 
@@ -137,7 +137,7 @@ Para conservar el anidamiento entrenamos un etiquetador BIO independiente por ti
 \subsubsection{E2: LLM con prompting}
 El prompt incluye la tarea, una guía de anotación redactada solo a partir del conjunto de entrenamiento y un esquema JSON que restringe la salida a una lista de pares \{tipo, texto\}. Usamos temperatura 0 y semilla fija. Un programa busca cada texto devuelto dentro de la oración, prefiriendo palabras completas, y lo convierte en posiciones de carácter. Lo que no aparece en la oración se descarta y se cuenta como alucinación. Con respuestas perfectas, este paso de ubicación pierde menos de 0,5 puntos de F1. En el \emph{few-shot} fijo usamos tres sets de cinco ejemplos elegidos al azar y reportamos la media. En el dinámico, BM25 \cite{robertson2009} recupera las cinco oraciones de entrenamiento más parecidas a cada oración de prueba. En el 8,3\,\% del test el ejemplo recuperado es la misma oración, repetida en entrenamiento; el análisis sin duplicados controla esa fuga.
 
-Los LLM comerciales recibieron el mismo prompt, la misma guía y los mismos ejemplos. GPT-5.2 se usó con esfuerzo de razonamiento bajo; no acepta temperatura y ese parámetro se omitió. Gemini 3.1 Pro (\texttt{gemini-3.1-pro-preview}) se corrió durante varios días por el límite de 250 consultas diarias; cada respuesta registra la versión servida. Enviar el test a una API es aceptable aquí porque el CWLC es público y desidentificado. Con fichas reales no lo sería.
+Los LLM comerciales recibieron el mismo prompt, la misma guía y los mismos ejemplos. GPT-5.2 se usó con esfuerzo de razonamiento bajo; no acepta temperatura y ese parámetro se omitió. Gemini 3.1 Pro (\texttt{gemini-3.1-pro-preview}) se corrió durante varios días por el límite de 250 consultas diarias. Registramos la versión servida en cada respuesta que la informó, y omitimos la semilla, que Gemini no aceptó. Enviar el test a una API es aceptable aquí porque el CWLC es público y desidentificado. Con fichas reales no lo sería.
 
 \subsubsection{E4: LLM como anotador}
 Simulamos un centro con mucho texto y poca anotación. Qwen 2.5 7B, el LLM local más confiable de E2, etiquetó 2.000 oraciones de entrenamiento. Con $N=0$ lo hizo en \emph{zero-shot}; con $N>0$ recibió los cinco ejemplos más parecidos buscados solo dentro de las $N$ oraciones \emph{gold}. Luego entrenamos el encoder español con esas etiquetas \emph{silver} más las $N$ oraciones \emph{gold}, y comparamos con el mismo encoder entrenado solo con las $N$ oraciones \emph{gold}. Como en ese escenario no existiría un conjunto de validación, usamos la última época y fijamos un mínimo de 300 actualizaciones de pesos para que los conjuntos pequeños no queden sin entrenar.
@@ -163,7 +163,7 @@ Cada resultado guarda la huella SHA-256 de los 21 archivos del corpus, de la con
 
 \subsection{Desempeño global}
 
-La Fig.~\ref{fig:comparacion} y la Tabla~\ref{tab:resultados} muestran el F1 estricto de todos los sistemas. Los encoders ajustados obtuvieron los valores más altos en enfermedad y abreviatura. El encoder chileno llegó a 0,815 en enfermedad y los tres encoders quedaron entre 0,946 y 0,952 en abreviatura. En medicamento el encoder español (0,840) y Gemini 3.1 Pro con ejemplos dinámicos (0,844) quedaron empatados. Sin las oraciones repetidas, el F1 de los encoders bajó como máximo 0,007, así que la fuga detectada en la auditoría no explica estos valores.
+La Fig.~\ref{fig:comparacion} y la Tabla~\ref{tab:resultados} muestran el F1 estricto de todos los sistemas. Los encoders ajustados obtuvieron los valores más altos en enfermedad y abreviatura. El encoder chileno llegó a 0,815 en enfermedad y los tres encoders quedaron entre 0,946 y 0,952 en abreviatura. En medicamento el encoder español (0,840) y Gemini 3.1 Pro con ejemplos dinámicos (0,844) quedaron empatados. Sin las oraciones repetidas, el F1 de los encoders bajó menos de un punto (como máximo 0,009 en una semilla), así que la fuga detectada en la auditoría no explica estos valores.
 
 \begin{figure*}[!t]
 \centering
@@ -174,14 +174,14 @@ La Fig.~\ref{fig:comparacion} y la Tabla~\ref{tab:resultados} muestran el F1 est
 
 \begin{table}[!t]
 \centering
-\caption{F1 estricto en el test (media $\pm$ DE de 3 semillas para E1)}
+\caption{F1 estricto en el test (media $\pm$ DE de 3 semillas para E1). En negrita, el mayor valor de cada columna entre los sistemas individuales}
 \label{tab:resultados}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lccc}
 \toprule
 Sistema & Enfermedad & Medicamento & Abreviatura \\
 \midrule
-E1 español & 0,798 $\pm$ 0,006 & \textbf{0,840} $\pm$ 0,012 & 0,950 $\pm$ 0,004 \\
+E1 español & 0,798 $\pm$ 0,006 & 0,840 $\pm$ 0,012 & 0,950 $\pm$ 0,004 \\
 E1 chileno & \textbf{0,815} $\pm$ 0,010 & 0,794 $\pm$ 0,046 & \textbf{0,952} $\pm$ 0,002 \\
 E1 RigoBERTa & 0,803 $\pm$ 0,004 & 0,780 $\pm$ 0,015 & 0,946 $\pm$ 0,013 \\
 \midrule
@@ -200,7 +200,7 @@ Gemini 3.1 dinámico & 0,717 & \textbf{0,844} & 0,901 \\
 E4 \emph{silver} + 50 \emph{gold} & 0,644 & 0,406$^\dagger$ & 0,592 \\
 E4 \emph{silver} + 100 \emph{gold} & 0,650 & 0,674 & 0,634 \\
 \midrule
-Votación (6 encoders) & \textbf{0,837} & 0,831 & \textbf{0,957} \\
+Votación (6 encoders) & 0,837 & 0,831 & 0,957 \\
 \bottomrule
 \multicolumn{4}{l}{\footnotesize $^\dagger$Una de las tres semillas colapsó y no marcó ninguna entidad (Sec.~\ref{sec:e4}).}
 \end{tabular}
@@ -212,7 +212,7 @@ Entre los encoders base, el chileno superó al español en enfermedad por 2,6 y 
 
 \subsection{LLM: el efecto de la estrategia}
 
-Sin ejemplos, los LLM locales quedaron lejos: entre 0,45 y 0,59 de F1 estricto. Llama 3.1 8B en \emph{zero-shot} inventó el 52,5\,\% de las menciones que devolvió y produjo 22 JSON inválidos. Los ejemplos dinámicos mejoraron a los cuatro LLM en las tres entidades (Fig.~\ref{fig:estrategias}), lo que apoya H2. Respecto de los ejemplos fijos, el \emph{few-shot} dinámico sumó 12,4 y 10,3 puntos en enfermedad y 10,0 y 8,8 en abreviatura (Llama y Qwen, respectivamente, todos significativos), dentro del rango de 5 a 9 puntos que reporta la literatura o algo por encima \cite{ge2026}. Al quitar las oraciones repetidas, la ventaja bajó solo 1,5 puntos: no viene de copiar oraciones idénticas.
+Sin ejemplos, los LLM locales quedaron lejos: entre 0,45 y 0,59 de F1 estricto. Llama 3.1 8B en \emph{zero-shot} inventó el 52,5\,\% de las menciones que devolvió y produjo 22 JSON inválidos. Los ejemplos dinámicos mejoraron a los cuatro LLM en las tres entidades (Fig.~\ref{fig:estrategias}), lo que apoya H2. Respecto de los ejemplos fijos, el \emph{few-shot} dinámico sumó 12,4 y 10,3 puntos en enfermedad y 10,0 y 8,8 en abreviatura (Llama y Qwen, respectivamente, todos significativos), dentro del rango de 5 a 9 puntos que reporta la literatura o algo por encima \cite{ge2026}. Al quitar las oraciones repetidas, la ventaja en enfermedad casi no cambió (12,4 puntos en Llama y 9,8 en Qwen): no viene de copiar oraciones idénticas.
 
 \begin{figure*}[!t]
 \centering
@@ -223,7 +223,7 @@ Sin ejemplos, los LLM locales quedaron lejos: entre 0,45 y 0,59 de F1 estricto. 
 
 Aun con la mejor estrategia, el mejor LLM local quedó 13,5 a 15,2 puntos bajo los encoders en enfermedad, 14,3 bajo el encoder español en medicamento y 24,7 a 24,9 en abreviatura. Todas esas diferencias fueron significativas contra cada semilla de E1. En enfermedad la distancia está en el extremo alto de lo que reporta la literatura en español \cite{naguib2024}. La debilidad de los LLM locales fue la precisión: Qwen con ejemplos dinámicos encontró el 71\,\% de las enfermedades, pero solo el 62\,\% de lo que marcó era correcto. Su F1 laxo en enfermedad (0,793) quedó 13 puntos sobre el estricto; en los encoders esa diferencia fue de 10 puntos. Qwen resultó más confiable que Llama: con ejemplos dinámicos inventó el 5,2\,\% de las menciones, contra el 19,4\,\% de Llama, y no rompió ningún JSON.
 
-Los LLM comerciales achicaron la distancia sin cerrarla en dos de tres entidades, lo que apoya H5 de forma parcial. GPT-5.2 con ejemplos dinámicos llegó a 0,727 en enfermedad y 0,887 en abreviatura, y casi no alucinó (0,4\,\%). Gemini 3.1 Pro llegó a 0,717 y 0,901, y alcanzó al encoder en medicamento (0,844 contra 0,840 del encoder español, diferencia no significativa). Frente a GPT-5.2, Gemini fue mejor en medicamento (+0,073; IC 95\,\% de 0,027 a 0,135) y no hubo diferencias significativas en las otras dos entidades. Frente a E1, Gemini quedó entre 7 y 11 puntos abajo en enfermedad y entre 4 y 5 en abreviatura, significativo en las tres semillas. Gemini tuvo el recall más alto de todos los sistemas en enfermedad (0,839), pero con una precisión de 0,626 y una tasa de alucinación del 14\,\%.
+Los LLM comerciales achicaron la distancia sin cerrarla en dos de tres entidades, lo que apoya H5 de forma parcial. GPT-5.2 con ejemplos dinámicos llegó a 0,727 en enfermedad y 0,887 en abreviatura, y casi no alucinó (0,4\,\%). Gemini 3.1 Pro llegó a 0,717 y 0,901, y alcanzó al encoder en medicamento (0,844 contra 0,840 del encoder español, diferencia no significativa). Frente a GPT-5.2, Gemini fue mejor en medicamento (+0,073; IC 95\,\% de 0,027 a 0,135) y no hubo diferencias significativas en las otras dos entidades. Frente a E1, Gemini quedó entre 7 y 11 puntos abajo en enfermedad y entre 4 y 5 en abreviatura, significativo en las tres semillas. Gemini tuvo el recall más alto entre los LLM en enfermedad (0,839), a la par del encoder chileno (0,836 de media), pero con una precisión de 0,626 y una tasa de alucinación del 14\,\%.
 
 Los ejemplos dinámicos también mejoraron a los modelos comerciales: GPT-5.2 subió 8 puntos en enfermedad y 11 en abreviatura. El costo total de las 990 oraciones con ambas estrategias fue de 4,26 dólares con GPT-5.2 y de 4,46 con Gemini (Tabla~\ref{tab:costos}).
 
@@ -267,11 +267,11 @@ La Fig.~\ref{fig:e4} muestra la curva de E4. El alumno superó a su maestro en e
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.95\textwidth]{figuras/fig_destilacion_e4.pdf}
-\caption{Destilación (E4): F1 estricto medio de tres semillas según las oraciones \emph{gold} disponibles. El maestro es Qwen 2.5 7B; su F1 se mide contra el \emph{gold} de las 2.000 oraciones que etiquetó. En medicamento, con $N=0$, 10 y 50, una semilla del alumno colapsó y no marcó ninguna entidad; la media incluye esa semilla.}
+\caption{Destilación (E4): F1 estricto medio de tres semillas según las oraciones \emph{gold} disponibles. El maestro es Qwen 2.5 7B; su F1 se mide contra el \emph{gold} de las 2.000 oraciones que etiquetó. En medicamento, con $N=0$, 10 y 50, una semilla del alumno colapsó y no marcó ninguna entidad; la media incluye esa semilla. El modelo entrenado solo con 10 oraciones \emph{gold} de medicamento obtuvo F1 0 en las tres semillas.}
 \label{fig:e4}
 \end{figure*}
 
-H4 no se cumplió. Con 50 oraciones \emph{gold}, el alumno quedó 15 a 16 puntos bajo E1 en enfermedad, 23 en medicamento (con las dos semillas que no colapsaron) y 36 en abreviatura. En abreviatura las etiquetas \emph{silver} estorbaron: con 100 oraciones, entrenar solo con \emph{gold} dio 0,729 y agregar \emph{silver} bajó el F1 a 0,634. El maestro tuvo precisión alta (0,90) y recall bajo (0,49) en esa entidad porque no conocía las convenciones del corpus, y el alumno heredó ese sesgo. El maestro local rindió entre 0,50 y 0,69 de F1 según la entidad, y esa calidad puso el techo del alumno.
+H4 no se cumplió. Con 50 oraciones \emph{gold}, el alumno quedó 15 a 17 puntos bajo E1 en enfermedad, 23 en medicamento (con las dos semillas que no colapsaron) y 36 en abreviatura. En abreviatura las etiquetas \emph{silver} estorbaron: con 100 oraciones, entrenar solo con \emph{gold} dio 0,729 y agregar \emph{silver} bajó el F1 a 0,634. El maestro tuvo precisión alta (0,90) y recall bajo (0,49) en esa entidad porque no conocía las convenciones del corpus, y el alumno heredó ese sesgo. El maestro local rindió entre 0,50 y 0,69 de F1 según la entidad, y esa calidad puso el techo del alumno.
 
 El colapso de una semilla en medicamento (F1 0 con la pérdida estancada) es la inestabilidad del ajuste fino en clases poco frecuentes que describen Dodge et al. y Mosbach et al. \cite{dodge2020,mosbach2021}. Lo reportamos en lugar de repetir la corrida con otra semilla.
 
@@ -295,7 +295,7 @@ Los LLM con ejemplos dinámicos acertaron casi tantas enfermedades exactas como 
 \label{fig:subgrupos}
 \end{figure}
 
-Los LLM comerciales fueron mejores en dos subgrupos (Fig.~\ref{fig:subgrupos}). En las 31 enfermedades mal escritas, el recall de los encoders cayó de 0,82--0,84 a 0,52--0,56, mientras Gemini sin ejemplos se mantuvo en 0,77. La diferencia pareada entre Gemini y los encoders en esas 31 menciones fue de +0,19 a +0,32, con el límite inferior del intervalo en cero o apenas sobre cero. La tokenización ayuda a explicarlo: ``furosemida'' es una sola pieza para el encoder y ``FUSROSEMIDA'' son cinco, que nunca vio juntas en entrenamiento \cite{moradi2021}. En las 66 abreviaturas nunca vistas, los encoders base llegaron a 0,60 y los LLM comerciales a 0,71--0,76. En las 774 abreviaturas frecuentes, los encoders llegaron a 0,97--0,99. El encoder reconoce casi siempre la jerga que vio en entrenamiento y le cuesta la que no vio, que los LLM grandes deducen mejor. Los LLM locales no mostraron esa ventaja: en enfermedades nuevas su recall (0,56--0,60) quedó bajo el de los encoders (0,70--0,73).
+Los LLM comerciales fueron mejores en dos subgrupos (Fig.~\ref{fig:subgrupos}). En las 31 enfermedades mal escritas, el recall de los encoders cayó de 0,82--0,84 a 0,52--0,56, mientras Gemini sin ejemplos se mantuvo en 0,77. La diferencia pareada entre Gemini y los encoders en esas 31 menciones fue de +0,19 a +0,32, con el límite inferior del intervalo en cero o apenas sobre cero. La tokenización ayuda a explicarlo: ``furosemida'' es una sola pieza para el encoder y ``FUSROSEMIDA'' son cinco, que nunca vio juntas en entrenamiento \cite{moradi2021}. En las 66 abreviaturas nunca vistas, los encoders base llegaron a 0,60, los LLM comerciales con ejemplos dinámicos y Gemini sin ellos a 0,71--0,76, y GPT-5.2 sin ejemplos a 0,67. En las 774 abreviaturas frecuentes, los encoders llegaron a 0,97--0,99. El encoder reconoce casi siempre la jerga que vio en entrenamiento y le cuesta la que no vio, que los LLM grandes deducen mejor. Los LLM locales no mostraron esa ventaja: en enfermedades nuevas su recall (0,56--0,60) quedó bajo el de los encoders (0,70--0,73).
 
 Con esa complementariedad en mente probamos sistemas híbridos. Si se suman las enfermedades que encuentra el encoder y las que encuentra un LLM, el recall sube de 0,81--0,84 a 0,87--0,92. Probamos tres combinaciones simples: unión, rescate de las predicciones del LLM que no chocan con las del encoder, y rescate limitado a palabras que el encoder nunca vio. Las tres empeoraron el F1 en enfermedad de forma significativa, porque cada acierto que aporta el LLM llega acompañado de varios falsos positivos. Un híbrido útil necesitaría la confianza del encoder o un paso de verificación, y lo dejamos como trabajo futuro. Las palabras mal escritas son el 3\,\% de las enfermedades del test, así que no justifican por ahora un componente aparte.
 
@@ -316,8 +316,8 @@ La Tabla~\ref{tab:hipotesis} resume las hipótesis. El patrón que reporta la li
  & Resultado & Evidencia \\
 \midrule
 H1 & Apoyada & Mayor F1 en enfermedad y abreviatura; en medicamento, empate con Gemini dinámico \\
-H2 & Apoyada & Dinámico $>$ fijo y \emph{zero-shot} en los cuatro LLM \\
-H3 & Apoyada en enfermedad & Recall menor en enfermedades abreviadas para los cuatro LLM; el encoder chileno no tiene brecha \\
+H2 & Apoyada & Dinámico $>$ \emph{zero-shot} en los cuatro LLM y $>$ fijo en los dos locales \\
+H3 & Apoyada en enfermedad & Con ejemplos dinámicos, los cuatro LLM tienen menor recall en enfermedades abreviadas; el encoder chileno no tiene brecha \\
 H4 & No apoyada & Con 50 \emph{gold}, 15 a 36 puntos bajo E1 \\
 H5 & Apoyada en 2 de 3 & Los LLM comerciales quedan bajo E1 en enfermedad y abreviatura; Gemini empata en medicamento \\
 \bottomrule

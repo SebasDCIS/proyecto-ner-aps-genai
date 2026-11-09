@@ -152,7 +152,7 @@ async function icono(Comp, color, size = 256) {
   pres.addSection({ title: "Métodos" });
   s = pres.addSlide({ masterName: "CONTENIDO", sectionTitle: "Métodos" });
   s.addText("Chilean Waiting List Corpus", { placeholder: "title" });
-  s.addText("Derivaciones reales de APS, desidentificadas y anotadas por médicos y dentistas (Báez et al., 2022)", { placeholder: "body" });
+  s.addText("Derivaciones reales de APS, desidentificadas, escritas y anotadas por médicos y dentistas (Báez et al., 2022)", { placeholder: "body" });
   [["8.014", "oraciones de entrenamiento"], ["890", "de validación"], ["990", "de prueba"]].forEach(([n, t], i) => {
     s.addText(n, { x: 0.5, y: 1.45 + i * 0.95, w: 2.2, h: 0.6, fontSize: 36, bold: true, color: C.text2, isTextBox: true, margin: 0 });
     s.addText(t, { x: 0.5, y: 2.0 + i * 0.95, w: 2.6, h: 0.3, fontSize: 12, color: HEX.texto2, isTextBox: true, margin: 0 });
@@ -269,7 +269,7 @@ async function icono(Comp, color, size = 256) {
   // ------------------------------------------------------------------ 10 abreviaturas y escala
   s = pres.addSlide({ masterName: "CONTENIDO", sectionTitle: "Resultados" });
   s.addText("Abreviaturas y tamaño del modelo", { placeholder: "title" });
-  s.addText("Recall en enfermedades que contienen una abreviatura (n = 119) frente a las que no", { placeholder: "body" });
+  s.addText("Recall en enfermedades con abreviatura (n = 119) y sin ella; LLM con ejemplos dinámicos", { placeholder: "body" });
   s.addChart(pres.charts.BAR, [
     { name: "Con abreviatura", labels: ["E1 chileno", "E1 español", "Gemini din.", "GPT-5.2 din.", "Qwen din.", "Llama din."], values: [0.843, 0.790, 0.824, 0.748, 0.647, 0.655] },
     { name: "Sin abreviatura", labels: ["E1 chileno", "E1 español", "Gemini din.", "GPT-5.2 din.", "Qwen din.", "Llama din."], values: [0.835, 0.816, 0.841, 0.804, 0.723, 0.764] },
@@ -278,7 +278,7 @@ async function icono(Comp, color, size = 256) {
     valAxisMinVal: 0.5, valAxisMaxVal: 0.9, valAxisMajorUnit: 0.1, valAxisLabelFormatCode: "0.0", catAxisLabelFontSize: 10, objectName: "Gráfico abreviadas",
   }));
   tarjeta(s, 6.3, 1.45, 3.2, 1.55, "H3");
-  s.addText([{ text: "H3 se cumple en enfermedad", options: { bold: true, color: HEX.navy, breakLine: true, fontSize: 13.5 } }, { text: "Los 4 LLM pierden recall con abreviaturas. El encoder chileno no tiene esa brecha.", options: { color: HEX.texto2, fontSize: 11.5 } }], { x: 6.5, y: 1.58, w: 2.85, h: 1.35, isTextBox: true, margin: 0, valign: "top" });
+  s.addText([{ text: "H3 se cumple en enfermedad", options: { bold: true, color: HEX.navy, breakLine: true, fontSize: 13.5 } }, { text: "Con ejemplos dinámicos, los 4 LLM pierden recall con abreviaturas. El encoder chileno no tiene esa brecha.", options: { color: HEX.texto2, fontSize: 11.5 } }], { x: 6.5, y: 1.58, w: 2.85, h: 1.35, isTextBox: true, margin: 0, valign: "top" });
   tarjeta(s, 6.3, 3.2, 3.2, 1.65, "Escala");
   s.addText([{ text: "4,5× más grande, no mejor", options: { bold: true, color: HEX.navy, breakLine: true, fontSize: 13.5 } }, { text: "RigoBERTa Clinical (560M): 0,803 en enfermedad. No supera a los encoders base y no cupo en el Mac: se entrenó en una GPU A100.", options: { color: HEX.texto2, fontSize: 11.5 } }], { x: 6.5, y: 3.33, w: 2.85, h: 1.45, isTextBox: true, margin: 0, valign: "top" });
   s.addNotes("Con las abreviaturas, los cuatro LLM reconocen peor las enfermedades abreviadas, como DM2 o HTA. El encoder chileno no muestra esa diferencia, y en abreviadas le gana al español por 5 puntos. Es la señal más clara a favor de adaptar el modelo al texto local. También probamos si un modelo más grande sube el techo. RigoBERTa Clinical tiene 4,5 veces más parámetros y no ganó en ninguna entidad. Tampoco se pudo entrenar en el Mac del proyecto: necesitó una GPU de 80 GB.");
