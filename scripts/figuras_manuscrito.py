@@ -70,7 +70,7 @@ SISTEMAS = [  # (etiqueta, familia, función)
     ("Llama 3.1 8B · zero-shot", "local", lambda t: llm("results/e2_completo/llama3.1-8b_zero_shot.json", t)),
 ]
 COLOR = {"voto": VIOLETA, "enc": AZUL, "nube": AQUA, "local": NARANJA}
-LEYENDA = {"voto": "Votación de encoders", "enc": "Encoder ajustado (E1)", "nube": "LLM comercial (E2 nube)", "local": "LLM local 7–8B (E2)"}
+LEYENDA = {"voto": "Votación de encoders", "enc": "Encoder ajustado (E1)", "nube": "LLM comercial (E2 nube)", "local": "LLM local 7 y 8B (E2)"}
 
 
 def fig_comparacion():
