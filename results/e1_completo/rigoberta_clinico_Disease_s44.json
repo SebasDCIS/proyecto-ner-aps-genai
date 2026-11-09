@@ -1,0 +1,138 @@
+{
+  "config": {
+    "modelo": "IIC/RigoBERTa-Clinical",
+    "tipo": "Disease",
+    "epocas": 5,
+    "lr": 2e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 44,
+    "max_train": null,
+    "seleccion": "dev",
+    "acumular": 1,
+    "pasos_min": 0
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 0.29302788148829323,
+      "f1_dev": 0.6798082045817795,
+      "segundos": 128.8
+    },
+    {
+      "epoca": 2,
+      "perdida": 0.11693982117829803,
+      "f1_dev": 0.759650025733402,
+      "segundos": 130.0
+    },
+    {
+      "epoca": 3,
+      "perdida": 0.07886643304922683,
+      "f1_dev": 0.7879407256004088,
+      "segundos": 129.8
+    },
+    {
+      "epoca": 4,
+      "perdida": 0.05349794784123952,
+      "f1_dev": 0.8055698813821559,
+      "segundos": 128.8
+    },
+    {
+      "epoca": 5,
+      "perdida": 0.037097330045042384,
+      "f1_dev": 0.8069458631256383,
+      "segundos": 129.2
+    },
+    {
+      "semilla": {
+        "semilla": 44,
+        "determinista_solicitado": true,
+        "torch_determinista": true
+      },
+      "mejor_f1_dev": 0.8069458631256383,
+      "revision_modelo": null
+    }
+  ],
+  "resultados": {
+    "huella_predicciones": "4f2bc8fbad4a3bbc43ce77c0fcfdb4441b820f28d600abd5c9d9f23f1b88f0fb",
+    "estricto": {
+      "precision": 0.8012939001848429,
+      "recall": 0.8095238095238095,
+      "f1": 0.8053878309335811,
+      "ic95": [
+        0.7826427673226357,
+        0.8275321009800046
+      ],
+      "vp": 867,
+      "fp": 215,
+      "fn": 204
+    },
+    "laxo": {
+      "precision": 0.8937153419593346,
+      "recall": 0.9028944911297853,
+      "f1": 0.8973525313516024,
+      "ic95": [
+        0.8823775186207305,
+        0.9118456133481259
+      ],
+      "vp": 967,
+      "fp": 115,
+      "fn": 104
+    },
+    "abreviadas": {
+      "n_gold": 119,
+      "recall_estricto": 0.8319327731092437
+    },
+    "no_abreviadas": {
+      "n_gold": 952,
+      "recall_estricto": 0.8067226890756303
+    },
+    "test_sin_duplicados": {
+      "oraciones_excluidas": 96,
+      "f1_estricto": 0.7978303747534516,
+      "precision": 0.7946954813359528,
+      "recall": 0.800990099009901
+    },
+    "menciones_vistas": {
+      "n_gold": 656,
+      "recall_estricto": 0.8887195121951219
+    },
+    "menciones_nuevas": {
+      "n_gold": 415,
+      "recall_estricto": 0.6843373493975904
+    },
+    "clave": "rigoberta_clinico",
+    "minutos_total": 11.1,
+    "hardware": "Colab · NVIDIA A100-SXM4-80GB"
+  },
+  "huella": {
+    "config": "c729c023e63739c36b432e9d1460697838f7e80cea2438a2856a431497c555c4",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "2d5dfc9cf8b8a386913a0bd1d6679273e8e5cf7c",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.13.16",
+      "sistema": "Linux-6.6.159+-x86_64-with-glibc2.39",
+      "procesador": "x86_64",
+      "torch": "2.11.0+cu130",
+      "transformers": "5.22.0",
+      "numpy": "2.4.6",
+      "datasets": "4.8.5",
+      "ollama": null,
+      "mlx-lm": null,
+      "dispositivo": "cuda"
+    },
+    "datos_contenido": {
+      "train": "8f2ece1bab064380239c51a4c0408e324b4436d17a611980d0e4e8883f2dfc93",
+      "dev": "d5c763a7ccf5ec0abc3847c033e3bd4052fa16f75ac36dc510ead9b7b1878f59",
+      "test": "4ff6eb70e93b2ca9d95246f04aefdcf32f0afde51ff7ac7e7215e505e7856e54"
+    },
+    "modelo": {
+      "modelo": "IIC/RigoBERTa-Clinical",
+      "revision": "e52a07c957a3915a728c346b1ffa70e53edfc759"
+    }
+  }
+}

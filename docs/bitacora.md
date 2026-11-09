@@ -16,10 +16,13 @@ Se entrenó en Colab con una GPU A100 (80 GB), con lote 16 sin acumulación: los
 
 - **Lectura preliminar:** un modelo 4,5 veces más grande, preentrenado con el mayor corpus clínico en español, **no supera** al encoder base adaptado con derivaciones chilenas. Queda en Disease entre los dos encoders de E1, y bajo ambos en Medication y Abbreviation. Para este corpus pesa más el dominio local del preentrenamiento que la escala.
 - Medication tiene pocas menciones en el test (92), así que su IC es ancho: [0,66–0,85] con la semilla 42.
-- **Pendiente:**
-  - [ ] Comparación pareada por semilla (notebook 02b, sección 3).
-  - [ ] Votación con 9 modelos (notebook 05).
-  - Ambas necesitan las predicciones (`.pkl`) que están en Google Drive.
+- **Comparación pareada por semilla** (bootstrap, mismas oraciones; * = significativa):
+  - Disease: RigoBERTa empata con el español clínico (+0,003 a +0,008, ninguna significativa). Contra el chileno clínico pierde en 2 de 3 semillas (−0,018* y −0,019*; la otra empata).
+  - Medication: queda bajo el español clínico (−0,039 a −0,088; significativa en 1 de 3 semillas). Contra el chileno no hay diferencia significativa.
+  - Abbreviation: empata salvo con la semilla 42, que pierde contra ambos (−0,018* y −0,020*).
+  - Conclusión: RigoBERTa no supera de forma robusta (en las 3 semillas) a ningún encoder de E1, en ninguna entidad.
+- **Un matiz:** en abreviaturas que no aparecen en train (66 menciones) RigoBERTa tiene mejor recall: 0,662, contra 0,601 del chileno y 0,606 del español. Es coherente con un preentrenamiento clínico más amplio, pero es un subgrupo chico.
+- **Votación con 9 modelos** (3 semillas × 3 encoders, 5 de 9 votos): Disease 0,838 [0,818–0,860], prácticamente igual que con 6 modelos (0,837). Ya no es significativa contra todos los modelos individuales. Abbreviation 0,956, Medication 0,829. Sumar RigoBERTa no aporta: la ganancia de la votación viene de combinar semillas y los dos encoders base.
 
 ---
 

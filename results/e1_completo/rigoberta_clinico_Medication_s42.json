@@ -1,0 +1,138 @@
+{
+  "config": {
+    "modelo": "IIC/RigoBERTa-Clinical",
+    "tipo": "Medication",
+    "epocas": 5,
+    "lr": 2e-05,
+    "batch": 16,
+    "max_len": 512,
+    "paciencia": 2,
+    "semilla": 42,
+    "max_train": null,
+    "seleccion": "dev",
+    "acumular": 1,
+    "pasos_min": 0
+  },
+  "historial": [
+    {
+      "epoca": 1,
+      "perdida": 0.07220681014306154,
+      "f1_dev": 0.8135593220338984,
+      "segundos": 129.5
+    },
+    {
+      "epoca": 2,
+      "perdida": 0.007245145668065617,
+      "f1_dev": 0.8695652173913043,
+      "segundos": 129.8
+    },
+    {
+      "epoca": 3,
+      "perdida": 0.003983041154414079,
+      "f1_dev": 0.8663101604278075,
+      "segundos": 129.7
+    },
+    {
+      "epoca": 4,
+      "perdida": 0.002091172010437448,
+      "f1_dev": 0.8709677419354839,
+      "segundos": 129.4
+    },
+    {
+      "epoca": 5,
+      "perdida": 0.001030385995899743,
+      "f1_dev": 0.8709677419354839,
+      "segundos": 129.2
+    },
+    {
+      "semilla": {
+        "semilla": 42,
+        "determinista_solicitado": true,
+        "torch_determinista": true
+      },
+      "mejor_f1_dev": 0.8709677419354839,
+      "revision_modelo": null
+    }
+  ],
+  "resultados": {
+    "huella_predicciones": "0632d7f08ff5cd00f2753016ad6e3dfe3c82507671b21505e9c8a012c7c9c1b0",
+    "estricto": {
+      "precision": 0.75,
+      "recall": 0.782608695652174,
+      "f1": 0.7659574468085107,
+      "ic95": [
+        0.6620665371539584,
+        0.8474632394208104
+      ],
+      "vp": 72,
+      "fp": 24,
+      "fn": 20
+    },
+    "laxo": {
+      "precision": 0.8229166666666666,
+      "recall": 0.8586956521739131,
+      "f1": 0.8404255319148937,
+      "ic95": [
+        0.7515886749383307,
+        0.9051846128822382
+      ],
+      "vp": 79,
+      "fp": 17,
+      "fn": 13
+    },
+    "abreviadas": {
+      "n_gold": 23,
+      "recall_estricto": 0.7391304347826086
+    },
+    "no_abreviadas": {
+      "n_gold": 69,
+      "recall_estricto": 0.7971014492753623
+    },
+    "test_sin_duplicados": {
+      "oraciones_excluidas": 96,
+      "f1_estricto": 0.770053475935829,
+      "precision": 0.75,
+      "recall": 0.7912087912087912
+    },
+    "menciones_vistas": {
+      "n_gold": 57,
+      "recall_estricto": 0.8947368421052632
+    },
+    "menciones_nuevas": {
+      "n_gold": 35,
+      "recall_estricto": 0.6
+    },
+    "clave": "rigoberta_clinico",
+    "minutos_total": 11.0,
+    "hardware": "Colab · NVIDIA A100-SXM4-80GB"
+  },
+  "huella": {
+    "config": "e16762aab0fdd1127ab2ca8b8f150f1e37746df2d9f9da687a267d9473f60968",
+    "datos_archivos": "a507e8d915e5c017df4baa8369b26dbb010147f79fe2b1f9edf4a42cbff4ca5d",
+    "codigo": {
+      "commit": "2d5dfc9cf8b8a386913a0bd1d6679273e8e5cf7c",
+      "cambios_sin_commit": false
+    },
+    "entorno": {
+      "python": "3.13.16",
+      "sistema": "Linux-6.6.159+-x86_64-with-glibc2.39",
+      "procesador": "x86_64",
+      "torch": "2.11.0+cu130",
+      "transformers": "5.22.0",
+      "numpy": "2.4.6",
+      "datasets": "4.8.5",
+      "ollama": null,
+      "mlx-lm": null,
+      "dispositivo": "cuda"
+    },
+    "datos_contenido": {
+      "train": "8f2ece1bab064380239c51a4c0408e324b4436d17a611980d0e4e8883f2dfc93",
+      "dev": "d5c763a7ccf5ec0abc3847c033e3bd4052fa16f75ac36dc510ead9b7b1878f59",
+      "test": "4ff6eb70e93b2ca9d95246f04aefdcf32f0afde51ff7ac7e7215e505e7856e54"
+    },
+    "modelo": {
+      "modelo": "IIC/RigoBERTa-Clinical",
+      "revision": "e52a07c957a3915a728c346b1ffa70e53edfc759"
+    }
+  }
+}

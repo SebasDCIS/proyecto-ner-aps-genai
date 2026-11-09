@@ -1,6 +1,7 @@
 {
   "f1_estricto": {
     "Enfermedad": {
+      "E1 RigoBERTa (media 3 semillas)": 0.8034,
       "E1 chileno (media 3 semillas)": 0.8155,
       "E1 español (media 3 semillas)": 0.7982,
       "GPT-5.2 ej. parecidos": 0.7271,
@@ -13,6 +14,7 @@
       "Qwen 7B sin ejemplos": 0.5372
     },
     "Medicamento": {
+      "E1 RigoBERTa (media 3 semillas)": 0.78,
       "E1 chileno (media 3 semillas)": 0.794,
       "E1 español (media 3 semillas)": 0.8402,
       "GPT-5.2 ej. parecidos": 0.7716,
@@ -25,6 +27,7 @@
       "Qwen 7B sin ejemplos": 0.5889
     },
     "Abreviatura": {
+      "E1 RigoBERTa (media 3 semillas)": 0.9462,
       "E1 chileno (media 3 semillas)": 0.9523,
       "E1 español (media 3 semillas)": 0.9498,
       "GPT-5.2 ej. parecidos": 0.8865,
@@ -42,6 +45,7 @@
       "correcta": {
         "E1 español (s42)": 863,
         "E1 chileno (s42)": 895,
+        "E1 RigoBERTa (s42)": 861,
         "Llama 8B sin ejemplos": 608,
         "Llama 8B ej. parecidos": 805,
         "Qwen 7B sin ejemplos": 581,
@@ -54,6 +58,7 @@
       "más larga": {
         "E1 español (s42)": 57,
         "E1 chileno (s42)": 50,
+        "E1 RigoBERTa (s42)": 49,
         "Llama 8B sin ejemplos": 53,
         "Llama 8B ej. parecidos": 58,
         "Qwen 7B sin ejemplos": 116,
@@ -66,6 +71,7 @@
       "más corta": {
         "E1 español (s42)": 73,
         "E1 chileno (s42)": 61,
+        "E1 RigoBERTa (s42)": 73,
         "Llama 8B sin ejemplos": 300,
         "Llama 8B ej. parecidos": 82,
         "Qwen 7B sin ejemplos": 84,
@@ -78,6 +84,7 @@
       "desplazada": {
         "E1 español (s42)": 1,
         "E1 chileno (s42)": 2,
+        "E1 RigoBERTa (s42)": 2,
         "Llama 8B sin ejemplos": 6,
         "Llama 8B ej. parecidos": 2,
         "Qwen 7B sin ejemplos": 1,
@@ -90,6 +97,7 @@
       "espuria": {
         "E1 español (s42)": 116,
         "E1 chileno (s42)": 112,
+        "E1 RigoBERTa (s42)": 99,
         "Llama 8B sin ejemplos": 688,
         "Llama 8B ej. parecidos": 458,
         "Qwen 7B sin ejemplos": 310,
@@ -102,6 +110,7 @@
       "omitida": {
         "E1 español (s42)": 82,
         "E1 chileno (s42)": 72,
+        "E1 RigoBERTa (s42)": 93,
         "Llama 8B sin ejemplos": 187,
         "Llama 8B ej. parecidos": 127,
         "Qwen 7B sin ejemplos": 259,
@@ -116,6 +125,7 @@
       "correcta": {
         "E1 español (s42)": 79,
         "E1 chileno (s42)": 73,
+        "E1 RigoBERTa (s42)": 72,
         "Llama 8B sin ejemplos": 58,
         "Llama 8B ej. parecidos": 69,
         "Qwen 7B sin ejemplos": 53,
@@ -128,6 +138,7 @@
       "más larga": {
         "E1 español (s42)": 1,
         "E1 chileno (s42)": 0,
+        "E1 RigoBERTa (s42)": 3,
         "Llama 8B sin ejemplos": 2,
         "Llama 8B ej. parecidos": 1,
         "Qwen 7B sin ejemplos": 9,
@@ -140,6 +151,7 @@
       "más corta": {
         "E1 español (s42)": 2,
         "E1 chileno (s42)": 19,
+        "E1 RigoBERTa (s42)": 5,
         "Llama 8B sin ejemplos": 8,
         "Llama 8B ej. parecidos": 6,
         "Qwen 7B sin ejemplos": 6,
@@ -152,6 +164,7 @@
       "desplazada": {
         "E1 español (s42)": 0,
         "E1 chileno (s42)": 0,
+        "E1 RigoBERTa (s42)": 0,
         "Llama 8B sin ejemplos": 0,
         "Llama 8B ej. parecidos": 0,
         "Qwen 7B sin ejemplos": 0,
@@ -164,6 +177,7 @@
       "espuria": {
         "E1 español (s42)": 11,
         "E1 chileno (s42)": 13,
+        "E1 RigoBERTa (s42)": 16,
         "Llama 8B sin ejemplos": 97,
         "Llama 8B ej. parecidos": 30,
         "Qwen 7B sin ejemplos": 20,
@@ -176,6 +190,7 @@
       "omitida": {
         "E1 español (s42)": 9,
         "E1 chileno (s42)": 9,
+        "E1 RigoBERTa (s42)": 12,
         "Llama 8B sin ejemplos": 25,
         "Llama 8B ej. parecidos": 17,
         "Qwen 7B sin ejemplos": 25,
@@ -190,6 +205,7 @@
       "correcta": {
         "E1 español (s42)": 947,
         "E1 chileno (s42)": 952,
+        "E1 RigoBERTa (s42)": 923,
         "Llama 8B sin ejemplos": 460,
         "Llama 8B ej. parecidos": 672,
         "Qwen 7B sin ejemplos": 382,
@@ -202,6 +218,7 @@
       "más larga": {
         "E1 español (s42)": 4,
         "E1 chileno (s42)": 5,
+        "E1 RigoBERTa (s42)": 8,
         "Llama 8B sin ejemplos": 6,
         "Llama 8B ej. parecidos": 7,
         "Qwen 7B sin ejemplos": 3,
@@ -214,6 +231,7 @@
       "más corta": {
         "E1 español (s42)": 4,
         "E1 chileno (s42)": 3,
+        "E1 RigoBERTa (s42)": 2,
         "Llama 8B sin ejemplos": 7,
         "Llama 8B ej. parecidos": 6,
         "Qwen 7B sin ejemplos": 6,
@@ -226,6 +244,7 @@
       "desplazada": {
         "E1 español (s42)": 0,
         "E1 chileno (s42)": 0,
+        "E1 RigoBERTa (s42)": 0,
         "Llama 8B sin ejemplos": 0,
         "Llama 8B ej. parecidos": 0,
         "Qwen 7B sin ejemplos": 0,
@@ -238,6 +257,7 @@
       "espuria": {
         "E1 español (s42)": 45,
         "E1 chileno (s42)": 47,
+        "E1 RigoBERTa (s42)": 54,
         "Llama 8B sin ejemplos": 289,
         "Llama 8B ej. parecidos": 234,
         "Qwen 7B sin ejemplos": 98,
@@ -250,6 +270,7 @@
       "omitida": {
         "E1 español (s42)": 37,
         "E1 chileno (s42)": 31,
+        "E1 RigoBERTa (s42)": 54,
         "Llama 8B sin ejemplos": 520,
         "Llama 8B ej. parecidos": 304,
         "Qwen 7B sin ejemplos": 602,
@@ -265,6 +286,7 @@
     "Finding": {
       "E1 español (s42)": 77,
       "E1 chileno (s42)": 69,
+      "E1 RigoBERTa (s42)": 59,
       "Llama 8B sin ejemplos": 378,
       "Llama 8B ej. parecidos": 274,
       "Qwen 7B sin ejemplos": 161,
@@ -277,6 +299,7 @@
     "Body_Part + Finding": {
       "E1 español (s42)": 11,
       "E1 chileno (s42)": 11,
+      "E1 RigoBERTa (s42)": 8,
       "Llama 8B sin ejemplos": 60,
       "Llama 8B ej. parecidos": 48,
       "Qwen 7B sin ejemplos": 50,
@@ -289,6 +312,7 @@
     "ninguna entidad": {
       "E1 español (s42)": 13,
       "E1 chileno (s42)": 15,
+      "E1 RigoBERTa (s42)": 16,
       "Llama 8B sin ejemplos": 54,
       "Llama 8B ej. parecidos": 49,
       "Qwen 7B sin ejemplos": 17,
@@ -301,6 +325,7 @@
     "Abbreviation": {
       "E1 español (s42)": 6,
       "E1 chileno (s42)": 4,
+      "E1 RigoBERTa (s42)": 3,
       "Llama 8B sin ejemplos": 52,
       "Llama 8B ej. parecidos": 18,
       "Qwen 7B sin ejemplos": 16,
@@ -313,6 +338,7 @@
     "Procedure": {
       "E1 español (s42)": 3,
       "E1 chileno (s42)": 3,
+      "E1 RigoBERTa (s42)": 3,
       "Llama 8B sin ejemplos": 34,
       "Llama 8B ej. parecidos": 24,
       "Qwen 7B sin ejemplos": 11,
@@ -325,6 +351,7 @@
     "Abbreviation + Finding": {
       "E1 español (s42)": 1,
       "E1 chileno (s42)": 4,
+      "E1 RigoBERTa (s42)": 3,
       "Llama 8B sin ejemplos": 22,
       "Llama 8B ej. parecidos": 11,
       "Qwen 7B sin ejemplos": 11,
@@ -337,6 +364,7 @@
     "total espurias": {
       "E1 español (s42)": 116,
       "E1 chileno (s42)": 112,
+      "E1 RigoBERTa (s42)": 99,
       "Llama 8B sin ejemplos": 688,
       "Llama 8B ej. parecidos": 458,
       "Qwen 7B sin ejemplos": 310,
@@ -362,6 +390,7 @@
         "Llama 8B sin ejemplos": 0.5721,
         "Qwen 7B sin ejemplos": 0.5471,
         "Llama 8B ej. parecidos": 0.7577,
+        "E1 RigoBERTa (3 semillas)": 0.8221,
         "E1 chileno (3 semillas)": 0.8442,
         "E1 español (3 semillas)": 0.8218
       },
@@ -374,6 +403,7 @@
         "Llama 8B sin ejemplos": 0.4194,
         "Qwen 7B sin ejemplos": 0.3871,
         "Llama 8B ej. parecidos": 0.5484,
+        "E1 RigoBERTa (3 semillas)": 0.5591,
         "E1 chileno (3 semillas)": 0.5591,
         "E1 español (3 semillas)": 0.5161
       },
@@ -386,6 +416,7 @@
         "Llama 8B sin ejemplos": 0.1528,
         "Qwen 7B sin ejemplos": 0.16,
         "Llama 8B ej. parecidos": 0.2093,
+        "E1 RigoBERTa (3 semillas)": 0.263,
         "E1 chileno (3 semillas)": 0.2851,
         "E1 español (3 semillas)": 0.3057
       }
@@ -395,6 +426,7 @@
     "recall vistas": {
       "E1 español (3 semillas)": 0.8836,
       "E1 chileno (3 semillas)": 0.9014,
+      "E1 RigoBERTa (3 semillas)": 0.8892,
       "Llama 8B sin ejemplos": 0.6448,
       "Llama 8B ej. parecidos": 0.846,
       "Qwen 7B sin ejemplos": 0.6052,
@@ -407,6 +439,7 @@
     "recall nuevas": {
       "E1 español (3 semillas)": 0.7012,
       "E1 chileno (3 semillas)": 0.7325,
+      "E1 RigoBERTa (3 semillas)": 0.6964,
       "Llama 8B sin ejemplos": 0.4458,
       "Llama 8B ej. parecidos": 0.6024,
       "Qwen 7B sin ejemplos": 0.4434,
@@ -427,6 +460,7 @@
       "frecuente (≥10 en train)": {
         "E1 español (3 semillas)": 0.978,
         "E1 chileno (3 semillas)": 0.9854,
+        "E1 RigoBERTa (3 semillas)": 0.9711,
         "Llama 8B sin ejemplos": 0.4935,
         "Llama 8B ej. parecidos": 0.7313,
         "Qwen 7B sin ejemplos": 0.4315,
@@ -439,6 +473,7 @@
       "rara (1–9 en train)": {
         "E1 español (3 semillas)": 0.9499,
         "E1 chileno (3 semillas)": 0.9564,
+        "E1 RigoBERTa (3 semillas)": 0.9368,
         "Llama 8B sin ejemplos": 0.366,
         "Llama 8B ej. parecidos": 0.5294,
         "Qwen 7B sin ejemplos": 0.2353,
@@ -451,6 +486,7 @@
       "nunca vista en train": {
         "E1 español (3 semillas)": 0.6061,
         "E1 chileno (3 semillas)": 0.601,
+        "E1 RigoBERTa (3 semillas)": 0.6616,
         "Llama 8B sin ejemplos": 0.3333,
         "Llama 8B ej. parecidos": 0.3788,
         "Qwen 7B sin ejemplos": 0.1818,
@@ -493,6 +529,20 @@
     },
     {
       "tipo": "Enfermedad",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Llama 8B ej. parecidos",
+      "recall encoder": 0.8145,
+      "recall oráculo": 0.8789,
+      "solo LLM": 69.0,
+      "ΔF1 unión": -0.1159,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.108,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0229,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Enfermedad",
       "encoder": "E1 español",
       "LLM": "Qwen 7B ej. parecidos",
       "recall encoder": 0.8129,
@@ -517,6 +567,20 @@
       "ΔF1 rescate": -0.0711,
       "¿rescate significativo?": "empeora",
       "ΔF1 rescate dirigido": -0.0144,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Enfermedad",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Qwen 7B ej. parecidos",
+      "recall encoder": 0.8145,
+      "recall oráculo": 0.8708,
+      "solo LLM": 60.3333,
+      "ΔF1 unión": -0.0898,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0713,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0162,
       "¿rescate dirigido significativo?": "empeora"
     },
     {
@@ -549,6 +613,20 @@
     },
     {
       "tipo": "Enfermedad",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "GPT-5.2 ej. parecidos",
+      "recall encoder": 0.8145,
+      "recall oráculo": 0.8929,
+      "solo LLM": 84.0,
+      "ΔF1 unión": -0.0593,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0516,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0118,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Enfermedad",
       "encoder": "E1 español",
       "LLM": "Gemini 3.1 Pro sin ejemplos",
       "recall encoder": 0.8129,
@@ -577,6 +655,20 @@
     },
     {
       "tipo": "Enfermedad",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Gemini 3.1 Pro sin ejemplos",
+      "recall encoder": 0.8145,
+      "recall oráculo": 0.9203,
+      "solo LLM": 113.3333,
+      "ΔF1 unión": -0.1446,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.1393,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0293,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Enfermedad",
       "encoder": "E1 español",
       "LLM": "Gemini 3.1 Pro ej. parecidos",
       "recall encoder": 0.8129,
@@ -601,6 +693,20 @@
       "ΔF1 rescate": -0.0845,
       "¿rescate significativo?": "empeora",
       "ΔF1 rescate dirigido": -0.0206,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Enfermedad",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.8145,
+      "recall oráculo": 0.9091,
+      "solo LLM": 101.3333,
+      "ΔF1 unión": -0.0807,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0805,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0196,
       "¿rescate dirigido significativo?": "empeora"
     },
     {
@@ -633,6 +739,20 @@
     },
     {
       "tipo": "Medicamento",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Llama 8B ej. parecidos",
+      "recall encoder": 0.7826,
+      "recall oráculo": 0.8587,
+      "solo LLM": 7.0,
+      "ΔF1 unión": -0.0766,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0858,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0516,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Medicamento",
       "encoder": "E1 español",
       "LLM": "Qwen 7B ej. parecidos",
       "recall encoder": 0.8478,
@@ -657,6 +777,20 @@
       "ΔF1 rescate": -0.0434,
       "¿rescate significativo?": "no",
       "ΔF1 rescate dirigido": -0.0383,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Medicamento",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Qwen 7B ej. parecidos",
+      "recall encoder": 0.7826,
+      "recall oráculo": 0.8333,
+      "solo LLM": 4.6667,
+      "ΔF1 unión": -0.0577,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0537,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0455,
       "¿rescate dirigido significativo?": "empeora"
     },
     {
@@ -689,6 +823,20 @@
     },
     {
       "tipo": "Medicamento",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "GPT-5.2 ej. parecidos",
+      "recall encoder": 0.7826,
+      "recall oráculo": 0.8732,
+      "solo LLM": 8.3333,
+      "ΔF1 unión": -0.0336,
+      "¿unión significativo?": "no",
+      "ΔF1 rescate": -0.0511,
+      "¿rescate significativo?": "no",
+      "ΔF1 rescate dirigido": -0.0311,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Medicamento",
       "encoder": "E1 español",
       "LLM": "Gemini 3.1 Pro sin ejemplos",
       "recall encoder": 0.8478,
@@ -717,6 +865,20 @@
     },
     {
       "tipo": "Medicamento",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Gemini 3.1 Pro sin ejemplos",
+      "recall encoder": 0.7826,
+      "recall oráculo": 0.9203,
+      "solo LLM": 12.6667,
+      "ΔF1 unión": -0.0426,
+      "¿unión significativo?": "no",
+      "ΔF1 rescate": -0.0684,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0299,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Medicamento",
       "encoder": "E1 español",
       "LLM": "Gemini 3.1 Pro ej. parecidos",
       "recall encoder": 0.8478,
@@ -741,6 +903,20 @@
       "ΔF1 rescate": -0.0034,
       "¿rescate significativo?": "no",
       "ΔF1 rescate dirigido": 0.0037,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Medicamento",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.7826,
+      "recall oráculo": 0.9239,
+      "solo LLM": 13.0,
+      "ΔF1 unión": 0.0184,
+      "¿unión significativo?": "no",
+      "ΔF1 rescate": -0.0101,
+      "¿rescate significativo?": "no",
+      "ΔF1 rescate dirigido": -0.003,
       "¿rescate dirigido significativo?": "no"
     },
     {
@@ -773,6 +949,20 @@
     },
     {
       "tipo": "Abreviatura",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Llama 8B ej. parecidos",
+      "recall encoder": 0.9453,
+      "recall oráculo": 0.9634,
+      "solo LLM": 18.0,
+      "ΔF1 unión": -0.0879,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0854,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0116,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Abreviatura",
       "encoder": "E1 español",
       "LLM": "Qwen 7B ej. parecidos",
       "recall encoder": 0.949,
@@ -797,6 +987,20 @@
       "ΔF1 rescate": -0.0807,
       "¿rescate significativo?": "empeora",
       "ΔF1 rescate dirigido": -0.0093,
+      "¿rescate dirigido significativo?": "empeora"
+    },
+    {
+      "tipo": "Abreviatura",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Qwen 7B ej. parecidos",
+      "recall encoder": 0.9453,
+      "recall oráculo": 0.955,
+      "solo LLM": 9.6667,
+      "ΔF1 unión": -0.0811,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0784,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0108,
       "¿rescate dirigido significativo?": "empeora"
     },
     {
@@ -829,6 +1033,20 @@
     },
     {
       "tipo": "Abreviatura",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "GPT-5.2 ej. parecidos",
+      "recall encoder": 0.9453,
+      "recall oráculo": 0.9755,
+      "solo LLM": 30.0,
+      "ΔF1 unión": -0.0427,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0341,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": 0.0008,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Abreviatura",
       "encoder": "E1 español",
       "LLM": "Gemini 3.1 Pro sin ejemplos",
       "recall encoder": 0.949,
@@ -857,6 +1075,20 @@
     },
     {
       "tipo": "Abreviatura",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Gemini 3.1 Pro sin ejemplos",
+      "recall encoder": 0.9453,
+      "recall oráculo": 0.9765,
+      "solo LLM": 31.0,
+      "ΔF1 unión": -0.0488,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.0427,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": 0.0019,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Abreviatura",
       "encoder": "E1 español",
       "LLM": "Gemini 3.1 Pro ej. parecidos",
       "recall encoder": 0.949,
@@ -881,6 +1113,20 @@
       "ΔF1 rescate": -0.0379,
       "¿rescate significativo?": "empeora",
       "ΔF1 rescate dirigido": 0.0023,
+      "¿rescate dirigido significativo?": "no"
+    },
+    {
+      "tipo": "Abreviatura",
+      "encoder": "E1 RigoBERTa",
+      "LLM": "Gemini 3.1 Pro ej. parecidos",
+      "recall encoder": 0.9453,
+      "recall oráculo": 0.9745,
+      "solo LLM": 29.0,
+      "ΔF1 unión": -0.0418,
+      "¿unión significativo?": "empeora",
+      "ΔF1 rescate": -0.037,
+      "¿rescate significativo?": "empeora",
+      "ΔF1 rescate dirigido": -0.0001,
       "¿rescate dirigido significativo?": "no"
     }
   ],
@@ -958,45 +1204,82 @@
       "significativa vs todos": false
     },
     {
-      "ensamble": "Todos los encoders (6 modelos)",
+      "ensamble": "E1 RigoBERTa (3 semillas)",
       "tipo": "Enfermedad",
-      "votos mínimos": "4 de 6",
-      "F1 individual (media)": 0.8068,
-      "F1 votación": 0.8367,
-      "IC95": "0.815–0.857",
-      "P": 0.8615,
-      "R": 0.8133,
-      "mejora vs cada modelo": "+0.013 a +0.045",
-      "significativa vs todos": true
-    },
-    {
-      "ensamble": "Todos los encoders (6 modelos)",
-      "tipo": "Medicamento",
-      "votos mínimos": "4 de 6",
-      "F1 individual (media)": 0.8171,
-      "F1 votación": 0.8315,
-      "IC95": "0.759–0.889",
-      "P": 0.8605,
-      "R": 0.8043,
-      "mejora vs cada modelo": "-0.023 a +0.090",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.8034,
+      "F1 votación": 0.8185,
+      "IC95": "0.797–0.839",
+      "P": 0.8181,
+      "R": 0.8189,
+      "mejora vs cada modelo": "+0.013 a +0.019",
       "significativa vs todos": false
     },
     {
-      "ensamble": "Todos los encoders (6 modelos)",
+      "ensamble": "E1 RigoBERTa (3 semillas)",
+      "tipo": "Medicamento",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.78,
+      "F1 votación": 0.7892,
+      "IC95": "0.693–0.859",
+      "P": 0.7849,
+      "R": 0.7935,
+      "mejora vs cada modelo": "-0.006 a +0.023",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "E1 RigoBERTa (3 semillas)",
       "tipo": "Abreviatura",
-      "votos mínimos": "4 de 6",
-      "F1 individual (media)": 0.951,
-      "F1 votación": 0.957,
-      "IC95": "0.945–0.968",
-      "P": 0.9614,
-      "R": 0.9527,
-      "mejora vs cada modelo": "+0.002 a +0.012",
+      "votos mínimos": "2 de 3",
+      "F1 individual (media)": 0.9462,
+      "F1 votación": 0.9542,
+      "IC95": "0.940–0.966",
+      "P": 0.9537,
+      "R": 0.9547,
+      "mejora vs cada modelo": "-0.003 a +0.022",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "Todos los encoders (9 modelos)",
+      "tipo": "Enfermedad",
+      "votos mínimos": "5 de 9",
+      "F1 individual (media)": 0.8057,
+      "F1 votación": 0.838,
+      "IC95": "0.818–0.860",
+      "P": 0.8452,
+      "R": 0.831,
+      "mejora vs cada modelo": "+0.014 a +0.047",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "Todos los encoders (9 modelos)",
+      "tipo": "Medicamento",
+      "votos mínimos": "5 de 9",
+      "F1 individual (media)": 0.8047,
+      "F1 votación": 0.8287,
+      "IC95": "0.753–0.889",
+      "P": 0.8427,
+      "R": 0.8152,
+      "mejora vs cada modelo": "-0.025 a +0.088",
+      "significativa vs todos": false
+    },
+    {
+      "ensamble": "Todos los encoders (9 modelos)",
+      "tipo": "Abreviatura",
+      "votos mínimos": "5 de 9",
+      "F1 individual (media)": 0.9494,
+      "F1 votación": 0.9561,
+      "IC95": "0.944–0.967",
+      "P": 0.9576,
+      "R": 0.9547,
+      "mejora vs cada modelo": "-0.001 a +0.024",
       "significativa vs todos": false
     }
   ],
   "encoders": [
     "E1 español",
-    "E1 chileno"
+    "E1 chileno",
+    "E1 RigoBERTa"
   ],
   "sistemas_llm": [
     "Llama 8B sin ejemplos",
@@ -1010,7 +1293,7 @@
   ],
   "parciales": [],
   "codigo": {
-    "commit": "28907b4e89973f9341c96adee0d0c94a7cf39363",
-    "cambios_sin_commit": true
+    "commit": "8491ab451998302f83d65af3b9d0749c978531f0",
+    "cambios_sin_commit": false
   }
 }
