@@ -32,7 +32,7 @@ async function icono(Comp, color, size = 256) {
   const pres = new pptxgen();
   pres.layout = "LAYOUT_16x9"; // 10 x 5.625
   pres.author = "Sebastián Inostroza, Maite Bahamondes, Ruth Vergara";
-  pres.title = "Transferibilidad de NER clínico en derivaciones de APS chilena";
+  pres.title = "Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena";
   pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
   const C = pres.SchemeColor;
 
@@ -82,14 +82,14 @@ async function icono(Comp, color, size = 256) {
   let s = pres.addSlide({ masterName: "PORTADA", sectionTitle: "Introducción" });
   s.addImage({ path: path.join(DIR, "recursos/logo_uv_blanco.png"), x: 0.6, y: 0.45, w: 1.6, h: 0.75, objectName: "Logo UV" });
   s.addImage({ path: path.join(DIR, "recursos/logo_dcis_blanco.png"), x: 8.3, y: 0.35, w: 1.1, h: 0.77, objectName: "Logo DCIS" });
-  s.addText("¿Lo que funciona afuera funciona en la APS chilena?", { placeholder: "title" });
+  s.addText("Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos", { placeholder: "title" });
   s.addText([
-    { text: "Encoders ajustados y LLM generativos para reconocer entidades clínicas en derivaciones reales", options: { breakLine: true } },
+    { text: "para el reconocimiento de entidades clínicas de atención primaria chilena", options: { breakLine: true } },
     { text: " ", options: { breakLine: true, fontSize: 8 } },
     { text: "Sebastián Inostroza · Maite Bahamondes · Ruth Vergara", options: { fontSize: 13, color: "FFFFFF", bold: true } },
   ], { placeholder: "body" });
   s.addText("Inteligencia Artificial Generativa y Modelos Fundacionales · prof. Rodrigo Salas · Doctorado en Ciencias e Ingeniería para la Salud", { x: 0.6, y: 4.75, w: 8.8, h: 0.35, fontSize: 11, color: "C9D3E6", isTextBox: true, margin: 0 });
-  s.addNotes("Buenos días. Les vamos a contar un estudio de transferibilidad: tomamos las técnicas que la literatura internacional reporta como mejores para reconocer entidades clínicas en texto, y las probamos con derivaciones reales de la atención primaria chilena. Queremos saber si lo que se publica afuera se mantiene cuando el texto es nuestro.");
+  s.addNotes("Buenos días. Les vamos a presentar una evaluación comparativa. Con un mismo protocolo probamos encoders ajustados y modelos de lenguaje generativos sobre derivaciones reales de la atención primaria chilena, para saber cuál reconoce mejor enfermedades, medicamentos y abreviaturas en nuestro texto, y si ese orden coincide con lo que reporta la literatura.");
 
   // ------------------------------------------------------------------ 2 problema
   s = pres.addSlide({ masterName: "CONTENIDO", sectionTitle: "Introducción" });

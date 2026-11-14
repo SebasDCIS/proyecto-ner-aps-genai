@@ -1,6 +1,6 @@
 %==============================================================================
 % Manuscrito final - Electivo IA Generativa y Modelos Fundacionales (UV, 2026)
-% Transferibilidad de estrategias de NER clínico en derivaciones de APS chilena
+% Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena
 % Formato: IEEEtran (igual que el informe BME513). Compilar:
 %   pdflatex manuscrito_ner_aps && bibtex manuscrito_ner_aps && pdflatex x2
 %==============================================================================
@@ -27,13 +27,13 @@
     linkcolor=black,
     citecolor=blue,
     urlcolor=blue,
-    pdftitle={Transferibilidad de estrategias de NER clínico en derivaciones de APS chilena},
+    pdftitle={Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena},
     pdfauthor={Sebastián Inostroza, Maite Bahamondes, Ruth Vergara}
 }
 
 \newcommand{\ent}[1]{\textit{#1}}
 
-\title{¿Lo que funciona afuera funciona en la APS chilena? Encoders ajustados y LLM generativos para reconocer entidades clínicas en derivaciones reales}
+\title{Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena}
 
 \author{
     Sebasti\'an Inostroza Hurtado, Maite Bahamondes y Ruth Vergara
@@ -67,7 +67,7 @@ El problema es de dónde sale esa evidencia: casi siempre de casos clínicos pub
 
 La pregunta tiene un lado práctico. Algunos proveedores de ficha electrónica ya ofrecen herramientas de IA generativa en la APS chilena, sin métricas públicas. Por otra parte, la Ley 21.719 de protección de datos personales, que entra en vigencia en diciembre de 2026, restringe el envío de datos de salud a servicios externos \cite{ley21719}. Un CESFAM necesita saber qué estrategia funciona con modelos que pueda correr en sus propios equipos, y cuánto texto tendría que anotar.
 
-Planteamos este trabajo como un estudio de transferibilidad: aplicamos a derivaciones reales las estrategias que la literatura reporta como mejores y medimos si su orden se mantiene. Antes de correr cada experimento fijamos cinco hipótesis:
+Planteamos este trabajo como una evaluación comparativa: con un mismo protocolo y sobre derivaciones reales del CWLC, medimos qué modelos y qué formas de usarlos reconocen mejor las entidades clínicas del texto chileno, y contrastamos ese orden con el que reporta la literatura. Antes de correr cada experimento fijamos cinco hipótesis:
 
 \begin{itemize}
 \item \textbf{H1.} El encoder clínico ajustado obtiene el mayor F1 estricto.

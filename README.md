@@ -1,6 +1,6 @@
-# ¿Lo que funciona afuera funciona en la APS chilena?
+# Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena
 
-**Estudio de transferibilidad de estrategias de NER clínico, encoders y LLM generativos, sobre texto real de Atención Primaria chilena.**
+**Evaluación comparativa de NER clínico sobre derivaciones reales de Atención Primaria chilena (Chilean Waiting List Corpus).**
 
 Proyecto de investigación del curso *Inteligencia Artificial Generativa y Modelos Fundacionales* (prof. Rodrigo Salas, Doctorado en Ciencias e Ingeniería para la Salud, Universidad de Valparaíso), 2.º semestre 2026.
 
@@ -8,7 +8,7 @@ Equipo: Sebastián Inostroza, Maite Bahamondes, Ruth Vergara.
 
 ## Pregunta
 
-La literatura internacional dice qué estrategias funcionan mejor para reconocer entidades clínicas (NER) en fichas. ¿Se mantiene ese resultado con las derivaciones reales escritas por médicos de APS en Chile, que vienen llenas de abreviaturas y siglas locales?
+¿Qué modelos, y usados de qué forma, reconocen mejor las entidades clínicas (NER) en las derivaciones reales escritas por médicos de APS en Chile, que vienen llenas de abreviaturas y siglas locales? ¿Coincide ese orden con el que reporta la literatura?
 
 ## Experimentos
 

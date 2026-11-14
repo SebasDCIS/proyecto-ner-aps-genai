@@ -43,7 +43,9 @@ El problema es de dónde viene esa evidencia: casi siempre de casos clínicos pu
 
 ### La pregunta del proyecto
 
-¿Se mantiene, con derivaciones reales de APS chilena, el orden de desempeño que reporta la literatura entre estas estrategias? Por eso decimos que es un estudio de transferibilidad: no inventamos un método nuevo, probamos si lo que funciona afuera funciona acá.
+¿Qué modelos, y usados de qué forma, reconocen mejor las entidades clínicas en derivaciones reales de APS chilena? ¿Coincide ese orden con el que reporta la literatura? Por eso es una evaluación comparativa: no proponemos un método nuevo, medimos con un mismo protocolo qué funciona mejor con nuestro texto.
+
+Título del trabajo: *Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena*. El corpus son derivaciones a especialista (lista de espera), y eso se especifica dentro del manuscrito.
 
 ### Las cinco hipótesis
 
