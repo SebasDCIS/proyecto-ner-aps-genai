@@ -137,16 +137,16 @@ async function icono(Comp, color, size = 256) {
 
   // ------------------------------------------------------------------ 4 hipótesis
   s = pres.addSlide({ masterName: "CONTENIDO", sectionTitle: "Introducción" });
-  s.addText("Pregunta e hipótesis", { placeholder: "title" });
-  s.addText("¿Se mantiene el desempeño relativo de las estrategias con derivaciones reales de APS chilena?", { placeholder: "body" });
-  const hip = [["H1", "El encoder ajustado obtiene el mayor F1 estricto"], ["H2", "El few-shot dinámico mejora al LLM frente al zero-shot y a los ejemplos fijos"], ["H3", "La distancia LLM–encoder es mayor en entidades abreviadas"], ["H4", "LLM anotador + 50 oraciones gold queda a pocos puntos del encoder completo"], ["H5", "Un LLM comercial achica la distancia, pero no la cierra"]];
+  s.addText("Objetivo e hipótesis", { placeholder: "title" });
+  s.addText("Comparar encoders ajustados y LLM generativos en el reconocimiento de enfermedades, medicamentos y abreviaturas en derivaciones de APS chilena", { placeholder: "body" });
+  const hip = [["H1", "Un encoder ajustado obtiene mayor F1 que los LLM generativos"], ["H2", "Elegir los ejemplos por similitud mejora el F1 de los LLM"], ["H3", "La diferencia encoder–LLM es mayor en las abreviaturas"], ["H4", "LLM anotador + 50 oraciones anotadas queda cerca del encoder completo"], ["H5", "Un LLM comercial reduce la diferencia, pero no iguala al encoder"]];
   hip.forEach(([h, t], i) => {
     const y = 1.45 + i * 0.68;
     s.addShape(pres.shapes.OVAL, { x: 0.6, y, w: 0.52, h: 0.52, fill: { color: C.text2 }, line: { type: "none" }, objectName: "Círculo " + h });
     s.addText(h, { x: 0.6, y, w: 0.52, h: 0.52, fontSize: 13, bold: true, color: "FFFFFF", align: "center", valign: "middle", isTextBox: true, margin: 0 });
     s.addText(t, { x: 1.3, y, w: 8.1, h: 0.52, fontSize: 15, color: HEX.texto, valign: "middle", isTextBox: true, margin: 0 });
   });
-  s.addNotes("Planteamos cinco hipótesis antes de correr cada experimento. Las cuatro primeras salen directo de la literatura. La quinta la agregamos al incorporar los modelos comerciales como techo de referencia. Al final volvemos a esta lista y vemos cuáles se cumplieron.");
+  s.addNotes("El objetivo es comparar los dos tipos de modelo en las tres entidades, con el mismo test y el mismo protocolo. Para eso tenemos cuatro objetivos específicos: ajustar tres encoders, medir cuatro LLM con tres formas de armar el prompt, ver cuánto se acerca un encoder entrenado con etiquetas de un LLM y poca anotación, y analizar errores y votación. Las hipótesis las fijamos antes de correr cada experimento. Las cuatro primeras salen de la literatura; la quinta la agregamos al sumar los modelos comerciales. Al final volvemos a esta lista.");
 
   // ------------------------------------------------------------------ 5 corpus
   pres.addSection({ title: "Métodos" });
@@ -388,7 +388,7 @@ async function icono(Comp, color, size = 256) {
     s.addText(t, { x: 1.8, y, w: 5.2, h: 0.56, fontSize: 13.5, color: HEX.texto, valign: "middle", isTextBox: true, margin: 0 });
     s.addText(r, { x: 7.0, y, w: 2.35, h: 0.56, fontSize: 13, bold: true, color: r === "No apoyada" ? HEX.rojo : r === "Apoyada" ? "0F7F57" : HEX.naranja, valign: "middle", align: "right", isTextBox: true, margin: 0 });
   });
-  s.addNotes("Volvemos a las hipótesis. H1 y H2 se cumplen: el encoder gana y los ejemplos dinámicos ayudan, igual que en la literatura. H3 se cumple en enfermedad. Las dos sorpresas: la destilación quedó mucho más lejos que en inglés, y un modelo comercial alcanzó al encoder en medicamento.");
+  s.addNotes("Volvemos a las hipótesis. H1 y H2 se cumplen: el encoder gana y los ejemplos dinámicos ayudan, igual que en la literatura. H3 se cumple en enfermedad. H4 no se cumple: la destilación quedó mucho más lejos que en los trabajos en inglés. H5 se cumple en dos de tres entidades, porque Gemini alcanzó al encoder en medicamento.");
 
   // ------------------------------------------------------------------ 16 limitaciones
   s = pres.addSlide({ masterName: "CONTENIDO", sectionTitle: "Cierre" });

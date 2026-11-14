@@ -6,9 +6,17 @@ Proyecto de investigación del curso *Inteligencia Artificial Generativa y Model
 
 Equipo: Sebastián Inostroza, Maite Bahamondes, Ruth Vergara.
 
-## Pregunta
+## Pregunta y objetivo
 
-¿Qué modelos, y usados de qué forma, reconocen mejor las entidades clínicas (NER) en las derivaciones reales escritas por médicos de APS en Chile, que vienen llenas de abreviaturas y siglas locales? ¿Coincide ese orden con el que reporta la literatura?
+¿Qué modelos, y usados de qué forma, reconocen mejor enfermedades, medicamentos y abreviaturas (NER) en las derivaciones escritas por médicos de APS en Chile, que vienen llenas de siglas locales?
+
+**Objetivo general:** comparar el desempeño de encoders ajustados y de modelos de lenguaje generativos en esa tarea, sobre derivaciones reales del CWLC y con un mismo protocolo de evaluación.
+
+**Objetivos específicos:**
+1. Ajustar tres encoders preentrenados para reconocer las tres entidades y medir su desempeño (E1).
+2. Medir cuatro LLM generativos, dos locales y dos comerciales, sin ejemplos en el prompt, con ejemplos fijos y con ejemplos elegidos por similitud (E2).
+3. Estimar cuánto se acerca al encoder completo un encoder entrenado con etiquetas de un LLM y pocas oraciones anotadas a mano (E4).
+4. Describir los errores de cada tipo de modelo y medir si combinarlos por votación mejora el resultado.
 
 ## Experimentos
 
@@ -16,9 +24,9 @@ Equipo: Sebastián Inostroza, Maite Bahamondes, Ruth Vergara.
 |---|---|---|
 | E1 | Encoder clínico ajustado (BERT/RoBERTa) | Línea base: lo que la literatura dice que gana |
 | E2 | LLM local con prompt estructurado: zero-shot, few-shot fijo y few-shot dinámico (RAG) | Cuánto mejora un LLM al adaptarlo con ejemplos chilenos |
-| E4 | LLM como anotador → entrena un encoder (+10/50/100 documentos gold) | Cuánta anotación humana se necesita realmente |
-| E3 (opc.) | QLoRA de un LLM de 7–8B con MLX | Ajuste fino del propio LLM |
-| E5 (opc.) | Normalización de abreviaturas con LLM antes de extraer | Preprocesamiento |
+| E4 | LLM como anotador → entrena un encoder (+10/50/100 documentos gold) | Cuánta anotación humana se necesita |
+| E3 (no se hizo) | QLoRA de un LLM de 7–8B con MLX | Ajuste fino del propio LLM |
+| E5 (no se hizo) | Normalización de abreviaturas con LLM antes de extraer | Preprocesamiento |
 
 Un LLM comercial se usa solo como **techo de referencia**: el corpus es público y anonimizado.
 

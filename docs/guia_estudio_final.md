@@ -41,20 +41,30 @@ La literatura internacional sobre NER clínico es bastante consistente:
 
 El problema es de dónde viene esa evidencia: casi siempre de casos clínicos publicados en revistas o de notas en inglés. Una derivación de APS chilena es distinta: oraciones cortas, siglas locales, faltas de ortografía y plantillas repetidas.
 
-### La pregunta del proyecto
+### Pregunta y objetivos
 
-¿Qué modelos, y usados de qué forma, reconocen mejor las entidades clínicas en derivaciones reales de APS chilena? ¿Coincide ese orden con el que reporta la literatura? Por eso es una evaluación comparativa: no proponemos un método nuevo, medimos con un mismo protocolo qué funciona mejor con nuestro texto.
+**Pregunta:** ¿qué modelos, y usados de qué forma, reconocen mejor enfermedades, medicamentos y abreviaturas en derivaciones de APS chilena?
+
+Es una evaluación comparativa. No proponemos un método nuevo: medimos con un mismo protocolo qué funciona mejor con nuestro texto, y después comparamos ese orden con el que reporta la literatura.
+
+**Objetivo general:** comparar el desempeño de encoders ajustados y de modelos de lenguaje generativos en el reconocimiento de enfermedades, medicamentos y abreviaturas en derivaciones reales del CWLC, con un mismo protocolo de evaluación.
+
+**Objetivos específicos:**
+1. Ajustar tres encoders preentrenados para reconocer las tres entidades y medir su desempeño (E1).
+2. Medir el desempeño de cuatro LLM generativos, dos locales y dos comerciales, con tres formas de armar el prompt: sin ejemplos, con ejemplos fijos y con ejemplos elegidos por similitud (E2).
+3. Estimar cuánto se acerca al encoder entrenado con todo el corpus un encoder entrenado con etiquetas generadas por un LLM y pocas oraciones anotadas a mano (E4).
+4. Describir los errores de cada tipo de modelo y medir si combinar sus predicciones por votación mejora el resultado (análisis final).
 
 Título del trabajo: *Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena*. El corpus son derivaciones a especialista (lista de espera), y eso se especifica dentro del manuscrito.
 
 ### Las cinco hipótesis
 
 Las fijamos antes de correr cada experimento:
-- H1. El encoder clínico ajustado obtiene el mayor F1 estricto.
-- H2. El few-shot dinámico mejora al LLM frente al zero-shot y al few-shot con ejemplos fijos.
-- H3. La distancia entre LLM y encoder es mayor en las entidades abreviadas.
-- H4. Un encoder entrenado con etiquetas de un LLM más 50 oraciones anotadas queda a pocos puntos del encoder entrenado con todo el conjunto.
-- H5. Un LLM comercial grande achica la distancia con el encoder, pero no la cierra. (Esta se agregó al incorporar GPT-5.2 y Gemini, antes de correrlos.)
+- H1. Un encoder ajustado obtiene un F1 estricto mayor que el de los LLM generativos.
+- H2. Elegir los ejemplos del prompt por similitud con la oración (few-shot dinámico) mejora el F1 de los LLM frente a no darles ejemplos (zero-shot) y frente a darles siempre los mismos (few-shot fijo).
+- H3. La diferencia de F1 entre el encoder y los LLM es mayor en las entidades escritas como abreviatura que en las escritas completas.
+- H4. Un encoder entrenado con etiquetas generadas por un LLM y 50 oraciones anotadas a mano queda a pocos puntos de F1 del encoder entrenado con todo el corpus anotado.
+- H5. Un LLM comercial grande reduce la diferencia de F1 con el encoder, pero no llega a igualarlo. (Esta se agregó al incorporar GPT-5.2 y Gemini, antes de correrlos.)
 
 ---
 
