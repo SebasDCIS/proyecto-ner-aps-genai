@@ -1,0 +1,139 @@
+{
+  "train": {
+    "oraciones": 8014,
+    "tokens": 149574,
+    "mediana_tokens": 15.0,
+    "p90_tokens": 37,
+    "max_tokens": 234,
+    "n_Disease": 8860,
+    "oraciones_con_Disease_%": 60.2,
+    "mediana_tokens_Disease": 3.0,
+    "unica_Disease_%": 27.7,
+    "Disease_abreviada_%": 13.3,
+    "n_Medication": 823,
+    "oraciones_con_Medication_%": 6.1,
+    "mediana_tokens_Medication": 1,
+    "unica_Medication_%": 89.1,
+    "Medication_abreviada_%": 28.8,
+    "n_Abbreviation": 8402,
+    "oraciones_con_Abbreviation_%": 50.7,
+    "mediana_tokens_Abbreviation": 1.0,
+    "unica_Abbreviation_%": 97.4,
+    "oraciones_sin_entidad_3tipos_%": 23.5
+  },
+  "dev": {
+    "oraciones": 890,
+    "tokens": 16754,
+    "mediana_tokens": 16.0,
+    "p90_tokens": 38,
+    "max_tokens": 133,
+    "n_Disease": 981,
+    "oraciones_con_Disease_%": 59.7,
+    "mediana_tokens_Disease": 3,
+    "unica_Disease_%": 28.2,
+    "Disease_abreviada_%": 15.6,
+    "n_Medication": 95,
+    "oraciones_con_Medication_%": 5.6,
+    "mediana_tokens_Medication": 1,
+    "unica_Medication_%": 90.5,
+    "Medication_abreviada_%": 17.9,
+    "n_Abbreviation": 942,
+    "oraciones_con_Abbreviation_%": 51.5,
+    "mediana_tokens_Abbreviation": 1.0,
+    "unica_Abbreviation_%": 97.2,
+    "oraciones_sin_entidad_3tipos_%": 25.2
+  },
+  "test": {
+    "oraciones": 990,
+    "tokens": 18436,
+    "mediana_tokens": 15.0,
+    "p90_tokens": 37,
+    "max_tokens": 123,
+    "n_Disease": 1071,
+    "oraciones_con_Disease_%": 60.3,
+    "mediana_tokens_Disease": 3,
+    "unica_Disease_%": 25.9,
+    "Disease_abreviada_%": 11.1,
+    "n_Medication": 92,
+    "oraciones_con_Medication_%": 6.1,
+    "mediana_tokens_Medication": 1.0,
+    "unica_Medication_%": 82.6,
+    "Medication_abreviada_%": 25.0,
+    "n_Abbreviation": 993,
+    "oraciones_con_Abbreviation_%": 49.7,
+    "mediana_tokens_Abbreviation": 1,
+    "unica_Abbreviation_%": 98.3,
+    "oraciones_sin_entidad_3tipos_%": 22.9
+  },
+  "abreviaturas": {
+    "distintas_train": 1113,
+    "top15_train": [
+      [
+        "aps",
+        1430
+      ],
+      [
+        "tto",
+        286
+      ],
+      [
+        "hta",
+        280
+      ],
+      [
+        "pza",
+        217
+      ],
+      [
+        "obs",
+        194
+      ],
+      [
+        "+",
+        188
+      ],
+      [
+        "mg",
+        170
+      ],
+      [
+        "pcte",
+        166
+      ],
+      [
+        "rx",
+        133
+      ],
+      [
+        "antec",
+        100
+      ],
+      [
+        "atte",
+        88
+      ],
+      [
+        "izq",
+        87
+      ],
+      [
+        "cm",
+        86
+      ],
+      [
+        "x",
+        82
+      ],
+      [
+        "eco",
+        81
+      ]
+    ],
+    "test_no_vistas_en_train_%": 6.6,
+    "top15_cubre_train_%": 42.7
+  },
+  "no_vistas_test_%": {
+    "Medication": 39.1,
+    "Disease": 40.7
+  }
+}

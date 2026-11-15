@@ -1,8 +1,46 @@
-# Guía de estudio del proyecto NER en APS chilena (versión final, 9 de noviembre de 2026)
+# Guía de estudio del proyecto NER en APS chilena (versión final, 14 de noviembre de 2026)
 
-Esta guía explica el proyecto completo desde cero, en el orden en que conviene estudiarlo. Cada capítulo corresponde a un audio del cuaderno de NotebookLM. Las cifras son las del manuscrito final y salen de los archivos de resultados del repositorio (github.com/SebasDCIS/proyecto-ner-aps-genai).
+Esta guía explica el proyecto completo desde cero. Para prepararse bastan dos documentos: esta guía y el manuscrito final. Las cifras de la guía son las del manuscrito y salen de los archivos de resultados del repositorio (github.com/SebasDCIS/proyecto-ner-aps-genai).
 
-Equipo: Sebastián Inostroza Hurtado, Maite Bahamondes y Ruth Vergara. Curso: Inteligencia Artificial Generativa y Modelos Fundacionales, profesor Rodrigo Salas, Doctorado en Ciencias e Ingeniería para la Salud, Universidad de Valparaíso. Entrega en diciembre de 2026: manuscrito en formato IEEE y presentación de 15 a 20 minutos.
+Equipo: Sebastián Inostroza Hurtado, Maite Bahamondes y Ruth Vergara. Curso: Inteligencia Artificial Generativa y Modelos Fundacionales, profesor Rodrigo Salas, Doctorado en Ciencias e Ingeniería para la Salud, Universidad de Valparaíso. Entrega en diciembre de 2026: manuscrito en el formato del curso y presentación de 15 a 20 minutos.
+
+Título del trabajo: *Evaluación comparativa de encoders ajustados y modelos de lenguaje generativos para el reconocimiento de entidades clínicas de atención primaria chilena*.
+
+---
+
+## Cómo estudiar con esta guía y el manuscrito
+
+La guía va de lo básico a lo específico y el manuscrito dice lo mismo en formato de artículo. Conviene leer cada capítulo de la guía y, apenas termines, la sección del manuscrito que le corresponde. Así ves dos veces cada idea: una explicada con calma y otra escrita como la vamos a presentar.
+
+| Capítulo de la guía | Sección del manuscrito | Figuras y tablas que hay que entender |
+|---|---|---|
+| 1. El problema y la pregunta | I. Introducción | Objetivos e hipótesis H1 a H5 |
+| 2. El corpus CWLC | II-A Materiales y III-B Estudio descriptivo | Tabla I, Fig. 2 |
+| 3. Fundamentos y encoders (E1) | Inicio de II-B y su punto 1 (E1) | Fig. 1, Tabla II |
+| 4. LLM y prompting (E2) | II-B, punto 2 (E2) | Tabla II |
+| 5. Cómo medimos | III-A Métricas y II-B, punto 5 (reproducibilidad) | Fórmula de F1 |
+| 6. Resultados de encoders y LLM | III-C, III-D y primera parte de III-E | Fig. 3, Tabla III, Fig. 4, Tabla IV |
+| 7. Escala y destilación | II-B, punto 3 (E4), final de III-E y III-F | Fig. 5 |
+| 8. Errores y votación | II-B, punto 4 (votación) y III-G | Fig. 6, Fig. 7 |
+| 9. Conclusiones y defensa | III-H y IV. Conclusiones | Tabla V |
+
+**Plan sugerido en cuatro sesiones de una hora y media:**
+
+1. Capítulos 1 y 2, con la Introducción y los Materiales. Al terminar deberías poder explicar en dos minutos qué es NER, por qué las derivaciones chilenas son difíciles y qué preguntamos.
+2. Capítulos 3, 4 y 5, con Métodos y Métricas. Deberías poder explicar la diferencia entre un encoder ajustado y un LLM con prompt, qué es el *few-shot* dinámico y por qué usamos F1 estricto, *bootstrap* y tres semillas.
+3. Capítulos 6, 7 y 8, con los resultados. Aquí conviene memorizar pocas cifras (las de la tabla de abajo) y entender cada figura: qué está en cada eje y qué conclusión sale de ella.
+4. Capítulo 9 y repaso. Lean en voz alta las preguntas probables del final y respondan sin mirar. Si una respuesta no sale, vuelvan al capítulo que la explica.
+
+**Las cifras que conviene saber de memoria:**
+
+- Enfermedad: encoder chileno 0,815; votación de seis encoders 0,837 (el mejor resultado).
+- Abreviatura: encoders 0,95; LLM locales unos 25 puntos abajo.
+- Medicamento: encoder español 0,840 y Gemini con ejemplos dinámicos 0,844 (empate).
+- Mejor LLM local: entre 13 y 25 puntos bajo los encoders.
+- Destilación con 50 oraciones anotadas: entre 15 y 36 puntos bajo el encoder (H4 no se cumple).
+- Hipótesis: H1 y H2 apoyadas, H3 apoyada en enfermedad, H4 no apoyada, H5 apoyada en dos de tres entidades.
+
+**Al leer el manuscrito, fíjense en:** el resumen (es lo primero que lee el profesor y debería poder repetirse de memoria), el último párrafo de la Introducción (dice cómo está organizado el artículo) y las leyendas de las figuras, que explican qué muestra cada gráfico.
 
 ---
 
@@ -99,6 +137,14 @@ Medicamento tiene solo 92 menciones en el test. Con tan pocas, los intervalos de
 - En el test, 119 enfermedades (11,1 %) contienen una abreviatura anotada. Con esos casos se mide H3.
 
 Del test, el 61 % de las enfermedades, el 62 % de los medicamentos y el 93 % de las abreviaturas ya aparecían escritas igual en entrenamiento. Por eso también medimos aparte las menciones "nuevas", las que el modelo nunca vio.
+
+### Estudio descriptivo de los datos (manuscrito, III-B y Fig. 2)
+
+El formato del curso pide un estudio exploratorio de los datos. Lo que mostramos:
+- Las oraciones son cortas con una cola larga: mediana de 15 palabras, el 90 % tiene 37 o menos, y la más larga tiene 234 (derivaciones que juntan diagnóstico, fundamento clínico y examen físico en una línea).
+- En entrenamiento, el 60 % de las oraciones tiene al menos una enfermedad, el 51 % una abreviatura y solo el 6 % un medicamento. Un 24 % no tiene ninguna de las tres.
+- Una enfermedad tiene una mediana de tres palabras ("diabetes mellitus no insulinodependiente"); medicamentos y abreviaturas casi siempre son una sola palabra. Por eso los errores de límite aparecen sobre todo en enfermedad.
+- Hay 1.113 abreviaturas distintas, pero las 15 más frecuentes suman el 43 % de las menciones. "aps" sola aparece 1.430 veces.
 
 ### La auditoría antes de entrenar
 
