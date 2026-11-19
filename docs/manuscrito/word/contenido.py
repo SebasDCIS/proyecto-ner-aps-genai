@@ -40,8 +40,8 @@ def construir(d):
     d.h1("I", "Introducción")
     d.parrafo("En la APS chilena, el médico que deriva a un paciente escribe frases como “pcte c/ DM2 desc, "
               "s/ ctrl hace 6m”. Cualquier clínico entiende que el paciente tiene diabetes tipo 2 "
-              "descompensada y lleva seis meses sin control. Un sistema administrativo no. Para convertir "
-              "esa nota en datos, el primer paso es reconocer entidades nombradas (NER, por sus siglas en "
+              "descompensada y lleva seis meses sin control, pero un sistema administrativo no lo entiende. "
+              "Para convertir esa nota en datos, el primer paso es reconocer entidades nombradas (NER, por sus siglas en "
               "inglés): ubicar en la oración qué palabras son una enfermedad, un fármaco o una abreviatura.",
               sangria=False)
     d.parrafo("Los resultados publicados apuntan en una misma dirección. En NER clínico en español, un "
@@ -50,8 +50,8 @@ def construir(d):
               "prompt incluye la guía de anotación, esa distancia se reduce cerca de la mitad [@hu2024]. Si "
               "los ejemplos del prompt se eligen por similitud con la oración de entrada (*few-shot* "
               "dinámico, una forma de recuperación aumentada), el LLM gana entre 5 y 9 puntos frente a "
-              "ejemplos fijos [@ge2026]. Y cuando hay poca anotación, se ha propuesto que un LLM etiquete "
-              "el texto y que un encoder pequeño aprenda de esas etiquetas (destilación).")
+              "ejemplos fijos [@ge2026]. Cuando hay poca anotación, otra opción es que un LLM etiquete el "
+              "texto y que un encoder pequeño aprenda de esas etiquetas (destilación).")
     d.parrafo("Esa evidencia sale casi siempre de casos clínicos publicados en revistas o de notas en "
               "inglés. Una derivación de APS tiene oraciones cortas, siglas locales, faltas de ortografía y "
               "plantillas repetidas. En Chile, el único corpus público de este tipo es el Chilean Waiting "
@@ -61,8 +61,8 @@ def construir(d):
               "14 puntos [@naguib2024]. No encontramos trabajos que comparen con el CWLC completo, y con un "
               "mismo protocolo, encoders ajustados, LLM locales, LLM comerciales y destilación.")
     d.parrafo("El problema también es práctico. Algunos proveedores de ficha electrónica ya ofrecen "
-              "herramientas de IA generativa en la APS chilena, sin métricas públicas. Y la Ley 21.719 de "
-              "protección de datos personales, que entra en vigencia en diciembre de 2026, restringe el "
+              "herramientas de IA generativa en la APS chilena, sin métricas públicas. A eso se suma la Ley "
+              "21.719 de protección de datos personales, que entra en vigencia en diciembre de 2026 y restringe el "
               "envío de datos de salud a servicios externos [@ley21719]. Un CESFAM necesita saber qué "
               "modelo funciona en sus propios equipos y cuánto texto tendría que anotar.")
     d.parrafo("Este trabajo es una evaluación comparativa. Su objetivo general es comparar el desempeño de "
@@ -86,13 +86,13 @@ def construir(d):
              "queda a pocos puntos de F1 del encoder entrenado con todo el corpus anotado.",
              "**H5.** Un LLM comercial grande reduce la diferencia de F1 con el encoder, pero no llega a "
              "igualarlo."], numerada=False)
-    d.parrafo("El trabajo aporta una comparación de dieciséis sistemas sobre el mismo conjunto de prueba, "
-              "con tres semillas por modelo entrenable y pruebas pareadas; la primera evaluación NER en el "
-              "CWLC del encoder adaptado a derivaciones chilenas (`roberta-clinical-wl-es`) y de RigoBERTa "
-              "Clinical; un análisis de errores que separa errores de límite, entidades espurias, palabras "
-              "mal escritas y abreviaturas nunca vistas, y un repositorio público con el código, los prompts "
-              "y los resultados de cada corrida.")
-    d.parrafo("El artículo sigue así. La Sección II describe el corpus y los métodos. La Sección III define "
+    d.parrafo("Comparamos dieciséis sistemas sobre el mismo conjunto de prueba, con tres semillas por "
+              "modelo entrenable y pruebas pareadas. Es también la primera evaluación NER en el CWLC del "
+              "encoder adaptado a derivaciones chilenas (`roberta-clinical-wl-es`) y de RigoBERTa Clinical. "
+              "El análisis de errores separa los errores de límite, las entidades espurias, las palabras mal "
+              "escritas y las abreviaturas nunca vistas. El código, los prompts y los resultados de cada "
+              "corrida están en un repositorio público.")
+    d.parrafo("El resto del artículo se organiza así. La Sección II describe el corpus y los métodos. La Sección III define "
               "las métricas, presenta el estudio descriptivo de los datos y los resultados de cada "
               "experimento, y cierra con la discusión de las hipótesis y las limitaciones. La Sección IV "
               "resume las conclusiones y el trabajo futuro.")
@@ -113,9 +113,9 @@ def construir(d):
               "resultados se puedan comparar con los de Báez et al.", sangria=False)
     d.parrafo("De los siete tipos usamos tres. Enfermedad y medicamento tienen valor clínico directo, y "
               "abreviatura es lo más propio del texto de APS. Las entidades pueden ir una dentro de otra: "
-              "“DM2” es una abreviatura dentro de la enfermedad “DM2 descompensada”. El uso de datos "
-              "públicos y desidentificados permitió enviar el conjunto de prueba a las API comerciales; con "
-              "fichas reales eso no sería aceptable.")
+              "“DM2” es una abreviatura dentro de la enfermedad “DM2 descompensada”. Como los datos son "
+              "públicos y están desidentificados, pudimos enviar el conjunto de prueba a las API comerciales. "
+              "Con fichas reales eso no sería aceptable.")
     d.cap_tabla("I", "Partición del CWLC y entidades usadas")
     d.tabla(["", "Entrenamiento", "Validación", "Prueba"],
             [["Oraciones", "8.014", "890", "990"],
@@ -168,7 +168,7 @@ def construir(d):
     d.parrafo("El prompt tiene la tarea, una guía de anotación que redactamos solo con el conjunto de "
               "entrenamiento y un esquema JSON que obliga al modelo a responder con pares {tipo, texto}. "
               "Usamos temperatura 0 y semilla fija. Si un texto devuelto no está en la oración, lo "
-              "descartamos y lo contamos como alucinación; probado con respuestas perfectas, este paso "
+              "descartamos y lo contamos como alucinación. Al probarlo con respuestas perfectas, este paso "
               "pierde menos de 0,5 puntos de F1. En el *few-shot* fijo usamos tres sets de cinco ejemplos al "
               "azar y reportamos la media. En el dinámico, BM25 [@robertson2009] busca las cinco oraciones "
               "de entrenamiento más parecidas a cada oración de prueba. En el 8,3 % del test, el ejemplo "
@@ -231,7 +231,7 @@ def construir(d):
     d.parrafo("Los tres tipos de entidad se comportan distinto. Una enfermedad tiene una mediana de tres "
               "palabras y solo el 28 % ocupa una palabra, porque suele incluir calificativos (“diabetes "
               "mellitus no insulinodependiente”). Medicamentos y abreviaturas casi siempre ocupan una "
-              "palabra (89 % y 97 %). Esto anticipa dónde estarán los errores de límite: en enfermedad. "
+              "palabra (89 % y 97 %). Por eso esperábamos los errores de límite sobre todo en enfermedad. "
               "Las abreviaturas se concentran mucho: hay 1.113 distintas en entrenamiento, pero las 15 más "
               "frecuentes reúnen el 43 % de las menciones (Fig. 2b). En el test, el 11,1 % de las "
               "enfermedades (119) se superpone con una abreviatura anotada; con ese subgrupo medimos H3, "
@@ -242,8 +242,8 @@ def construir(d):
               "test; por eso reportamos las métricas también sin esas oraciones. Del test, el 61 % de las "
               "enfermedades, el 62 % de los medicamentos y el 93 % de las abreviaturas ya aparecen escritas "
               "igual en entrenamiento. Por último, encontramos 42 textos idénticos con anotaciones distintas. "
-              "Ese ruido de etiquetas pone un techo al F1 que cualquier modelo puede alcanzar, y medicamento, "
-              "con solo 92 menciones en el test, tendrá intervalos de confianza anchos.")
+              "Ese ruido de etiquetas pone un techo al F1 de cualquier modelo. En medicamento, con solo 92 "
+              "menciones en el test, los intervalos de confianza serán anchos.")
 
     d.h2("C", "Estudios de simulación: comparación global")
     d.parrafo("La Fig. 3 y la Tabla III muestran el F1 estricto de todos los sistemas. Los encoders "
@@ -349,7 +349,7 @@ def construir(d):
               "semillas, y en medicamento quedó bajo el español en las tres. Solo en las 66 abreviaturas que "
               "nunca aparecen en entrenamiento tuvo un recall mayor (0,662, contra 0,601 y 0,606), aunque el "
               "subgrupo es chico. En este corpus importó más que el modelo hubiera visto derivaciones "
-              "chilenas que su tamaño. Y entrenar el modelo *large* exigió una GPU de 80 GB.")
+              "chilenas que su tamaño, y entrenar el modelo *large* exigió una GPU de 80 GB.")
 
     d.h2("F", "Estudios de simulación: destilación con un LLM anotador (E4)")
     d.parrafo("La Fig. 5 muestra la curva de E4. En enfermedad y abreviatura, el alumno superó a su maestro: "
@@ -433,11 +433,11 @@ def construir(d):
             [450, 1100, 3100], alin=["left", "left", "left"])
     d.parrafo("El estudio tiene limitaciones. Una derivación es un texto corto, escrito para justificar una "
               "interconsulta, y los resultados podrían cambiar en las evoluciones o los planes de cuidado de "
-              "una ficha de CESFAM; hoy no existe en Chile un corpus público de ese tipo. Hay riesgo de "
+              "una ficha de CESFAM. Hoy no existe en Chile un corpus público de ese tipo. Hay riesgo de "
               "contaminación: el encoder chileno se preentrenó con derivaciones de la lista de espera, sin "
               "que se publique cuáles, y los LLM comerciales pudieron ver el CWLC, público desde 2022. Si eso "
               "pasó, sus resultados son un techo optimista.")
-    d.parrafo("Corrimos los LLM una vez por estrategia; con temperatura 0 la variación debería ser baja, "
+    d.parrafo("Corrimos los LLM una vez por estrategia. Con temperatura 0 la variación debería ser baja, "
               "pero no la medimos, y Gemini estaba en versión preliminar. Por tiempo, no evaluamos el ajuste "
               "fino de un LLM con LoRA ni la normalización previa de abreviaturas. Por último, la distinción "
               "entre hallazgo y enfermedad de la guía del CWLC penaliza a los LLM, y con otra guía esa parte "
@@ -455,9 +455,9 @@ def construir(d):
     d.parrafo("Los LLM comerciales reconocieron mejor que el encoder las palabras mal escritas y las "
               "abreviaturas que nunca aparecieron en entrenamiento. A cambio, marcaron muchos hallazgos como "
               "enfermedades, y para usarlos hay que enviar el texto a un servicio externo.")
-    d.parrafo("Para un CESFAM, la recomendación es concreta. Si tiene texto anotado, la opción más precisa es "
-              "un encoder base ajustado con texto local, o una votación de varios: corre en un computador "
-              "común y no saca datos del centro. Si no lo tiene, le conviene anotar algunos cientos de "
+    d.parrafo("Si un CESFAM tiene texto anotado, la opción más precisa es un encoder base ajustado con "
+              "texto local, o una votación de varios: corre en un computador común y no saca datos del "
+              "centro. Si no lo tiene, le conviene anotar algunos cientos de "
               "oraciones con criterio clínico antes que confiar en etiquetas generadas por un LLM local.")
     d.parrafo("Quedan tres líneas de trabajo futuro: un sistema híbrido que use la confianza del encoder para "
               "decidir cuándo consultar al LLM; la validación en evoluciones y planes de cuidado de CESFAM, "
@@ -467,5 +467,5 @@ def construir(d):
     d.h1(None, "Disponibilidad de código y datos")
     d.parrafo("El código, los prompts, las configuraciones y los resultados están en "
               "https://github.com/SebasDCIS/proyecto-ner-aps-genai. El CWLC está disponible en Zenodo "
-              "(registro 5591011) bajo licencia CC BY-NC-SA 4.0. Se usaron herramientas de IA como apoyo en "
-              "la programación y la edición del texto.", sangria=False)
+              "(registro 5591011) bajo licencia CC BY-NC-SA 4.0. Usamos herramientas de IA como apoyo en la "
+              "programación y en la edición del texto.", sangria=False)
