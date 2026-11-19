@@ -477,7 +477,7 @@ def construir(d):
               "oraciones con criterio clínico antes que confiar en etiquetas generadas por un LLM local.")
     d.parrafo("Quedan cuatro líneas de trabajo futuro: ajustar un LLM local con LoRA y probar prompts con "
               "cientos de ejemplos [@zhang2026many]; un sistema híbrido que use la confianza del encoder para "
-              "decidir cuándo consultar al LLM; la validación en evoluciones y planes de cuidado de CESFAM, "
+              "decidir cuándo consultar al LLM; la evaluación en otros tipos de texto clínico, más allá de las derivaciones, "
               "y el texto escrito por pacientes, "
               "con lenguaje coloquial y ruido de mensajería.")
 

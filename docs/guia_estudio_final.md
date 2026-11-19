@@ -447,7 +447,7 @@ La ganancia sale de promediar la variación entre semillas. Combinar semillas ri
 ### Trabajo futuro
 
 1. Un híbrido que use la confianza del encoder para decidir cuándo consultar al LLM.
-2. Validar en evoluciones y planes de cuidado de fichas de CESFAM.
+2. Evaluar los modelos en otros tipos de texto clínico, más allá de las derivaciones.
 3. Medir robustez con texto escrito por pacientes (lenguaje coloquial, mensajería), con una lista de equivalencias que falta revisar con clínicos.
 
 ### Preguntas probables en la presentación y cómo responderlas
