@@ -196,7 +196,7 @@ El objetivo general es comparar el desempeño de encoders ajustados y de modelos
 
 Los objetivos específicos son cuatro. Primero, ajustar tres encoders preentrenados para reconocer las tres entidades y medir su desempeño. Segundo, medir cuatro LLM generativos, dos locales y dos comerciales, con distintas formas de armar el prompt. Tercero, estimar cuánto se acerca al encoder completo un encoder entrenado con etiquetas de un LLM y pocas oraciones anotadas a mano. Cuarto, describir los errores de cada tipo de modelo y medir si combinarlos por votación mejora el resultado.
 
-Las hipótesis se fijaron antes de correr cada experimento, a partir de la literatura. H1: un encoder ajustado obtiene un F1 estricto mayor que el de los LLM generativos. H2: elegir los ejemplos del prompt por similitud mejora el F1 de los LLM frente a no darles ejemplos y frente a darles siempre los mismos. H3: la diferencia de F1 entre el encoder y los LLM es mayor en las entidades escritas como abreviatura. H4: un encoder entrenado con etiquetas de un LLM y 50 oraciones anotadas queda a pocos puntos del encoder entrenado con todo el corpus. H5: un LLM comercial grande reduce la diferencia con el encoder, pero no llega a igualarlo.
+Las hipótesis se fijaron antes de correr cada experimento, a partir de la literatura. H1: un encoder ajustado obtiene un F1 estricto mayor que el de los LLM generativos usados con prompting. H2: elegir los ejemplos del prompt por similitud mejora el F1 de los LLM frente a no darles ejemplos y frente a darles siempre los mismos. H3: la diferencia de F1 entre el encoder y los LLM es mayor en las entidades escritas como abreviatura. H4: un encoder entrenado con etiquetas de un LLM y 50 oraciones anotadas queda a pocos puntos del encoder entrenado con todo el corpus. H5: un LLM comercial grande reduce la diferencia con el encoder, pero no llega a igualarlo.
 
 Fijar las hipótesis antes de ver los datos importa porque impide acomodarlas después a lo que salió.
 
@@ -284,7 +284,7 @@ Una derivación es un texto corto escrito para justificar una interconsulta. Los
 
 Hay riesgo de contaminación: el encoder chileno se preentrenó con derivaciones de lista de espera sin que se publique cuáles, y los LLM comerciales pudieron haber visto el CWLC, público desde 2022. Si eso pasó, sus resultados son un techo optimista.
 
-Los LLM se corrieron una vez por estrategia y Gemini estaba en versión preliminar. Medicamento tiene pocas menciones en el test, y el corpus tiene ruido de anotación. La distinción entre hallazgo y enfermedad de la guía del CWLC penaliza a los LLM; con otra guía, esa parte del resultado podría cambiar.
+No se probó el ajuste fino de un LLM. Estudios de 2025 y 2026 muestran que un LLM ajustado con instrucciones puede igualar o superar al encoder, así que las conclusiones valen para LLM usados con prompting. Los LLM se corrieron una vez por estrategia y Gemini estaba en versión preliminar. Medicamento tiene pocas menciones en el test, y el corpus tiene ruido de anotación. La distinción entre hallazgo y enfermedad de la guía del CWLC penaliza a los LLM; con otra guía, esa parte del resultado podría cambiar.
 
 ### Trabajo futuro
 

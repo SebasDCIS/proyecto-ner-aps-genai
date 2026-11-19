@@ -46,20 +46,26 @@ def construir(d):
               sangria=False)
     d.parrafo("Los resultados publicados apuntan en una misma dirección. En NER clínico en español, un "
               "encoder del tipo BERT o RoBERTa ajustado con datos anotados supera por 3 a 15 puntos de F1 "
-              "a un LLM generativo usado solo con instrucciones (*prompting*) [@naguib2024,chen2025]. Si el "
+              "a un LLM generativo usado solo con instrucciones (*prompting*) [@naguib2024,chen2025], y trabajos "
+              "recientes en español y en informes de patología repiten ese resultado [@pan2026,arzideh2025]. Si el "
               "prompt incluye la guía de anotación, esa distancia se reduce cerca de la mitad [@hu2024]. Si "
               "los ejemplos del prompt se eligen por similitud con la oración de entrada (*few-shot* "
               "dinámico, una forma de recuperación aumentada), el LLM gana entre 5 y 9 puntos frente a "
-              "ejemplos fijos [@ge2026]. Cuando hay poca anotación, otra opción es que un LLM etiquete el "
-              "texto y que un encoder pequeño aprenda de esas etiquetas (destilación).")
+              "ejemplos fijos [@ge2026,kim2026icl], y con cientos de ejemplos llega a igualar a BERT "
+              "[@zhang2026many]. Cuando el LLM se ajusta con instrucciones, en vez de usarse solo con prompt, "
+              "puede superar al encoder, a costa de más memoria y de una inferencia hasta 28 veces más lenta "
+              "[@hu2025,calcina2026]. Cuando hay poca anotación, otra opción es que un LLM etiquete el texto "
+              "y que un encoder pequeño aprenda de esas etiquetas (destilación); con un maestro fuerte, el "
+              "alumno queda a pocos puntos del modelo entrenado con anotación humana [@vedula2025,hsu2025].")
     d.parrafo("Esa evidencia sale casi siempre de casos clínicos publicados en revistas o de notas en "
               "inglés. Una derivación de APS tiene oraciones cortas, siglas locales, faltas de ortografía y "
               "plantillas repetidas. En Chile, el único corpus público de este tipo es el Chilean Waiting "
               "List Corpus (CWLC) [@baez2020,baez2022]. Con él se han publicado encoders y arquitecturas "
               "para entidades anidadas [@rojas2022coling,rojas2022louhi,rojas2022flair], y una comparación "
               "con solo 100 oraciones de entrenamiento en la que un RoBERTa clínico superó a Llama-3-8B por "
-              "14 puntos [@naguib2024]. No encontramos trabajos que comparen con el CWLC completo, y con un "
-              "mismo protocolo, encoders ajustados, LLM locales, LLM comerciales y destilación.")
+              "14 puntos [@naguib2024]. En una búsqueda en PubMed, Semantic Scholar y OpenAlex hasta noviembre "
+              "de 2026 no encontramos trabajos que evalúen LLM generativos sobre el CWLC completo, ni que "
+              "comparen con un mismo protocolo encoders ajustados, LLM locales, LLM comerciales y destilación.")
     d.parrafo("El problema también es práctico. Algunos proveedores de ficha electrónica ya ofrecen "
               "herramientas de IA generativa en la APS chilena, sin métricas públicas. A eso se suma la Ley "
               "21.719 de protección de datos personales, que entra en vigencia en diciembre de 2026 y restringe el "
@@ -77,7 +83,8 @@ def construir(d):
              "Describir los errores de cada tipo de modelo y medir si combinar sus predicciones por "
              "votación mejora el resultado."])
     d.parrafo("Antes de correr cada experimento fijamos cinco hipótesis, tomadas de la literatura:")
-    d.lista(["**H1.** Un encoder ajustado obtiene un F1 estricto mayor que el de los LLM generativos.",
+    d.lista(["**H1.** Un encoder ajustado obtiene un F1 estricto mayor que el de los LLM generativos usados con "
+             "prompting.",
              "**H2.** Elegir los ejemplos del prompt por similitud con la oración mejora el F1 de los LLM "
              "frente a no darles ejemplos (*zero-shot*) y frente a darles siempre los mismos (*few-shot* fijo).",
              "**H3.** La diferencia de F1 entre el encoder y los LLM es mayor en las entidades escritas como "
@@ -298,7 +305,7 @@ def construir(d):
               "ejemplos dinámicos mejoraron a los cuatro LLM en las tres entidades (Fig. 4), lo que apoya H2. "
               "Frente a los ejemplos fijos, el *few-shot* dinámico sumó 12,4 puntos en enfermedad y 10,0 en "
               "abreviatura con Llama, y 10,3 y 8,8 con Qwen, todos significativos. Es lo que reporta la "
-              "literatura (5 a 9 puntos) o un poco más [@ge2026]. Sin las oraciones repetidas, la ventaja en "
+              "literatura (5 a 9 puntos) o un poco más [@ge2026,kim2026icl]. Sin las oraciones repetidas, la ventaja en "
               "enfermedad casi no cambió (12,4 puntos en Llama y 9,8 en Qwen), así que no viene de copiar "
               "oraciones idénticas.", sangria=False)
 
@@ -372,7 +379,10 @@ def construir(d):
               "En abreviatura, las etiquetas *silver* incluso empeoraron el resultado: con 100 oraciones, "
               "entrenar solo con *gold* dio 0,729, y agregar *silver* lo bajó a 0,634. El maestro tuvo ahí "
               "precisión alta (0,90) y recall bajo (0,49), porque no conocía las convenciones del corpus, y "
-              "el alumno heredó ese sesgo. En medicamento, una semilla colapsó con F1 0, la inestabilidad "
+              "el alumno heredó ese sesgo. La distancia con la literatura se explica en parte por el maestro. "
+              "Los trabajos con alumnos cercanos al modelo con anotación humana usan como maestros a GPT-4o, "
+              "Gemini o un LLM ajustado [@vedula2025,hsu2025]; el nuestro fue un LLM local de 7B sin ajustar, "
+              "con F1 entre 0,50 y 0,69 según la entidad. En medicamento, una semilla colapsó con F1 0, la inestabilidad "
               "del ajuste fino en clases poco frecuentes que describen Dodge et al. y Mosbach et al. "
               "[@dodge2020,mosbach2021]. E4 deja, eso sí, un dato útil: con 100 oraciones anotadas, el "
               "alumno llegó en enfermedad a 0,650, casi lo mismo que el LLM local con ejemplos dinámicos "
@@ -386,7 +396,9 @@ def construir(d):
               "superpuso con un hallazgo anotado, como “dolor”, “vómitos” o “mordida invertida”. La guía del "
               "CWLC separa el hallazgo (un signo o síntoma) de la enfermedad, y los LLM no siguieron esa "
               "separación aunque la guía estaba en el prompt. Parte del error de los LLM es un desacuerdo de "
-              "criterio con la anotación.", sangria=False)
+              "criterio con la anotación. Zhao y Goto describen lo mismo en corpus biomédicos: los LLM no "
+              "aprenden las convenciones implícitas de cada corpus y siguen con dificultad su guía [@zhao2025]. "
+              "Refinar la guía con ejemplos corregidos ayuda a alinearlos [@kim2026guide].", sangria=False)
     d.fig_inline(FIG / "fig_tipologia_errores.png", 6,
                  "Tipología de las predicciones de enfermedad en el test (semilla 42 para E1). “Espuria sobre "
                  "un hallazgo”: predicción que no coincide con ninguna enfermedad del *gold* y que se "
@@ -414,7 +426,9 @@ def construir(d):
               "0,813, y superó a cada uno de los seis modelos por 1,3 a 4,5 puntos, con diferencias "
               "significativas. Es el mejor resultado del estudio en esa entidad. En abreviatura llegó a "
               "0,957 y en medicamento a 0,831, sin diferencias significativas. Con nueve modelos (sumando "
-              "RigoBERTa), enfermedad quedó en 0,838 y ya no fue mejor que todos los modelos individuales.")
+              "RigoBERTa), enfermedad quedó en 0,838 y ya no fue mejor que todos los modelos individuales. En el "
+              "shared task MultiClinNER 2026, que incluyó español, un ensamble de semillas de un mismo encoder "
+              "ocupó el primer lugar en cinco de siete idiomas [@jonker2026].")
 
     d.h2("H", "Discusión: hipótesis y limitaciones")
     d.parrafo("La Tabla V resume las hipótesis. En las derivaciones chilenas se repitió lo que reporta la "
@@ -439,7 +453,9 @@ def construir(d):
               "pasó, sus resultados son un techo optimista.")
     d.parrafo("Corrimos los LLM una vez por estrategia. Con temperatura 0 la variación debería ser baja, "
               "pero no la medimos, y Gemini estaba en versión preliminar. Por tiempo, no evaluamos el ajuste "
-              "fino de un LLM con LoRA ni la normalización previa de abreviaturas. Por último, la distinción "
+              "fino de un LLM con LoRA ni la normalización previa de abreviaturas. La primera omisión pesa: con "
+              "ajuste fino por instrucciones, los LLM han igualado o superado a los encoders en otros corpus "
+              "[@hu2025,calcina2026], así que nuestras conclusiones valen para LLM usados con prompting. Por último, la distinción "
               "entre hallazgo y enfermedad de la guía del CWLC penaliza a los LLM, y con otra guía esa parte "
               "del resultado podría cambiar.")
 
@@ -459,7 +475,8 @@ def construir(d):
               "texto local, o una votación de varios: corre en un computador común y no saca datos del "
               "centro. Si no lo tiene, le conviene anotar algunos cientos de "
               "oraciones con criterio clínico antes que confiar en etiquetas generadas por un LLM local.")
-    d.parrafo("Quedan tres líneas de trabajo futuro: un sistema híbrido que use la confianza del encoder para "
+    d.parrafo("Quedan cuatro líneas de trabajo futuro: ajustar un LLM local con LoRA y probar prompts con "
+              "cientos de ejemplos [@zhang2026many]; un sistema híbrido que use la confianza del encoder para "
               "decidir cuándo consultar al LLM; la validación en evoluciones y planes de cuidado de CESFAM, "
               "que es el objetivo de la tesis doctoral del primer autor, y el texto escrito por pacientes, "
               "con lenguaje coloquial y ruido de mensajería.")
