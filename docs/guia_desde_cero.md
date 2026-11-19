@@ -288,7 +288,7 @@ No se probó el ajuste fino de un LLM. Estudios de 2025 y 2026 muestran que un L
 
 ### Trabajo futuro
 
-Quedan tres líneas. La primera es un sistema híbrido que use la confianza del encoder para decidir cuándo consultar al LLM. La segunda es validar los modelos en evoluciones y planes de cuidado de CESFAM, objetivo de una tesis doctoral en curso. La tercera es medir qué pasa con texto escrito por pacientes, con lenguaje coloquial y ruido de mensajería.
+Quedan cuatro líneas. La primera es ajustar un LLM local con LoRA y probar prompts con cientos de ejemplos. La segunda es un sistema híbrido que use la confianza del encoder para decidir cuándo consultar al LLM. La tercera es validar los modelos en evoluciones y planes de cuidado de fichas de CESFAM. La cuarta es medir qué pasa con texto escrito por pacientes, con lenguaje coloquial y ruido de mensajería.
 
 ## 16. Preguntas frecuentes
 

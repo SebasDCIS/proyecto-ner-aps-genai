@@ -478,7 +478,7 @@ def construir(d):
     d.parrafo("Quedan cuatro líneas de trabajo futuro: ajustar un LLM local con LoRA y probar prompts con "
               "cientos de ejemplos [@zhang2026many]; un sistema híbrido que use la confianza del encoder para "
               "decidir cuándo consultar al LLM; la validación en evoluciones y planes de cuidado de CESFAM, "
-              "que es el objetivo de la tesis doctoral del primer autor, y el texto escrito por pacientes, "
+              "y el texto escrito por pacientes, "
               "con lenguaje coloquial y ruido de mensajería.")
 
     d.h1(None, "Disponibilidad de código y datos")
